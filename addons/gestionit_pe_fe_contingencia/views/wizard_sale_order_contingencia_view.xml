@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="view_wizard_sale_order_contingencia_form" model="ir.ui.view">
+        <field name="name">view.wizard.sale.order.contingencia.form</field>
+        <field name="model">wizard.sale.order.contingencia</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group string="Especifique Serie y Número de Documento Contingencia">
+                        <group>
+
+                            <field name="sale_order_enable_ids" invisible="1"/>
+
+                            <field name="prefix_code_contingencia_id" options="{'no_create_edit': True, 'no_create':True, 'no_open':True}" domain="[('id','in',sale_order_enable_ids)]"/>
+
+                            <field name="invoice_number_contingencia"/>
+
+                        </group>
+                    </group>
+
+                </sheet>
+                <!-- Ginely Saldarriaga-->
+                <footer>
+                    <button class="btn-primary" string="Generar Documento Contingencia"  name="create_document_contingencia" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_sale_order_contingencia" model="ir.actions.act_window">
+            <field name="name">Número de Serie-Documento para Documentos Contingencia</field>
+            <field name="res_model">wizard.sale.order.contingencia</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_wizard_sale_order_contingencia_form"/>
+            <field name="target">new</field>
+
+    </record>
+
+
+</odoo>

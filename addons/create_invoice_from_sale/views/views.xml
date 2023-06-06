@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_form_add_btn_factura_boleta" model="ir.ui.view">
+        <field name="name">view.form.add.btn.factura.boleta</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(4,ref('create_invoice_from_sale.res_groups_create_invoice_from_sale'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="replace">
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send']" position="before">
+                <button type="object" 
+                        string="Emitir Factura" 
+                        name="emitir_factura" 
+                        class="oe_highlight" 
+                        attrs="{'invisible':[('state','!=','sale')]}"
+                        confirm="¿Está seguro que desea emitir una Factura Electrónica?"/>
+                <button type="object" 
+                        string="Emitir Boleta" 
+                        name="emitir_boleta" 
+                        class="oe_highlight" 
+                        attrs="{'invisible':[('state','!=','sale')]}"
+                        confirm="¿Está seguro que desea emitir una Boleta Electrónica?"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

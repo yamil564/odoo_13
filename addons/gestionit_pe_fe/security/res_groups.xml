@@ -1,0 +1,308 @@
+<odoo>
+
+    <!--ACCESO DE LECTURA DE TABLA DE PARÁMETROS DE FACTURACIÓN ELECTRÓNICA PARA EMPLEADOS-->
+    <!-- <record model="ir.model.access" id="gestionit_pe_fe.access_model_tipo_afectacion">
+            <field name="name">gestionit_pe_fe.access.model.tipo.afectacion</field>
+            <field name="model_id" ref="gestionit_pe_fe.model_tipo_afectacion"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record> -->
+
+    <record id="access_model_account_move_document_reference" model="ir.model.access">
+        <field name="name">gestionit_pe_fe.account.move.document.reference</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_account_move_document_reference"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+    </record>
+
+    <record id="acces_model_paymentterm_line" model="ir.model.access">
+        <field name="name">gestionit_pe_fe.paymentterm.line</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_paymentterm_line"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+    </record>
+
+    <!--<record id="acces_model_sale_paymentterm_line" model="ir.model.access">
+        <field name="name">gestionit_pe_fe.sale.paymentterm.line</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sale_paymentterm_line"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+</record>-->
+
+    <record id="acces_model_sale_paymentterm_line_sale" model="ir.model.access">
+        <field name="name">gestionit_pe_fe.sale.paymentterm.line.sale</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sale_paymentterm_line"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <!--<field name="group_id" ref="sales_team.group_sale_salesman"/>-->
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_account_log_status">
+        <field name="name">gestionit_pe_fe.access.model.account.log.status</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_account_log_status"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">0</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_summary_line">
+        <field name="name">gestionit_pe_fe.access.model.summary.line</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_account_summary_line"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_summary">
+        <field name="name">gestionit_pe_fe.access.model.summary</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_account_summary"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_comunicacion_baja">
+        <field name="name">gestionit_pe_fe.access.model.account.comunicacion.baja</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_account_comunicacion_baja"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_guia_remision_remitente">
+        <field name="name">gestionit.access.model.gestionit.guia.remision.remitente</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_gestionit_guia_remision"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_guia_remision_line_remitente">
+        <field name="name">gestionit.access.model.gestionit.guia.remision.line.remitente</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_gestionit_guia_remision_line"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_vehiculo">
+        <field name="name">gestionit.access.model.gestionit.vehiculo</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_gestionit_vehiculo"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_modalidad_transporte">
+        <field name="name">gestionit.access.model.gestionit.modalidad.transporte</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_gestionit_modalidad_transporte"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">0</field>
+        <field name="perm_unlink">0</field>
+        <field name="perm_create">0</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_motivo_traslado">
+        <field name="name">gestionit.access.model.gestionit.motivo.traslado</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_gestionit_motivo_traslado"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">0</field>
+        <field name="perm_unlink">0</field>
+        <field name="perm_create">0</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_cert_sunat">
+        <field name="name">gestionit.access.model.gestionit.cert.sunat</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_cert_sunat"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+    <record id="cert_sunat_by_company" model="ir.rule">
+        <field name="name">Certificado digital Sunat multi-company</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_cert_sunat"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+
+    <!-- Permisos de Facturación Electrónica -->
+    <record id="category_electronic_invoice_pe" model="ir.module.category">
+        <field name="name">Facturación Electrónica Perú</field>
+    </record>
+
+    <record id="group_fe_detraction_user" model="res.groups">
+        <field name="name">Detracciones en comprobantes electrónicos</field>
+    </record>
+
+    <record id="group_fe_discount_global_sale_invoices" model="res.groups">
+        <field name="name">Descuento global en ventas y facturas</field>
+    </record>
+
+    <record id="group_fe_apply_retention" model="res.groups">
+        <field name="name">Permitir aplicar Retención en facturas de venta</field>
+    </record>
+
+    <record id="group_fe_restrict_select_tax_sale_inv_line" model="res.groups">
+        <field name="name">Restringir cambiar el impuesto en las líneas de venta</field>
+    </record>
+
+    <record id="group_fe_restrict_edit_price_from_sale" model="res.groups">
+        <field name="name">Restricción para editar el precio en ventas</field>
+    </record>
+
+    <record id="group_fe_allow_generate_send_xml" model="res.groups">
+        <field name="name">Habilitar generación y envío de XML de forma manual</field>
+    </record>
+
+    <record id="group_fe_allow_cancel_account_move" model="res.groups">
+        <field name="name">Permitir cancelar Asientos contables</field>
+    </record>
+
+    <record id="group_fe_allow_convert_draft_account_move" model="res.groups">
+        <field name="name">Permitir convertir a borrador asientos contables</field>
+    </record>
+
+    <!--############## GRUPO PARA EMISIÓN DE DOCS FUERA DE PLAZO ##########-->
+    <record id="group_user_sunat_send_out_date" model="res.groups">
+        <field name="name">Enviar Documentos con mas de 3 días de antiguedad</field>
+        <field name="comment">Enviar Documentos con mas de 3 días de antiguedad</field>        
+    </record>
+    <!-- ########################################################### -->
+
+    <!--############## GRUPO PARA CANCELAR DOCS ANULADOS ##########-->
+    <record id="group_user_cancelar_anulados" model="res.groups">
+        <field name="name">Permitir Cancelar Documentos Anulados</field>
+        <field name="comment">Permitir Cancelar Documentos Anulados</field>        
+    </record>
+    <!-- ########################################################### -->
+
+    <!-- <record id="group_fe_allow_generate_send_xml" model="res.groups">
+        <field name="name">vISUALI</field>
+    </record> -->
+
+    <!-- Permisos de catálogo 54: Detracciones -->
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_54_manager">
+        <field name="name">access.model.sunat.catalog.54.manager</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_54"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_54_user">
+        <field name="name">access.model.sunat.catalog.54.user</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_54"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- Permisos de catálogo 54: Detracciones -->
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_53_manager">
+        <field name="name">access.model.sunat.catalog.53.manager</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_53"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_53_user">
+        <field name="name">access.model.sunat.catalog.53.user</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_53"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- Permisos de catálogo 51:  Código de tipo de operación -->
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_51_manager">
+        <field name="name">access.model.sunat.catalog.51.manager</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_51"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_51_user">
+        <field name="name">access.model.sunat.catalog.51.user</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_51"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- Permisos de catálogo 59:  Medios de Pago -->
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_59_manager">
+        <field name="name">access.model.sunat.catalog.59.manager</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_59"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_sunat_catalog_59_user">
+        <field name="name">access.model.sunat.catalog.59.user</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_sunat_catalog_59"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record model="ir.model.access" id="gestionit_pe_fe.access_model_gestionit_lineas_transporte">
+        <field name="name">gestionit.access.model.gestionit.lineas.transporte</field>
+        <field name="model_id" ref="gestionit_pe_fe.model_gestionit_lineas_transporte"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+
+
+</odoo>

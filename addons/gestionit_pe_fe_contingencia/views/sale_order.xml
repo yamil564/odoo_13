@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_form_add_btn_document_contingencia" model="ir.ui.view">
+        <field name="name">view.form.add.btn.document.contingencia</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(4,ref('gestionit_pe_fe_contingencia.group_sale_invoice_contingencia'))]"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="replace">
+            </xpath>
+
+            
+            <field name="partner_id" position="before">
+                <field name="is_contingencia"/>
+            </field>
+
+
+            <xpath expr="//button[@name='action_quotation_send']" position="before">
+
+                <button type="object" 
+                        string="Emitir Factura Contingencia" 
+                        name="emitir_factura_contingencia" 
+                        class="oe_highlight" 
+                        attrs="{'invisible':['|',('state','!=','sale'),('is_contingencia','!=',True)]}"
+                        confirm="¿Está seguro que desea emitir una Factura de Contingencia?"/>
+                
+                <button type="object" 
+                        string="Emitir Boleta Contingencia" 
+                        name="emitir_boleta_contingencia" 
+                        class="oe_highlight" 
+                        attrs="{'invisible':['|',('state','!=','sale'),('is_contingencia','!=',True)]}"
+                        confirm="¿Está seguro que desea emitir una Boleta de Contingencia?"/>
+            </xpath>
+
+            
+        </field>
+    </record>
+</odoo>

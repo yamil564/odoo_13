@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+      
+		<record id="ple_diary_line_view_form" model="ir.ui.view">
+			<field name="name">PLE Libro Mayor-Diario-Simplificado</field>
+            <field name="model">ple.diary.line</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <sheet>
+                        <group>
+            		<group>
+                        
+                                    <field name ="move_id" />
+                                    <field name ="move_line_id" />
+                                    <field name ="asiento_contable" string="2. Asiento contable" />
+                                    <field name ="m_correlativo_asiento_contable"  string= "3. Correlativo del Asiento Contable" />
+                                    <field name ="codigo_cuenta_desagregado_id"  />
+                                    <field name ="codigo_cuenta_desagregado" string= "4. Código de Cuenta Contable desagregada" />
+                                    <field name ="codigo_unidad_operacion" string="5. Código de la unidad de operación, de la unidad económica administrativa" />
+                                    <field name ="codigo_centro_costos" string= "6. Código del centro de Costos" />
+                                    <field name ="tipo_moneda_origen" string= "7. Tipo de moneda de origen" />
+                                    <field name ="tipo_doc_iden_emisor" string="8. Tipo de Documento Identidad Emisor"/>
+                                    <field name ="num_doc_iden_emisor" string="9. Número documento identidad Emisor"/>
+                                    <field name ="tipo_comprobante_pago" string="10. Tipo de Comprobante de pago"/>
+                                    <field name ="num_serie_comprobante_pago" string="11. Número de Serie del comprobante de pago"/>
+                                    <field name ="num_comprobante_pago" string="12. Número del comprobante de Pago"/>
+                                    <field name ="fecha_contable" string="13. Fecha Contable"/>
+                                    <field name ="fecha_vencimiento" string="14. Fecha de vencimiento"/>
+                                    <field name ="fecha_operacion" string="15. Fecha de la Operación o Emisión"/>
+                                    <field name ="glosa" string="16. Glosa o descripción de la naturaleza de la operación"/>
+                                    <field name ="glosa_referencial" string="17. Glosa referencial"/>
+                                    <field name ="movimientos_debe" string="18. Movimientos del Debe" sum="movimientos_debe"/>
+                                    <field name ="movimientos_haber" string="19. Movimientos del Haber" sum="movimientos_haber"/>
+                                    <field name ="dato_estructurado" string="20. Dato Estructurado"/>
+                                    <field name ="indicador_estado_operacion" string="21. Estado de la Operación"/>
+
+
+
+            		</group>
+                </group>
+                     
+                </sheet>
+                </form>            	
+            </field>
+		</record>
+
+<!--###############################################
+###############################################-->
+            <record id="view_ple_diary_line_tree" model="ir.ui.view">
+            <field name="name">PLE Libro Mayor-Diario-Simplificado</field>
+            <field name="model">ple.diary.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="PLE Libro Mayor-Diario-Simplificado" create="false">
+                    <field name ="move_id" />
+                                    <field name ="move_line_id" />
+                                    <field name ="asiento_contable" string="2. Asiento contable" />
+                                    <field name ="m_correlativo_asiento_contable"  string= "3. Correlativo del Asiento Contable" />
+                                    <field name ="codigo_cuenta_desagregado_id"  />
+                                    <field name ="codigo_cuenta_desagregado" string= "4. Código de Cuenta Contable desagregada" />
+                                    <field name ="codigo_unidad_operacion" string="5. Código de la unidad de operación, de la unidad económica administrativa" />
+                                    <field name ="codigo_centro_costos" string= "6. Código del centro de Costos" />
+                                    <field name ="tipo_moneda_origen" string= "7. Tipo de moneda de origen" />
+                                    <field name ="tipo_doc_iden_emisor" string="8. Tipo de Documento Identidad Emisor"/>
+                                    <field name ="num_doc_iden_emisor" string="9. Número documento identidad Emisor"/>
+                                    <field name ="tipo_comprobante_pago" string="10. Tipo de Comprobante de pago"/>
+                                    <field name ="num_serie_comprobante_pago" string="11. Número de Serie del comprobante de pago"/>
+                                    <field name ="num_comprobante_pago" string="12. Número del comprobante de Pago"/>
+                                    <field name ="fecha_contable" string="13. Fecha Contable"/>
+                                    <field name ="fecha_vencimiento" string="14. Fecha de vencimiento"/>
+                                    <field name ="fecha_operacion" string="15. Fecha de la Operación o Emisión"/>
+                                    <field name ="glosa" string="16. Glosa o descripción de la naturaleza de la operación"/>
+                                    <field name ="glosa_referencial" string="17. Glosa referencial"/>
+                                    <field name ="movimientos_debe" string="18. Movimientos del Debe" sum="movimientos_debe"/>
+                                    <field name ="movimientos_haber" string="19. Movimientos del Haber" sum="movimientos_haber"/>
+                                    <field name ="dato_estructurado" string="20. Dato Estructurado"/>
+                                    <field name ="indicador_estado_operacion" string="21. Estado de la Operación"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_ple_diary_line" model="ir.actions.act_window">
+            <field name="name">PLE Libro Mayor-Diario-Simplificado</field>
+            <field name="res_model">ple.diary.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="view_ple_diary_line_filter" model="ir.ui.view">
+        <field name="name">ple.diary.line.filter</field>
+        <field name="model">ple.diary.line</field>
+        <field name="arch" type="xml">
+            <search string="PLE Libro Mayor-Diario-Simplificado">
+
+                <field name ="asiento_contable" string="Asiento contable" />
+                <field name ="codigo_cuenta_desagregado" string= "Cuenta Contable" />
+                <field name ="tipo_moneda_origen" string= "Tipo de moneda" />
+                <field name ="tipo_doc_iden_emisor" string="Tipo Documento Identidad Emisor"/>
+                <field name ="num_doc_iden_emisor" string="Número documento identidad Emisor"/>
+                <field name ="tipo_comprobante_pago" string="Tipo Comprobante Pago"/>
+                <field name ="num_serie_comprobante_pago" string="Número Serie de Comprobante de Pago"/>
+                <field name ="num_comprobante_pago" string="Número Comprobante de Pago"/>
+                <field name ="fecha_operacion" string="Fecha de Operación"/>
+                <field name ="glosa" string="Glosa o descripción"/>
+
+                <separator/>
+                <group expand="1" string="Agrupado por">
+                    <filter string="Cuenta" name="filter_cuenta" context="{'group_by':'codigo_cuenta_desagregado_id'}"/>
+                    <filter string="Asiento Contable" name="filter_asiento_contable" context="{'group_by':'move_id'}"/>
+                    <filter string="Tipo de Moneda" name="filter_tipo_moneda_origen" context="{'group_by':'tipo_moneda_origen'}"/>
+
+                    <filter string="Tipo de Documento Emisor" name="filter_tipo_documento_emisor" context="{'group_by':'tipo_doc_iden_emisor'}"/>
+
+                    <filter string="Número Documento Emisor" name="filter_num_doc_iden_emisor" context="{'group_by':'num_doc_iden_emisor'}"/>
+
+                    <filter string="Tipo de Comprobante Pago" name="filter_tipo_comprobante_pago" context="{'group_by':'tipo_comprobante_pago'}"/>
+
+                    <filter string="Número de Serie Comprobante" name="filter_num_serie_comprobante_pago" context="{'group_by':'num_serie_comprobante_pago'}"/>
+
+                    <filter string="Fecha Operación" name="filter_fecha_operacion" context="{'group_by':'fecha_operacion'}"/>
+
+
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+        <record id="action_ple_diary_line_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <!--<field name = "context">{'search_default_filter_cuenta': 1}</field>-->
+            <field name="view_id" ref="view_ple_diary_line_tree"/>
+            <field name="act_window_id" ref="action_ple_diary_line"/>
+        </record>
+		
+	</data>
+</odoo>

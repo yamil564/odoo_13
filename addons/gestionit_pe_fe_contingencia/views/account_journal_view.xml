@@ -1,0 +1,27 @@
+<odoo>
+    <record model="ir.ui.view" id="view_form_acccount_journal_serie_contingencia_fe">
+        <field name="name">view.account.journal.serie.fe</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.view_form_acccount_journal_serie_fe"/>
+        <field name="arch" type="xml">
+            
+            <field name="code" position="after">
+                <field name="is_contingencia"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_tree_acccount_journal_serie_contingencia_fe">
+        <field name="name">view.account.journal.serie.fe</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.view_tree_acccount_journal_serie_fe"/>
+        <field name="arch" type="xml">
+            
+            <field name="code" position="after">
+                <field name="is_contingencia"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

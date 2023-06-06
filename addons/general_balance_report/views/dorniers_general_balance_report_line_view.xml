@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+      
+		<record id="dorniers_general_balance_report_line_view_form" model="ir.ui.view">
+			<field name="name">Detalle de Rubro del Estado de Situación Financiera</field>
+            <field name="model">dorniers.general.balance.report.line</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <sheet>
+                        <group>
+            		      <group>
+                        
+                            <field name="name"/>
+                            <field name="grupo_informe"/>
+                            <field name="grupo_elemento"/>
+                            <field name="sub_grupo_elemento"/>
+                            <field name="saldo_rubro_contable"/>
+
+            		      </group>
+                        </group>
+                     
+                </sheet>
+                </form>            	
+            </field>
+		</record>
+
+
+        <!-- #################################################################### -->
+
+        <record id="view_dorniers_general_balance_report_line_tree" model="ir.ui.view">
+            <field name="name">Detalle de Rubro del Estado de Situación Financiera</field>
+            <field name="model">dorniers.general.balance.report.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Detalle de Rubro del Estado de Situación Financiera" create="false">
+    
+                    <field name="name"/>
+                    <!--<field name="grupo_informe"/>
+                    <field name="grupo_elemento"/>
+                    <field name="sub_grupo_elemento"/>-->
+                    <field name="saldo_rubro_contable"/>
+    
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- #################################################### -->
+        <record id="action_dorniers_general_balance_report_line" model="ir.actions.act_window">
+            <field name="name">Detalle de Rubro del Estado de Situación Financiera</field>
+            <field name="res_model">dorniers.general.balance.report.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="view_dorniers_general_balance_report_line_filter" model="ir.ui.view">
+        <field name="name">dorniers.general.balance.report.line.filter</field>
+        <field name="model">dorniers.general.balance.report.line</field>
+        <field name="arch" type="xml">
+                <search string="Detalle de Rubro del Estado de Situación Financiera">
+
+                    <field name ="name" string="Nombre de Rubro" />
+
+                    <separator/>
+                    <group expand="1" string="Agrupado por">
+
+
+                        <filter string="Grupo Informe" name="filter_grupo_informe" context="{'group_by':'grupo_informe'}"/>
+
+                        <filter string="Grupo Elemento" name="filter_grupo_elemento" context="{'group_by':'grupo_elemento'}"/>
+                        
+                        <filter string="Sub Grupo Elemento" name="filter_sub_grupo_elemento" context="{'group_by':'sub_grupo_elemento'}"/>
+
+
+                    </group>
+                </search>
+            </field>
+        </record>
+		
+	</data>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+        <record id="report_comprobantes.view_form_comprobantes_report_xlsx" model="ir.ui.view">
+            <field name="name">view.wizard.form.report.comprobantes</field>
+            <field name="model">wizard.comprobantes.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="tipo_de_seleccion_tiempo" widget="radio" string="Tipo de Periodo"/>
+                        <group>
+                            <field name="anio_fiscal" attrs="{'invisible':[['tipo_de_seleccion_tiempo','=','intervalo_fechas']]}" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" />
+                        </group>
+                        <group>
+                            <field name="periodo" attrs="{'invisible':[['tipo_de_seleccion_tiempo','=','intervalo_fechas']]}" domain="[['fiscalyear_id','=',anio_fiscal]]" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="fecha_inicio" attrs="{'invisible':[['tipo_de_seleccion_tiempo','=','por_mes']]}"/>
+                        </group>
+                        <group>
+                            <field name="fecha_fin" attrs="{'invisible':[['tipo_de_seleccion_tiempo','=','por_mes']]}"/>
+                        </group>
+                        <!-- <group>
+                            <field name="supplier_id" domain="[['supplier','=',True]]"/>
+                        </group> -->
+                    </group>
+                    <footer>
+                        <button name="btn_generate_xlsx" string="Reporte Comprobantes" type="object"/>
+                        <!-- <button name="btn_reporte_por_proveedor" string="Reporte de líneas por Proveedor" type="object"/> -->
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="report_comprobantes.action_view_wizard_form_report_comprobantes" model="ir.actions.act_window">
+            <field name="name">Reporte de Comprobantes XLSX</field>
+            <field name="res_model">wizard.comprobantes.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Reporte Comprobantes xlsx" id="report_comprobantes.menuitem_report_comprobantes" parent="account.account_reports_management_menu" action="report_comprobantes.action_view_wizard_form_report_comprobantes"/>
+    </data>
+</odoo>

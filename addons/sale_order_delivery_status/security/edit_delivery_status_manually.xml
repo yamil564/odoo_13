@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <record id="edit_delivery_status_manually" model="res.groups">
+        <field name="name">Edit Delivery Status Manually</field>
+        <field name="comment">Allow to edit delivery status by manual.</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+</data>
+
+</odoo>

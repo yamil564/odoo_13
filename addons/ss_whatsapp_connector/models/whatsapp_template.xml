@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="whatsapp_sales_template" model="mail.template">
+        <field name="name">Sales: Confirm Order</field>
+        <field name="subject">Sales Confirm</field>
+        <field name="for_wsp">True</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+        <p> Hola,</p>
+        
+        Tu orden ${object.name} con monto ${format_amount(object.amount_total, object.currency_id)} está Confirmada.
+        <br/>
+        La fecha y hora de tu orden es "${object.date_order}"
+        <br/>
+        Si tienes alguna pregunta, por favor no dudes en contactarnos.
+        <br/>
+        *Sigue este enlace para descargar el pdf*: ${object.sale_url}
+        ]]>
+        </field>
+    </record>
+
+
+    <record id="whatsapp_purchase_template" model="mail.template">
+        <field name="name">Purchase: Confirm Order</field>
+        <field name="subject">Purchase Order</field>
+        <field name="for_wsp">True</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+         <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                Hola,
+                <br/><br/>
+                Acerca de la orden de compra <strong>${object.name}</strong>
+                % if object.partner_ref:
+                    con referencia: ${object.partner_ref}
+                % endif
+                con monto ${format_amount(object.amount_total, object.currency_id)}
+                de ${object.company_id.name}.
+                <br/>
+                % if object.date_approve:
+                    La fecha y hora de la orden es "${object.date_approve}"
+                %endif
+                <br/>
+                Si tiene alguna pregunta, por favor no dudes en contactarnos.
+                <br/><br/>
+                Saludos,
+            </p>
+        ]]>
+        </field>
+    </record>
+
+    <record id="whatsapp_payment_template" model="mail.template">
+        <field name="name">Payment: Confirm Payment</field>
+        <field name="subject">Payment</field>
+        <field name="for_wsp">True</field>
+        <field name="model_id" ref="account.model_account_payment"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+         <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                Hola,
+                <br/>
+                % if object.payment_type == 'inbound':
+                    Hemos recibido su pago por el monto de ${format_amount(object.amount, object.currency_id)} por el comprobante ${object.communication}.
+                % elif object.payment_type == 'outbound':
+                    Hemos enviado el pago por el monto de ${format_amount(object.amount, object.currency_id)} por el comprobante ${object.communication}.
+                % elif object.payment_type == 'transfer':
+                    Se realizó una transferencia de ${object.journal_id.name} a ${object.destination_journal_id.name} por el monto de ${format_amount(object.amount, object.currency_id)}.
+                % endif
+                <br/>
+                Saludos,
+            </p>
+        ]]>
+        </field>
+    </record>
+
+
+    <record id="whatsapp_picking_template" model="mail.template">
+        <field name="name">Picking: Confirm Picking</field>
+        <field name="subject">Picking</field>
+        <field name="for_wsp">True</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+         <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                Hola,
+                <br/>
+                % if object.state == 'draft':
+                    Su pedido ${object.name} ha sido registrado.
+                % elif object.state in ('waiting', 'confirmed'):
+                    Su pedido ${object.name} está en espera.
+                % elif object.state == 'assigned':
+                    Su pedido ${object.name} se encuentra listo para ser enviado.
+                % elif object.state == 'done':
+                    Su pedido ${object.name} ha sido enviado.
+                % endif
+                <br/>
+                Saludos,
+            </p>
+        ]]>
+        </field>
+    </record>
+
+    <record id="whatsapp_invoice_template" model="mail.template">
+        <field name="name">Invoice: Send by WhatsApp</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="subject">Invoice</field>
+        <field name="for_wsp">True</field>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+        <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                Hola,
+                <br /><br />
+                Esta es su
+                % if object.name:
+                    factura ${object.name}
+                % else:
+                    factura
+                %endif
+                % if object.invoice_origin:
+                    (con referencia: ${object.invoice_origin})
+                % endif
+                con monto ${format_amount(object.amount_total, object.currency_id)}
+                de ${object.company_id.name}.
+                % if object.payment_state == 'paid':
+                    Esta factura ya está pagada.
+                % else:
+                    Por favor enviar el pago a su más pronta conveniencia.
+                % endif
+                <br />
+                La fecha y hora de su factura es "${object.invoice_date}"
+                <br />
+                No dude en ponerse en contacto con nosotros si tiene alguna pregunta.
+                % if object.invoice_user_id.signature:
+                    <br />
+                    ${object.invoice_user_id.signature | safe}
+                % endif
+                </p>
+                <br/>
+                *Sigue este enlace para descargar el pdf*: ${object.invoice_url}
+        ]]>
+        </field>
+    </record>
+</odoo>

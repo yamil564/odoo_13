@@ -1,0 +1,11 @@
+<odoo noupdate="1">
+    <record model="ir.sequence" id="sequence_product_ref">
+        <field name="name">Secuencia para Referencias de Productos</field>
+        <field name="code">ref.prod</field>
+        <field name="implementation">standard</field>
+        <field name="use_date_range" eval="False"/>
+        <field name="padding">4</field>
+        <field name="number_next_actual">4349</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

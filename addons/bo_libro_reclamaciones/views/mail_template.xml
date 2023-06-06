@@ -1,0 +1,26 @@
+<odoo>
+    <record id="mail_template_libro_reclamaciones" model="mail.template">
+        <field name="name">Plantilla de libro de reclamaciones</field>
+        <field name="model_id" ref="bo_libro_reclamaciones.model_libro_reclamaciones"/>
+        <field name="subject">Reclamo ${object.name} | ${object.company_id.name}</field>
+        <field name="email_from">${(object.company_id.email)}</field>
+        <field name="email_to">${object.consumer_name} &lt;${object.consumer_email}&gt;</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Hola ${object.consumer_name},<br/>
+                    Su Reclamo ha sido recibido, y nos estaremos comunicando con usted en los próximos siete días para brindarle una solución.<br/>
+                </p>
+                <br/>
+                <br/>
+                <div>
+                % if user and user.signature:
+                <span>${user.signature | safe}</span>
+                % endif
+                </div>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+        <field name="report_name">Reclamación ${(object.name or '')}</field>
+        <field name="report_template" ref="bo_libro_reclamaciones.report_libro_reclamaciones"/>
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <record id="gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen_view" model="res.groups">
+        <field name="name">Permitir visualizar el T/C USD</field>
+    </record>
+
+    <record id="gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen" model="res.groups">
+        <field name="name">Permitir actualizar el T/C USD</field>
+        <field name="implied_ids" eval="[(4,ref('gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen_view'))]"/>
+    </record>
+</odoo>

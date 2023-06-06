@@ -1,0 +1,12 @@
+<odoo>
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/bo_pe_contabilidad/static/src/lib/jstree.min.js"/>
+            <script type="text/javascript" src="/bo_pe_contabilidad/static/src/js/plan_cuentas.js"/>
+            <link rel="stylesheet" href="/bo_pe_contabilidad/static/src/lib/themes/default/style.min.css"/>
+        </xpath>
+        <!-- <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" src="/bo_pe_contabilidad/static/src/lib/themes/default/style.min.css"/>
+        </xpath> -->
+    </template>
+</odoo>

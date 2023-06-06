@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="OrderLine">
+        <t t-jquery="td[name='td_ol_reprint']" t-operation="append">
+            <span class="button order-list-credit-note"
+                    t-if="widget.pos.config.iface_return_done_order and order.amount_total >= 0"
+                    t-att-data-order-id="order.id"
+                    t-att-data-partner-id='order.partner_id?order.partner_id:""'
+                    t-att-data-move-id='order.account_move?order.account_move:""'
+                    t-att-data-Uid='order.uid'>
+                <i class="fa fa-fw fa-undo"></i> NC
+            </span>
+        </t>
+        <t t-jquery="td[name='td_ol_date']" t-operation="replace">
+            <td name="td_ol_date">
+                <span t-esc='order.date_order'/>
+            </td>
+        </t>
+        <t t-jquery="td[name='td_ol_amount_total']" t-operation="replace">
+            <td name="td_ol_amount_total">
+                <t t-esc='widget.format_currency(order.amount_total,"Price POS")' />
+            </td>
+        </t>
+        <t t-jquery="td[name='td_ol_name']" t-operation="replace">
+            <td name="td_ol_name">
+                <t t-if="order.account_move != undefined">
+                    <b><t t-esc='order.account_move[1]' /></b><br/>
+                </t>
+                <t t-esc='order.pos_reference or order.name' />
+            </td>
+        </t>
+    </t>
+
+</templates>

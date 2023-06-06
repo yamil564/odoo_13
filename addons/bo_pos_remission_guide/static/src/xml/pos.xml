@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ReceiptScreenWidget">
+        <t t-jquery=".print" t-operation="after">
+            <div class="button guide">
+                <i class='fa fa-list-ul'></i> Crear Guía
+            </div>
+        </t>
+    </t>
+
+    <t t-name="remission_guide_info">
+        <div class="modal-dialog">
+            <div class="popup" style="height: 70%; width:70%">
+                <p class="title">Complete la información necesaria para la Guía de Remisión</p>
+                <main>
+                    <div style="display:flex; flex-direction:row; flex:1; margin-left:1rem; margin-top: 1rem;">
+                        Comprobante: <h2><t t-esc="widget.options.order"/></h2>
+                    </div>
+                    <div style="display:flex;flex-direction:row;flex:1">
+                        <div style="display:flex;flex-direction:column;flex:1;align-items:flex-start; margin-top: 1rem;">
+                            <t t-if="widget.options.data">
+                                <span style="margin-left: 1rem;">Dirección de Partida</span>
+                                <input id="remission_guide_starting_address" type="text" class="popup-input" 
+                                    t-att-value="widget.options.data.company_street || ''" style="margin-left: 1rem;"/>
+                            </t>
+                        </div>
+                        <div style="display:flex;flex-direction:column;flex:2;align-items:flex-start; margin-top: 1rem">
+                            <t t-if="widget.options.data">
+                                <span>Dirección de Llegada</span>
+                                <input id="remission_guide_arrival_address" type="text" class="popup-input" 
+                                    t-att-value="widget.options.data.street || ''"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;flex:1">
+                        <div style="display:flex;flex-direction:column;flex:1;align-items:flex-start; margin-top: 1rem;">
+                                <t t-if="widget.options.data">
+                                    <span style="margin-left: 1rem">Peso Total</span>
+                                    <input id="remission_guide_weight" type="text" class="popup-input" 
+                                        t-att-value="widget.options.data.total_weight || '0'" style="margin-left: 1rem;"/>
+                                </t>
+                        </div>
+                        <div style="display:flex;flex-direction:column;flex:2;align-items:flex-start; margin-top: 1rem;">
+                            <t t-if="widget.options.data">
+                                <div style="display:flex">
+                                    <div style="flex:1">
+                                        <span>Departamento</span><br/>
+                                        <select id='remission_guide_department' style="background: transparent; width: 80%; border: none; padding: 1px; height: 40px; font-size: 19px;" t-att-value="widget.options.data.department_id || ''">
+                                            <t t-foreach='widget.options.data.departaments' t-as='department'>
+                                                <option t-att-value='department[0]'>
+                                                    <t t-esc='department[1]'/>
+                                                </option>
+                                            </t>
+                                        </select><br/>
+                                        <span style="margin-top: 1rem;">Provincia</span><br/>
+                                        <select id='remission_guide_province' style="background: transparent; width: 80%; border: none; padding: 1px; height: 40px; font-size: 19px;" t-att-value="widget.options.data.province_id || ''">
+                                            <t t-foreach='widget.options.data.provinces' t-as='province'>
+                                                <option t-att-value='province[0]'>
+                                                    <t t-esc='province[1]'/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div style="flex:1; margin-left: 1rem;">
+                                        <span>Distrito</span><br/>
+                                        <select id='remission_guide_district' style="background: transparent; width: 80%; border: none; padding: 5px; height: 40px;font-size: 19px; margin-left: 1rem;" t-att-value="widget.options.data.district_id || ''">
+                                            <t t-foreach='widget.options.data.districts' t-as='district'>
+                                                <option t-att-value='district[0]'>
+                                                    <t t-esc='district[1]'/>
+                                                </option>
+                                            </t>
+                                        </select><br/>
+                                        <span style="margin-top: 1rem;">Ubigeo</span><br/>
+                                        <input id="remission_guide_ubigeo" type="text" class="popup-input" 
+                                        t-att-value="widget.options.data.ubigeo || ''" style="margin-left: 1rem;"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;flex:1">
+                        <div style="display:flex;flex-direction:column;flex:1;align-items:flex-start; margin-top: 1rem;">
+                                <t t-if="widget.options.data">
+                                    <span style="margin-left: 1rem">Empresa de Transporte</span>
+                                    <select id='remission_guide_transport_companys' style="background: transparent; width: 80%; border: none; padding: 5px; height: 40px;font-size: 19px; margin-left: 1rem;">
+                                        <t t-foreach='widget.options.data.transport_companys' t-as='company'>
+                                            <option t-att-value='company[0]'>
+                                                <t t-esc='company[1]'/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </t>
+                        </div>
+                        <div style="display:flex;flex-direction:column;flex:1;align-items:flex-start">
+                            <t t-if="widget.options.data">
+                                <t t-if="widget.options.data.drivers">
+                                    <span>Conductor</span>
+                                    <select id='remission_guide_driver' style="background: transparent; width: 80%; border: none; padding: 5px; height: 40px;font-size: 19px; margin-left: 1rem;">
+                                        <option selected="" disabled="">Ninguno</option>
+                                        <t t-foreach='widget.options.data.drivers' t-as='driver'>
+                                            <option t-att-value='driver[0]'>
+                                                <t t-esc='driver[1]'/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </t>
+                                <t t-if="widget.options.data.cars">
+                                    <br/>
+                                    <span>Vehiculo</span>
+                                    <select id='remission_guide_car' style="background: transparent; width: 80%; border: none; padding: 5px; height: 40px;font-size: 19px; margin-left: 1rem;">
+                                        <option selected="" disabled="">Ninguno</option>
+                                        <t t-foreach='widget.options.data.cars' t-as='car'>
+                                            <option t-att-value='car[0]'>
+                                                <t t-esc='car[1]'/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                </main>
+                <div class="footer">
+                    <div class="button cancel" special="cancel">
+                        Cancelar
+                    </div>
+                    <div class="button save">
+                        Confirmar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

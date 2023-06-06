@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_partner_property_me_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+              
+              <xpath expr="//page[@name='accounting']/group/group/field[@name='property_account_payable_id']" position="after">
+
+                <field name="property_account_receivable_me_id" groups="base.group_multi_currency"/>
+                <field name="property_account_payable_me_id" groups="base.group_multi_currency"/>
+
+                <field name="massive_update_account_me" groups="base.group_multi_currency"/>
+                
+              </xpath>
+
+              <xpath expr="//page[@name='accounting']" position="after">
+                <page name="accounting_fees" string="Contabilidad de Recibos por Honorario">
+                  <group>
+                    <group string="Cuentas de Recibo Honorario">
+
+                      <field name="property_account_payable_fees_id"/>
+
+                      <field name="massive_update_account_fees"/>
+                    </group>
+
+                    <group string="Cuentas de Recibo Honorario en Moneda Extranjera">
+
+                        <field name="property_account_payable_me_fees_id" groups="base.group_multi_currency"/>
+
+                        <field name="massive_update_account_fees_me" groups="base.group_multi_currency"/>
+                    </group>
+                  </group>
+                </page>
+                
+              </xpath>
+
+            </field>
+        </record>
+
+   </data>
+</odoo>

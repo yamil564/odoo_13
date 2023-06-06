@@ -1,0 +1,14 @@
+<odoo>
+    <record model="ir.sequence" id="sequence_claim_request">
+        <field name="name">Secuencia de reclamación LR</field>
+        <field name="implementation">no_gap</field>
+        <field name="prefix">LR-</field>
+        <field name="padding">5</field>
+        <field name="use_date_range" eval="False"/>
+        <field name="number_increment">1</field>
+    </record>
+
+    <record model="res.company" id="base.main_company">
+        <field name="default_claim_sequence_id" ref="bo_libro_reclamaciones.sequence_claim_request"/>
+    </record>
+</odoo>

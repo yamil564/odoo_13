@@ -1,0 +1,12 @@
+<odoo>
+    <record id="stock_warehouse_from_view_notes_ext" model="ir.ui.view">
+        <field name="name">stock_warehouse_from_view_notes_ext</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.view_stock_warehouse_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_ids']" position="replace">
+                <field name="journal_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}" domain="[('company_id','=',company_id),('type','in',['sale','purchase']),('invoice_type_code_id','in',['01','03','07','08','100'])]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

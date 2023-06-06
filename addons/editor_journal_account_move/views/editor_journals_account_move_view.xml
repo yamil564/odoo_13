@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="editor_journals_account_move_view_form" model="ir.ui.view">
+            <field name="name">Editor de Diarios en Asientos Contables</field>
+            <field name="model">editor.journals.account.move</field>
+            <field name="arch" type="xml">
+                <form>
+               
+                    <sheet>
+                         <header>
+                             <button name="update_account_move_massive" class="oe_highlight" string="Ejecutar Actualización" icon="fa-play" type="object"/>
+                        </header>
+
+                        <group>
+                            <field name="buffer_account_move_ids" widget="many2many_tags" options="{'no_create': True}"/>
+
+                                    <div>
+                                        <button name="limpiar_buffer" 
+                                                string="Limpiar Selección"
+                                                class="oe_highlight"
+                                                type="object"
+                                                icon="fa-plus"
+                                                />
+                                    </div>
+
+                                    <div>
+                                        <button name="add_lines" 
+                                                string="Agregar a Tabla"
+                                                class="oe_highlight"
+                                                type="object"
+                                                icon="fa-plus"
+                                                />
+                                    </div>
+
+                        </group>
+
+                        <group string="Operaciones Masivas">
+                            <group>
+                                <field name="massive_journal"/>
+                            </group>
+
+                            <div>
+                                        <button name="aplication_massive"
+                                                string="Aplicar"
+                                                class="oe_highlight"
+                                                type="object"
+                                                icon="fa-plus"
+                                                />
+                                    </div>
+
+
+                        </group>
+
+
+                        <notebook>
+                            <page name="editor_journals_account_move_page" string="ASIENTOS CONTABLES A EDITAR">
+                            
+                                    <field name='editor_journals_account_move_line_ids'>
+                                        
+                                        <tree editable="1"> 
+                                            <field name="move_id"/>
+                                            <field name="date"/>
+                                            <field name="original_journal_id"/>
+                                            <field name="journal_id"/>
+                                        </tree> 
+
+                                  </field>
+                            </page>
+                        </notebook>
+                     </sheet>
+                </form>             
+            </field>
+        </record>
+
+
+        <record id="action_editor_journals_account_move" model="ir.actions.act_window">
+            <field name="name">Editor de Diarios en Asientos Contables</field>
+            <field name="res_model">editor.journals.account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="view_id" ref="editor_journals_account_move_view_form"/>
+            <!--<field name="target">new</field>-->
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear Edición de Diarios en Asientos Contables
+              </p><p>
+                Permite Editar el Diario en los asientos
+               :)
+              </p>
+            </field>
+        </record>
+
+        <record id="action_editor_journals_account_move_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="editor_journals_account_move_view_form"/>
+            <field name="act_window_id" ref="action_editor_journals_account_move"/>
+        </record>
+
+        <menuitem id="menu_editor_journals_account_move" name="Editor de Diarios en Asientos Contables" parent="account.menu_finance_entries_actions"  groups="account.group_account_invoice" action="action_editor_journals_account_move"/>
+             
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="view_wizard_report_account_payable_form" model="ir.ui.view">
+        <field name="name">view.wizard.report.account.payable.form</field>
+        <field name="model">wizard.report.account.payable</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group string="Parámetros del Reporte">
+                        <group>
+                            <field name="type_report"/>
+                        </group>
+                    </group>
+
+                </sheet>
+                <footer>
+                    <button class="btn-primary" string="Generar Reporte"  name="button_view_tree_account_payable" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_report_account_payable" model="ir.actions.act_window">
+            <field name="name">Reporte de Cuentas por Pagar a la Fecha</field>
+            <field name="res_model">wizard.report.account.payable</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_wizard_report_account_payable_form"/>
+            <field name="target">new</field>
+
+        </record>
+
+
+    <menuitem 
+            id="menu_report_account_payable_receivable" 
+            name="REPORTES DE CUENTAS POR COBRAR Y PAGAR" 
+            parent="account.menu_finance_reports"
+            sequence="2" groups="account.group_account_invoice"/>
+
+
+    <menuitem id="menu_report_account_payable" name="Reporte de Cuentas por Pagar a la Fecha" action="action_wizard_report_account_payable" parent="menu_report_account_payable_receivable" sequence="0"/>
+
+</odoo>

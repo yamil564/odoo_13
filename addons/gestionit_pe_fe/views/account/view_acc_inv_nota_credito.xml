@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="gestionit_pe_fe.view_account_move_reversal" model="ir.ui.view">
+            <field name="name">Wizard - Nota de crédito</field>
+            <field name="model">account.move.reversal</field>
+            <field name="inherit_id" ref="account.view_account_move_reversal"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="tipo_comprobante_a_rectificar" invisible="1"/>
+                    <field name="journal_type" invisible="1"/>
+                    <field name="credit_note_type" required="1"/>
+                </xpath>
+                <field name="reason" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="domain">[('invoice_type_code_id','in',['07','97']), ('tipo_comprobante_a_rectificar','=',tipo_comprobante_a_rectificar),('type','=',journal_type)]</attribute>
+                    <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_credit_note" model="ir.actions.act_window">
+            <field name="name">NOTA DE CRÉDITO</field>
+            <field name="res_model">account.move</field>
+            <field name="view_id" ref="gestionit_pe_fe.account_factura_tree_1"/>
+            <field name="view_mode">tree,kanban,form,pivot,graph</field>
+            <field name="context">
+                {
+                    'default_type':'out_refund',
+                    'default_journal_type': 'sale',
+                    'journal_type': 'sale',
+                    'default_invoice_type_code':'07',
+                    'default_payment_term_id':1
+                }
+            </field>
+            <field name="domain"> [('type','=','out_refund'),('journal_id.invoice_type_code_id','=','07')]
+            </field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+        </record>
+
+        <record id="action_invoice_refund_out_tree_tree_2" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <!-- <field name="view_id" ref="account.invoice_tree"/> -->
+            <field name="view_id" ref="gestionit_pe_fe.account_factura_tree_1" />
+            <field name="act_window_id" ref="gestionit_pe_fe.action_credit_note"/>
+        </record>
+
+        <record id="action_invoice_refund_out_tree_form_2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.view_move_form"/>
+            <field name="act_window_id" ref="gestionit_pe_fe.action_credit_note"/>
+        </record>
+
+        <menuitem name="Nota de Crédito" id="menu_nota_credito" action="action_credit_note" parent="gestionit_pe_fe.menu_comprobantes_documentos" sequence="3"/>
+    </data>
+</odoo>

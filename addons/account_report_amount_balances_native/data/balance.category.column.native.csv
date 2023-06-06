@@ -1,0 +1,7 @@
+"id","name","code"
+"01","Saldos Iniciales","initial_balance"
+"02","Movimientos del Periodo","period_movements"
+"03","Saldos Finales","final_balance"
+"04","Balance General","balance"
+"05","Resultados por Naturaleza","nature"
+"06","Resultados por Función","function"

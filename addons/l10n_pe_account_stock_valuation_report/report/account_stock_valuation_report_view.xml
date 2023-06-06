@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_stock_valuation_report_form" model="ir.ui.view">
+        <field name="name">account.stock.valuation.report.form</field>
+        <field name="model">account.stock.valuation.report</field>
+        <field name="arch" type="xml">
+            <form string="Kardex de producto" create="0" edit="0" delete="0">
+
+                <header>
+                    <button name="action_get_account_moves" icon="fa-usd" class="oe_stat_button" string="Asientos contables" type="object"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="stock_valuation_layer_id"/>
+                        <field name="move_id"/>
+                        <field name="account_move_id"/>
+                        <field name="invoice_number"/>
+                        <field name="picking_id"/>
+                        <field name="origin" invisible="True"/>
+                        <field name="purchase_line_id" invisible="True"/>
+                        <field name="purchase_id" />
+                        <field name="sale_line_id" invisible="True"/>
+                        <field name="sale_id"/>
+                        <!-- <field name="invoice_id"/> -->
+                        <field name="inventory_id"/>
+                        <field name="warehouse_id"/>
+                        <field name="date"/>
+                        <field name="product_id"/>
+                        <field name="product_tmpl_id" invisible="True"/>
+                        <field name="categ_id"/>
+                        <field name="uom_id"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="quantity"/>
+                        <field name="location_id"/>
+                        <field name="usage" invisible="True"/>
+                        <field name="type"/>
+                        <field name="qty_in"/>
+                        <field name="cost_in"/>
+                        <field name="total_cost_in"/>
+                        <field name="qty_out"/>
+                        <field name="cost_out"/>
+                        <field name="total_cost_out"/>
+                        <field name="qty"/>
+                        <field name="unit_cost"/>
+                        <field name="value"/>
+                        <!--<field name="stock_value"/>-->
+
+                        <field name="date_expected" invisible="True"/>
+                        <field name="picking_type_id" invisible="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_stock_valuation_report_tree" model="ir.ui.view">
+        <field name="name">account.stock.valuation.report.tree</field>
+        <field name="model">account.stock.valuation.report</field>
+        <field name="arch" type="xml">
+            
+            <tree string="Kardex de producto" create="0" edit="0" delete="0" default_order="date">
+
+                <field name="stock_valuation_layer_id"/>
+                <field name="move_id"/>
+                <field name="account_move_id"/>
+                <field name="invoice_number"/>
+                <field name="picking_id"/>
+                <field name="origin" invisible="True"/>
+                <field name="purchase_line_id" invisible="True"/>
+                <field name="purchase_id" />
+                <field name="sale_line_id" invisible="True"/>
+                <field name="sale_id"/>
+                <!-- <field name="invoice_id"/> -->
+                <field name="inventory_id"/>
+                <field name="warehouse_id"/>
+                <field name="date"/>
+                <field name="product_id"/>
+                <field name="product_tmpl_id" invisible="True"/>
+                <field name="categ_id"/>
+                <field name="uom_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="quantity"/>
+                <field name="location_id"/>
+                <field name="usage" invisible="True"/>
+                <field name="type"/>
+                <field name="qty_in"/>
+                <field name="cost_in"/>
+                <field name="total_cost_in"/>
+                <field name="qty_out"/>
+                <field name="cost_out"/>
+                <field name="total_cost_out"/>
+                <field name="qty"/>
+                <field name="unit_cost"/>
+                <field name="value"/>
+                <!--<field name="stock_value"/>
+                <field name="value_difference"/>-->
+                <field name="date_expected" invisible="True"/>
+                <field name="picking_type_id" invisible="True"/>
+                <button name="action_get_account_moves" icon="fa-usd" class="oe_stat_button" string="Asientos contables" type="object"/>
+                <!-- <button name="action_get_sale_order" icon="fa-shopping-cart" class="oe_stat_button" string="Ir a Venta" type="object" attrs="{'invisible':[('sale_id','=',False)]}"/>
+                <button name="action_get_purchase_order" icon="fa-signal" class="oe_stat_button" string="Ir a Compra" type="object" attrs="{'invisible':[('purchase_id','=',False)]}"/> -->
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_account_stock_valuation_report_filter" model="ir.ui.view">
+        <field name="name">account.stock.valuation.report.filter</field>
+        <field name="model">account.stock.valuation.report</field>
+        <field name="arch" type="xml">
+            <search string="Kardex de producto">
+                <field name="product_id"/>
+                <field name="product_tmpl_id"/>
+                <field name="date"/>
+                <separator/>
+                <filter name="in_location" string="Ubicacon Interna" domain="[('usage', '=', 'internal')]" help="Internal Locations"/>
+                <filter name="customer" string="Ubicacion Cliente" domain="[('usage', '=', 'customer')]" help="Customer Locations"/>
+                <filter name="supplier" string="Ubicacion Proveedor" domain="[('usage', '=', 'supplier')]" help="Vendor Locations"/>
+                <group expand="1" string="Group By">
+                    <filter string="Fecha" name="Date" context="{'group_by':'date'}"/>
+                    <filter string="Categoria" name="Category" context="{'group_by':'categ_id'}"/>
+                    <filter string="Almacen" name="warehouse" context="{'group_by':'warehouse_id'}"/>
+                    <filter string="Ubicacion" name="Location" context="{'group_by':'location_id'}"/>
+                    <filter string="Producto" name="Product" context="{'group_by':'product_id'}"/>
+                    <filter string="Compañia" name="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_account_stock_valuation_report" model="ir.actions.act_window">
+        <field name="name">Kardex de producto</field>
+        <field name="res_model">account.stock.valuation.report</field>
+        <field name="view_mode">tree,form</field>
+        <!--<field name="context">{'search_default_in_location':1}</field>-->
+        <field name="context">{'search_default_Product':1}</field>
+        <field name="search_view_id" ref="view_account_stock_valuation_report_filter"/>
+        <field name="view_id" ref="view_account_stock_valuation_report_tree"/>
+    </record>
+
+    <menuitem action="action_view_account_stock_valuation_report" id="menu_action_stock_kardex_report" parent="stock.menu_warehouse_report"/>
+</odoo>

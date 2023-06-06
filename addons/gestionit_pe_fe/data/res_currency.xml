@@ -1,0 +1,18 @@
+<odoo>
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'base'), ('name', '=', 'PEN')]"/>
+        </function>
+        <value eval="{'noupdate': False}" />
+    </function>
+    <record id="base.PEN" model="res.currency">
+        <field name="currency_unit_label">SOL</field>
+        <field name="currency_subunit_label">CENTIMO</field>
+    </record>
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'base'), ('name', '=', 'PEN')]"/>
+        </function>
+        <value eval="{'noupdate': True}" />
+    </function>
+</odoo>

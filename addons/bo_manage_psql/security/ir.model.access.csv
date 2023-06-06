@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bo_manage_psql,bo.manage.psql.access,model_bo_manage_psql,base.group_user,1,1,1,1

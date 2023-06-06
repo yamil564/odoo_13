@@ -1,0 +1,36 @@
+<odoo>
+
+    <record id="account_zip_reports_wizard_form_view" model="ir.ui.view">
+        <field name="name">account_zip_reports_wizard_form_view</field>
+        <field name="model">account.zip.reports</field>
+        <field name="arch" type="xml">
+            <form string="Descarga" create="0">
+                <group>
+                    <field name="file"/>
+                </group>
+                <div class="oe_edit_only">
+                    <field name="invoice_ids" force_save="1"/>
+                </div>
+                <!--<footer>
+                    <button string="Generar" class="btn-primary" type="object" name="get_file"/>
+                    <button string="Cancelar" class="btn-primary" special="cancel"/>
+                </footer>-->
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_account_zip_reports" model="ir.actions.act_window">
+        <field name="name">Exportar Facturas ZIP</field>
+        <field name="res_model">account.zip.reports</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account_zip_reports_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_view_types">list</field>
+        <field name="context">{
+            'default_invoice_ids': active_ids,
+        }
+        </field>
+    </record>
+
+</odoo>

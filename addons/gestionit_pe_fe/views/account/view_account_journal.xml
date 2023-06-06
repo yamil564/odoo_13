@@ -1,0 +1,117 @@
+<odoo>
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_account_journal_tree_tipo_documento">
+        <field name="name">Tipo de documento - Tree </field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <!-- <field name="invoice_type_code_id"/> -->
+                <!-- <field name="tipo_envio"/> -->
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_account_journal_form_tipo_documento">
+        <field name="name">Tipo de documento - Form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="invoice_type_code_id"/> 
+                <field name="tipo_comprobante_a_rectificar" 
+                        attrs="{'invisible':[['invoice_type_code_id','not in',['00','07','08','97','98']]],'required':[['invoice_type_code_id','in',['07','08']]]}"/> 
+            </field>
+            <xpath expr="//group[@name='column_posting']" position="after">
+                <group string="Facturación Electrónica">
+                    <field name="electronic_invoice" string="Habilitar para emisión a SUNAT"/>
+                </group>
+                <!-- <field name="invoice_type_code_id"/> -->
+                <!-- <field name="tipo_envio"/> -->
+                <!-- <field name="resumen"/> -->
+                <!-- <field name="tipo_comprobante_a_rectificar" 
+                        attrs="{'invisible':[['invoice_type_code_id','not in',['00','07','08']]]}"
+                /> -->
+                <!-- <field name="formato_comprobante"/> -->
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="account.action_account_journal_form">
+        <field name="domain">[('electronic_invoice','=',False)]</field>
+    </record>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_tree_acccount_journal_serie_fe">
+        <field name="name">view.account.journal.serie.fe</field>
+        <field name="model">account.journal</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="invoice_type_code_id" string="Tipo de comprobante" readonly="1"/>
+                <!-- <field name="invoice_type"/> -->
+                <field name="name" string="Nombre" readonly="1"/>
+                <field name="code" string="Serie" readonly="1"/>
+                <field name="sequence_number_next" string="Siguiente número" readonly="1"/>
+                <field name="tipo_envio" string="Tipo de envío"/>
+                <field name="send_async" string="Envío asíncrono"/>
+                <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_form_acccount_journal_serie_fe">
+        <field name="name">view.account.journal.serie.fe</field>
+        <field name="model">account.journal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" class="oe_inline" force_save="1" attrs="{'readonly':[('invoice_type_code_id','not in',['00','09'])]}"/></h1>
+                    </div>
+                    <group>
+                        <field name="type" invisible="1"/>
+                        <field name="invoice_type_code_id" string="Tipo de comprobante" required="1"/>
+                        <field name="tipo_comprobante_a_rectificar" 
+                                attrs="{'invisible':[['invoice_type_code_id','not in',['00','07','08']]],'required':[['invoice_type_code_id','in',['07','08']]]}"
+                        /> 
+                        <field name="tipo_envio" string="Tipo de envío" required="1" widget="checkbox"/>
+                        <field name="send_async" string="Envío asíncrono"/>
+                        <field name="code" string="Serie"/>
+                        <!-- <field name="currency_id" string="Moneda"/> -->
+                        <label for="sequence_number_next" string="Siguiente número"/>
+                        <div>
+                            <field name="sequence_number_next" style="padding-right: 1.0em" readonly="1" force_save="1"/>
+                            <field name="sequence_id" required="0" attrs="{'readonly': 1}" groups="base.group_no_one"/>
+                        </div>
+                        <field name="electronic_invoice" string="Habilitar para emisión a SUNAT" groups="base.group_no_one"/>
+                        <field name="invoice_reference_type" groups="base.group_no_one" invisible="1"/>
+                        <field name="invoice_reference_model" groups="base.group_no_one" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model ="ir.actions.act_window.view" id="gestionit_pe_fe.action_view_tree_account_journal_serie_fe">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="gestionit_pe_fe.view_tree_acccount_journal_serie_fe"/>
+    </record>
+
+    <record model ="ir.actions.act_window.view" id="gestionit_pe_fe.action_view_form_account_journal_serie_fe">
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="gestionit_pe_fe.view_form_acccount_journal_serie_fe"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="gestionit_pe_fe.action_view_account_journal_serie_fe">
+        <field name="name">Series de Facturación</field>
+        <field name="res_model">account.journal</field>
+        <field name="view_ids" eval="[(4,ref('gestionit_pe_fe.action_view_form_account_journal_serie_fe')),(4,ref('gestionit_pe_fe.action_view_tree_account_journal_serie_fe'))]"/>
+        <field name="domain">
+            [('electronic_invoice','=',True)]
+        </field>
+        <field name="context">
+            {'default_tipo_envio':'0','default_type':'sale','default_electronic_invoice':True}
+        </field>
+    </record>
+
+    <menuitem id="menu_serie_fe" name="Series de Facturación" parent="account.account_invoicing_menu" sequence="6" action="gestionit_pe_fe.action_view_account_journal_serie_fe"/>
+</odoo>

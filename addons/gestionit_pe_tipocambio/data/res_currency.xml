@@ -1,0 +1,21 @@
+<odoo>
+    <record id="USD_purchase" model="res.currency">
+        <field name="name">USD</field>
+        <field name="type">purchase</field>
+        <field name="symbol">$</field>
+        <field name="rounding">0.001</field>
+        <field name="position">before</field>
+        <field name="currency_unit_label">DÓLAR</field>
+        <field name="currency_subunit_label">CENTAVOS</field>
+    </record>
+
+    <record id="USD_sale" model="res.currency">
+        <field name="name">USD</field>
+        <field name="type">sale</field>
+        <field name="symbol">$</field>
+        <field name="rounding">0.001</field>
+        <field name="position">before</field>
+        <field name="currency_unit_label">DÓLAR</field>
+        <field name="currency_subunit_label">CENTAVOS</field>
+    </record>
+</odoo>

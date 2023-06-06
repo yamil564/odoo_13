@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <template id="theme_assets_frontend" inherit_id="website.assets_frontend">
+            <xpath expr="link[last()]" position="after">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+			</xpath>
+		</template>
+        <template id="libro_reclamaciones_assets" inherit_id="website.assets_frontend">
+            <xpath expr="script[last()]" position="after">
+                <script src="/bo_libro_reclamaciones/static/src/js/libro_reclamacion.js" type="text/javascript"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

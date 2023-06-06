@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="view_detracction_form" model="ir.ui.view">
+            <field name="name">account.detraction.form</field>
+            <field name="model">account.detraction</field>
+            <field name="mode">primary</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <form string="Registrar Detracción" create="0">
+                    <header>
+                        <button string='Validar' 
+                            name="action_validate_detraction" 
+                            states="draft"
+                            type="object" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-default" name="action_cancel_detraccion"
+                            type="object"
+                            confirm="Esta seguro de cancelar?"
+                            states="posted,draft"/>
+                        <button string="Cambiar borrador" 
+                            type="object"
+                            class="btn-default" name="action_draft_detraccion" 
+                            states="cancel"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted" />
+                    </header>
+                    <header>
+                        <field name="pay_state" widget="statusbar" statusbar_visible="to_pay,paid"/>
+                        <field name="reconciled" invisible="True"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nro_constancia" attrs="{'readonly':[('pay_state','=','paid')]}"
+                                    default_focus="1"/>
+                                <field name="journal_id"
+                                    domain="[('detraction','=',True)]"
+                                    options="{'no_create': True, 'no_open': True}"/>
+                                <field name="fecha_pago" attrs="{'readonly':[('pay_state','=','paid')]}"/>
+                                
+                                <field name="amount_real"/>
+
+                                <field name="amount"/>
+                                <field name="company_currency_id"/>
+                                <field name="currency_id" invisible="True"/>
+                                <field name="operation_type" attrs="{'readonly':[('pay_state','=','paid')]}"/>
+                                <field name="acc_number" attrs="{'readonly':[('pay_state','=','paid')]}"/>
+                            </group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="detraccion_id"
+                                    options="{'no_create': True, 'no_open': True}"/>
+                                <field name="fecha_registro"/>
+                                <field name="fecha_movimiento"/>
+                                <field name="communication"/>
+                                <field name="origin_move_id"/>
+                                <field name="move_id" attrs="{'invisible':[('move_id','=',False)]}"/>
+                                <field name="destination_account_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    
+                </form>
+            </field>
+        </record>
+
+		<record id="view_invoice_detracction_form" model="ir.ui.view">
+            <field name="name">account.detraction.form</field>
+            <field name="model">account.detraction</field>
+            <field name="arch" type="xml">
+                <form string="Registrar Detracción" create="0">
+                    <sheet>
+                        <group>
+                            <field name="state" invisible="1"/>
+                            <group>
+                            	<field name="nro_constancia"
+                                    default_focus="1"/>
+                                <field name="journal_id"
+                                    domain="[('detraction','=',True)]"
+                                	options="{'no_create': True, 'no_open': True}"/>
+                            	
+                                <field name="fecha_pago"/>
+                                
+                                <field name="amount_real"/>
+
+                                <field name="amount"/>
+                                <field name="company_currency_id"/>
+                                <field name="currency_id" invisible="True"/>
+                                <field name="operation_type" attrs="{'readonly':[('pay_state','=','paid')]}"/>
+                                <field name="acc_number" attrs="{'readonly':[('pay_state','=','paid')]}"/>
+                            </group>
+                            <group>
+								<field name="detraccion_id"
+									options="{'no_create': True, 'no_open': True}"/>
+                                <field name="fecha_registro"/>
+								<field name="fecha_movimiento"/>
+                                <field name="communication"/>
+                                <field name="origin_move_id" invisible="context.get('origin_move_id', False)"/>
+                                <field name="move_id" attrs="{'invisible':[('move_id','=',False)]}"/>
+                                <field name="destination_account_id"/>
+                                <field name="pay_state"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string='Validar' 
+                            name="action_validate_detraction" 
+                            attrs="{'invisible':[('state','!=','draft')]}"
+                            type="object" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_detraccion_tree" model="ir.ui.view">
+            <field name="name">account.detraction.tree</field>
+            <field name="model">account.detraction</field>
+            <field name="arch" type="xml">
+                <tree string="Detraccion">
+                    <field name="journal_id"/>
+                    <field name="communication"/>
+                    <field name="fecha_pago"/>
+                    <field name="state"/>
+                    <field name="amount"/>
+                    <field name="company_currency_id"/>
+                    <field name="pay_state"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="action_invoice_detraccion" model="ir.actions.act_window">
+            <field name="name">Detracción</field>
+            <field name="res_model">account.detraction</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_invoice_detracction_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_detraccion_template" model="ir.actions.act_window">
+            <field name="name">Detracción</field>
+            <field name="res_model">account.detraction</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Haga clic para crear una detraccion.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_detraccion_form" model="ir.actions.server">
+            <field name="name">Detracción</field>
+            <field name="model_id" ref="model_account_detraction"/>
+            <field name="state">code</field>
+            <field name="code">
+action_values = env.ref('l10n_pe_detraccion.action_detraccion_template').read()[0]
+action = action_values
+            </field>
+        </record>
+
+
+        <record id="action_detraccion_tree_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_detraccion_tree"/>
+            <field name="act_window_id" ref="action_detraccion_template"/>
+        </record>
+
+        <record id="action__detraccion_form_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_detracction_form"/>
+            <field name="act_window_id" ref="action_detraccion_template"/>
+        </record>
+
+        <menuitem action="action_detraccion_form" id="menu_detraccion" parent="account.menu_finance_payables" sequence="6"/>
+
+	</data>
+</odoo>

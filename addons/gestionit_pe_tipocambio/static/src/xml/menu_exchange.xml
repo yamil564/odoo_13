@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="ExchangeMenu">
+        <li class="o_exchange_menu">
+            <a role="button" class="dropdown-toggle  o-no-caret menu-exchange" data-toggle="dropdown" data-display="static" aria-expanded="false" href="#">
+                <i class="fa fa-money" style="font-size:larger"/> <span class="date_today"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right options-exchanges" role="menu">
+                <!-- <a role="menuitem" href="#" data-menu="USD" class="dropdown-item">USD</a>
+                 -->
+            </div>
+        </li>
+    </t>
+
+    <t t-name="ExchangeMenuLine">
+        <a role="menuitem" href="#" t-att-data-id="widget.id" class="dropdown-item exchange-menu-line">
+            <t t-esc="widget.name +' ['+widget.type+']: '+ widget.rate"/></a>
+    </t>
+
+</templates>

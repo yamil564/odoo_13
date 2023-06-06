@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<!-- Force Availability Button -->
+    	<record id="force_avail_button_inherit" model="ir.ui.view">
+            <field name="name">force.avail.button.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//header/button[@name='action_assign']" position="after">
+            		<button name="one_click_force_avail" class="oe_highlight" string="Force Availability" type="object" attrs="{'invisible': [('state', 'in',['draft','assigned','done','cancel'])]}"/>
+                </xpath>
+                <xpath expr="//header/button[@name='action_assign']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('show_check_availability', '=', False),
+                        ('state','=','assigned')]}
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

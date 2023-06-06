@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_form_add_btn_factura_boleta_ext" model="ir.ui.view">
+        <field name="name">view_form_add_btn_factura_boleta_ext</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="create_invoice_from_sale.view_form_add_btn_factura_boleta"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='emitir_boleta']" position="after">
+                <button type="object"
+                        string="Emitir Nota"
+                        name="emitir_nota"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('state','!=','sale')]}"
+                        confirm="¿Está seguro que desea emitir una Nota?"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

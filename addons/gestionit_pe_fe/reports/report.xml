@@ -1,0 +1,9 @@
+<odoo>
+    <report id="report_guia_remision"
+            string="Guía de remisión"
+            print_report_name="'GRE - %s - %s' % ((object.destinatario_partner_id.name or 'Cliente'), object.numero)"
+            model="gestionit.guia_remision"
+            report_type="qweb-pdf"
+            name="gestionit_pe_fe.report_guia_remision_template"
+            file="gestionit_pe_fe.report_guia_remision_template" />
+</odoo>

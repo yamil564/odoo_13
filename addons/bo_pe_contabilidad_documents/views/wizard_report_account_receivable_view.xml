@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="view_wizard_report_account_receivable_form" model="ir.ui.view">
+        <field name="name">view.wizard.report.account.receivable.form</field>
+        <field name="model">wizard.report.account.receivable</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group string="Parámetros del Reporte">
+                        <group>
+                            <field name="type_report"/>
+                        </group>
+                    </group>
+
+                </sheet>
+                <footer>
+                    <button class="btn-primary" string="Generar Reporte"  name="button_view_tree_account_receivable" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_report_account_receivable" model="ir.actions.act_window">
+            <field name="name">Reporte de Cuentas por Cobrar a la Fecha</field>
+            <field name="res_model">wizard.report.account.receivable</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_wizard_report_account_receivable_form"/>
+            <field name="target">new</field>
+
+        </record>
+
+
+
+    <menuitem id="menu_report_account_receivable" name="Reporte de Cuentas por Cobrar a la Fecha" action="action_wizard_report_account_receivable" parent="menu_report_account_payable_receivable" sequence="0"/>
+
+</odoo>

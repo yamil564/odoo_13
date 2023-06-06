@@ -1,0 +1,16 @@
+<odoo>
+    <record id="add_fields_pagoefectivo" model="ir.ui.view">
+        <field name="name">add.fields.pagoefectivo</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.transaction_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="mercadopago_txn_external_resource_url" string="Pago efectivo URL"/>
+                <field name="mercadopago_txn_verification_code" string="Código de Verificación"/>
+                <field name="mercadopago_txn_payment_method_reference_id" string="Código de Pago en Agentes y Banca por Internet"/>
+                
+            </field>
+        </field>
+    </record>
+
+</odoo>

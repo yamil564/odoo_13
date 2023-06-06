@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_printer_ple_purchase,modelo wizard_printer_ple_purchase,model_wizard_printer_ple_purchase,,1,1,1,1
+access_ple_purchase,modelo ple_purchase,model_ple_purchase,,1,1,1,1
+access_ple_purchase_line,modelo ple_purchase_line,model_ple_purchase_line,,1,1,1,1

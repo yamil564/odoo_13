@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_payment_status
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0-20221005\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-28 21:18+0000\n"
+"PO-Revision-Date: 2022-10-28 21:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields,field_description:sale_order_payment_status.field_sale_order__order_amount_residual
+msgid "Amount Due"
+msgstr "Cantidad adeudada"
+
+#. module: sale_order_payment_status
+#. openerp-web
+#: code:addons/sale_order_payment_status/static/src/js/badge.js:0
+#, python-format
+msgid "Badge"
+msgstr "Insignia"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#: model:ir.model.fields.selection,name:sale_order_payment_status.selection__sale_order__payment_state__fully_paid
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.sale_order_view_filter_delivery_state_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+#, python-format
+msgid "Fully Paid"
+msgstr "Pagado"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#, python-format
+msgid "Less Payment"
+msgstr "Menos pagos"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#: model:ir.model.fields.selection,name:sale_order_payment_status.selection__sale_order__payment_state__no_invoice
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.sale_order_view_filter_delivery_state_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+#, python-format
+msgid "No Invoice"
+msgstr "Sin Factura"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#: model:ir.model.fields.selection,name:sale_order_payment_status.selection__sale_order__payment_state__not_paid
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.sale_order_view_filter_delivery_state_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+#, python-format
+msgid "Not Paid"
+msgstr "No pagado"
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields,help:sale_order_payment_status.field_sale_order__order_amount_residual
+msgid "Order Amount Due."
+msgstr "Importe del pedido a pagar."
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields.selection,name:sale_order_payment_status.selection__sale_order__payment_state__overdue
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.sale_order_view_filter_delivery_state_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+msgid "Overdue"
+msgstr "Vencido"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#, python-format
+msgid "Overdue (%s days ago)"
+msgstr "Vencido (%s días)"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#, python-format
+msgid "Overdue (yesterday)"
+msgstr "Vencido (ayer)"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#: model:ir.model.fields.selection,name:sale_order_payment_status.selection__sale_order__payment_state__partial_paid
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.sale_order_view_filter_delivery_state_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+#, python-format
+msgid "Partial Paid"
+msgstr "Pago Parcial"
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields,field_description:sale_order_payment_status.field_sale_order__payments_widget
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+msgid "Payment Details"
+msgstr "Detalles de Pago"
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields,field_description:sale_order_payment_status.field_sale_order__compute_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_status.field_sale_order__payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_status.field_sale_order__ribbon_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+msgid "Payment Status"
+msgstr "Estado de Pago"
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields,help:sale_order_payment_status.field_sale_order__compute_payment_state
+#: model:ir.model.fields,help:sale_order_payment_status.field_sale_order__payment_state
+msgid "Payment Status."
+msgstr "Estado de Pago."
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_status.view_order_form
+#, python-format
+msgid "Register Payment"
+msgstr "Registrar pago"
+
+#. module: sale_order_payment_status
+#: model:ir.model,name:sale_order_payment_status.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_payment_status
+#: model:ir.model.fields,field_description:sale_order_payment_status.field_sale_order__show_payment_button
+msgid "Show Payment Button"
+msgstr "Mostrar botón de pago"
+
+#. module: sale_order_payment_status
+#. openerp-web
+#: code:addons/sale_order_payment_status/static/src/xml/account_payment.xml:0
+#, python-format
+msgid "Unreconcile"
+msgstr "Romper conciliación"
+
+#. module: sale_order_payment_status
+#: code:addons/sale_order_payment_status/models/sale.py:0
+#, python-format
+msgid ""
+"You can't register a payment because there is nothing left to pay on the "
+"selected journal items."
+msgstr ""
+"No se puede registrar un pago porque no queda nada por pagar en las partidas"
+" seleccionadas del diario."

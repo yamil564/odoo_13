@@ -1,0 +1,5 @@
+<odoo>
+    <record id="res_groups_create_invoice_from_sale" model="res.groups">
+        <field name="name">Creación rápida de Factura o Boleta desde ventas</field>
+    </record>
+</odoo>

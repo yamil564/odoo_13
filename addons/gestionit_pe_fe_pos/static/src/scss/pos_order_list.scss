@@ -1,0 +1,27 @@
+
+//POS CREDIT NOTE
+.table_refund_invoice_lines,.table_credit_note_lines{
+    border:solid black 1px;
+    td,th{
+        padding:4px 8px;
+        border-top: solid black 1px;
+        border-bottom: solid black 1px;
+    }
+}
+
+//POS ORDER LIST
+[name='td_ol_reprint']{
+    flex-direction: row;
+    display: flex;
+    width: 180px;
+    flex-wrap: wrap;
+    span{
+        margin: 2px;
+    }
+}
+
+//TICKET POS
+
+.pos-center-align,.section-customer,.receipt-total,.receipt-paymentlines,.receipt-change,.receipt-user{
+    font-size: 12px;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'base'), ('name', '=', 'main_company')]"/>
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+        
+        <record id ="base.main_company" model ="res.company">
+            <field name="api_migo_endpoint">https://api.migo.pe/api/v1/</field>
+        </record>   
+        
+        <record model="l10n_latam.identification.type" id="l10n_latam_base.it_vat">
+            <field name="active">False</field>
+        </record>
+    </data>
+</odoo>

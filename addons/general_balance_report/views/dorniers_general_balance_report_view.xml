@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dorniers_general_balance_report_view_form" model="ir.ui.view">
+            <field name="name">Estado de Situación Financiera</field>
+            <field name="model">dorniers.general.balance.report</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <header>
+                        <button name="generar_libro"
+                                string="GENERAR REPORTE"
+                                class="oe_highlight"
+                                type="object"
+                                icon="fa-plus"
+                        />
+
+                         <button name="action_print" 
+                            string="Imprimir"
+                            type="object"
+                            class="oe_highlight"
+                            states='generated'
+                            icon="fa-print"
+                            />
+
+                        <button name="limpiar_campos" class="oe_highlight" string="Limpiar" type="object" states="draft,generated"/>
+
+                        <button name="button_view_tree" string="VISTA DINÁMICA" states="generated" type="object" icon="fa-bars"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,generated" />
+                    </header>
+
+                    <group>
+                        <group>
+                            <field name="company_id"  options="{'no_create': True}" groups="base.group_multi_company"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="observations"/>
+                        </group>
+                    </group>
+                        
+                    <group>
+
+                        <group string="PARÁMETROS DE FECHA">
+
+                            <field name="fecha_inicio"/>
+                            <field name="fecha_final"/>
+                            
+                        </group>
+                        
+                        <group name="Filtros_dinamicos" string='Filtros dinámicos'>
+
+                            <label for="account_ids"/>
+                            <div>
+                                <field name="account_option" placeholder="" class="oe_inline"/>
+                                <field name="account_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>                           
+
+                            <label for="partner_ids"/>
+                            <div>
+                                <field name="partner_option" placeholder="" class="oe_inline"/>
+                                <field name="partner_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+
+                            <label for="journal_ids"/>
+                            <div>
+                                <field name="journal_option" placeholder="" class="oe_inline"/>
+                                <field name="journal_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+                            <label for="move_ids"/>
+                            <div>
+                                <field name="move_option" placeholder="" class="oe_inline"/>
+                                <field name="move_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+                            <label for="payment_ids"/>
+                            <div>
+                                <field name="payment_option" placeholder="" class="oe_inline"/>
+                                <field name="payment_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+
+                        </group>
+
+                        <!--<group>
+                            <strong><p><span>CRITERIOS DE IMPRESIÓN</span></p></strong>
+                            <field name="print_format"/>
+                        </group>-->
+
+                    </group>
+
+
+
+                    <notebook>
+                            <page name="estado_situacion_financiera" string="Estado de Situación Financiera">
+                       
+                                <field name="dorniers_general_balance_report_line_ids" options="{'no_create': True}">
+                                    <tree create="false" editable="bottom" options="{'no_open': True}" limit="200">  
+                                        
+                                        <field name="name"/>
+                                        <field name="grupo_informe"/>
+                                        <field name="grupo_elemento"/>
+                                        <field name="sub_grupo_elemento"/>
+                                        <field name="saldo_rubro_contable"/>
+
+                                        <!--<button name="button_view_movimientos_periodo" string="Movimientos Periodo" type="object" class="oe_highlight" attrs="{'invisible': [('exist_movimientos_periodo','!=',True)]}" readonly="0"/>-->
+                                    </tree>      
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </form>
+                </field>
+        </record>
+
+        <record id="dorniers_general_balance_report_view_tree" model="ir.ui.view">
+            <field name="name">Estado de Situación Financiera</field>
+            <field name="model">dorniers.general.balance.report</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="company_id"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_final"/>
+                    <field name="observations"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_dorniers_general_balance_report" model="ir.actions.act_window">
+            <field name="name">Estado de Situación Financiera</field>
+            <field name="res_model">dorniers.general.balance.report</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dorniers_general_balance_report_view_tree"/>
+        </record>
+
+
+         <menuitem 
+            id="menu_dorniers_general_balance_report_root" 
+            name="ESTADOS FINANCIEROS" 
+            parent="account.menu_finance_reports"
+            sequence="0" groups="account.group_account_invoice"/>
+
+        <menuitem id="menu_dorniers_general_balance_report" name="Estado de Situación Financiera" parent="menu_dorniers_general_balance_report_root"  groups="account.group_account_invoice" action="action_dorniers_general_balance_report"/>
+             
+    </data>
+</odoo>

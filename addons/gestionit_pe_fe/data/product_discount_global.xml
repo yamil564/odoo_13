@@ -1,0 +1,16 @@
+<odoo>
+    <record id="default_product_global_discount" model="product.product">
+        <field name="name">Descuento Global</field>
+        <field name="default_code">DISC</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="False"/>
+        <field name="taxes_id" eval="[(4,ref('l10n_pe.1_sale_tax_igv_18_included'))]"/>
+        <field name="is_charge_or_discount" eval="1"/>
+        <field name="type_charge_or_discount_id" ref="gestionit_pe_fe.catalog_53_02"/>
+        <field name="property_account_income_id" ref="l10n_pe.1_chart7312"/>
+    </record>
+    
+    <record id="base.main_company" model="res.company">
+        <field name="default_product_global_discount_id" ref="gestionit_pe_fe.default_product_global_discount"/>
+    </record>
+</odoo>

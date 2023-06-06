@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <div t-extend="sale_stock.QtyDetailPopOver">
+        <t t-jquery="table" t-operation="inner">
+            <ul t-if="data.qty_by_loc" style="list-style:none; padding:0px">
+                <t t-foreach="data.qty_by_loc" t-as="loc">
+                    <li><b><t t-esc="loc.name"/>:</b><t t-esc="loc.quantity?loc.quantity:0"/></li>
+                </t>
+            </ul>
+        </t>
+    </div>
+</templates>

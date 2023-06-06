@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            
+
+
+            <xpath expr="//div[@id='analytic']" position="after">
+
+                    <h2 groups="account.group_account_user">Cuentas Contables de Socios en Moneda Extranjera</h2>
+                        <div class="row mt16 o_settings_container" id="account_partner_me">
+                        <!-- attrs="{'invisible': [('group_account_ME', '=', False)]}">-->
+
+                            <div class="col-xs-12 col-md-6 o_setting_box" groups="account.group_account_user">
+                                <div class="o_settings_left_pane"/>
+
+                                <div class="o_settings_right_pane">
+                                    <label for="property_account_receivable_me_id"/>
+                                    <div class="text-muted">
+                                        Establecer Cuenta por Cobrar en Moneda Extranjera.
+                                    </div>
+                                    <field name="property_account_receivable_me_id"/>
+                                </div>
+
+                                <div class="o_settings_right_pane">
+                                    <label for="property_account_payable_me_id"/>
+                                    <div class="text-muted">
+                                        Establecer Cuenta por Pagar en Moneda Extranjera.
+                                    </div>
+                                    <field name="property_account_payable_me_id"/>
+                                </div>
+
+                                <!--attrs="{'invisible': [('group_account_ME', '=', False)]}"-->
+                                <div>
+                                            <button name="sync_account_me_partners" 
+                                                    string="Sincronizar Cuentas ME"
+                                                    type="object"
+                                                    icon="fa-refresh"
+                                            />
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <!--##################################################################-->
+                    <h2>Recibos por Honorarios</h2>
+                        <div class="row mt16 o_settings_container" id="receipt_of_fees">
+                            <div class="col-xs-12 col-md-6 o_setting_box" groups="account.group_account_user">
+                                <div class="o_settings_left_pane"/>
+
+
+                                <div class="o_settings_right_pane">
+                                    <laber for="property_account_payable_fees_id"/>
+                                    <div class="text-muted">
+                                        Establecer Cuenta Recibo Honorarios por Pagar.
+                                    </div>
+                                    <field name="property_account_payable_fees_id"/>
+                                </div>
+
+                                <div>
+                                            <button name="sync_account_fees_partners" 
+                                                    string="Sincronizar Cuentas RH"
+                                                    type="object"
+                                                    icon="fa-refresh"
+                                            />
+                                </div>
+
+                                <div>
+                                    <br/>
+                                </div>
+
+                                <div>
+                                    <br/>
+                                </div>
+
+                                <div class="o_setting_left_pane">
+                                    <field name="group_account_fees_ME"/>
+                                </div>
+
+                                <div class="o_setting_right_pane">
+                                    <label for="group_account_fees_ME"/>
+                                    <div class="text-muted">
+                                        Cuentas de Recibo por Honorarios en ME
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <br/>
+                                </div>
+
+                                <div class="content-group" attrs="{'invisible': [('group_account_fees_ME', '=', False)]}">
+
+                                    <div class="o_settings_right_pane">
+                                        <laber for="property_account_payable_me_fees_id"/>
+                                        <div class="text-muted">
+                                            Establecer Cuenta Recibo Honorarios por Pagar en Moneda Extranjera.
+                                        </div>
+                                        <field name="property_account_payable_me_fees_id"/>
+
+                                    <div attrs="{'invisible': [('group_account_fees_ME', '=', False)]}">
+                                            <button name="sync_account_me_fees_partners" 
+                                                    string="Sincronizar Cuentas RH en ME"
+                                                    type="object"
+                                                    icon="fa-refresh"
+                                            />
+                                    </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </xpath>
+
+        </field>
+    </record>
+
+</odoo>

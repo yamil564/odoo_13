@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="gestionit_pe_fe.ir_cron_envio_comprobante_electronico" model="ir.cron">
+            <field name="name">CRON Envío de Comprobantes Electrónicos a SUNAT</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="state">code</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall">1</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="code">model.cron_action_send_invoice()</field>
+        </record>
+    </data>
+</odoo>

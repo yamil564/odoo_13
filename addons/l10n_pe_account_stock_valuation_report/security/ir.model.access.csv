@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_stock_valuation_report_user,account.stock.valuation.report.user,model_account_stock_valuation_report,stock.group_stock_user,1,0,0,0
+access_account_stock_valuation_report_manager,account.stock.valuation.report.manager,model_account_stock_valuation_report,stock.group_stock_manager,1,1,1,1

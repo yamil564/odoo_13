@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    	<record id="detraction_journal_proveedor" model="account.journal">
+            <field name="name">Detraccion Proveedor</field>
+            <field name="code">LDP</field>
+            <field name="type">general</field>
+            <field name="detraction">True</field>
+        </record>
+
+
+        <!-- Payment sequences -->
+        <record id="sequence_detraction_customer" model="ir.sequence">
+            <field name="name">Secuencia de detracciones pagos</field>
+            <field name="code">account.detraction.customer</field>
+            <field name="prefix">RD00-%(range_year)s-</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="True" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="sequence_detraction_supplier" model="ir.sequence">
+            <field name="name">Secuencia de detracciones pagos</field>
+            <field name="code">account.detraction.supplier</field>
+            <field name="prefix">RD00-%(range_year)s-</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="True" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">4</field>
+        </record>
+    </data>
+
+</odoo>

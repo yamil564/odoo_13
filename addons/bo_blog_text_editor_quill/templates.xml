@@ -1,0 +1,29 @@
+<odoo>
+
+    <template id="blog_post_content_quill" inherit_id="website_blog.blog_post_content">
+        <xpath expr="//div[contains(@t-field,'blog_post.content')]" position="replace">
+            <t t-if="blog_post.type_text_editor == 'odoo_editor'">
+                <div t-field="blog_post.content" 
+                    data-editor-message="WRITE HERE OR DRAG BUILDING BLOCKS" 
+                    t-attf-class="o_wblog_post_content_field #{'js_tweet' if opt_blog_post_select_to_tweet else ''} #{'js_comment' if opt_blog_post_select_to_comment else ''} #{'o_wblog_read_text' if opt_blog_post_readable else ''}"/>
+            </t>
+            <t t-if="blog_post.type_text_editor == 'quill_editor'">
+                <t groups="website.group_website_designer">
+                    <t t-set="perm_edit_save" t-value="1"/>
+                </t>
+                <div t-attf-class="#{'quill_text_editor'  if perm_edit_save else ''}" t-attf-data-blog-id="#{blog_post.id}">
+                    <div class="options" t-if="perm_edit_save">
+                        <!-- <button class="btn btn-primary btn_blog_edit"><i class="bi bi-pencil"/> Editar</button> -->
+                        <button class="btn btn-secondary btn_blog_save d-none"><i class="bi bi-save"/> Guardar</button>
+                        <span class="blog_msg"/>
+                    </div>
+                    <div class="pt32">
+                        <div id="toolbar_quill" t-if="perm_edit_save"/>
+                        <div t-field="blog_post.content"
+                            t-attf-class="#{'blog_post_content' if perm_edit_save else 'ql-editor'} o_wblog_post_content_field #{'js_tweet' if opt_blog_post_select_to_tweet else ''} #{'js_comment' if opt_blog_post_select_to_comment else ''} #{'o_wblog_read_text' if opt_blog_post_readable else ''}"/>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

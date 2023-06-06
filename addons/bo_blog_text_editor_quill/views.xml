@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_blog_post_form" model="ir.ui.view">
+        <field name="name">view.blog.post.form.content</field>
+        <field name="model">blog.post</field>
+        <field name="inherit_id" ref="website_blog.view_blog_post_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Contenido">
+                    <label for="content"/>
+                    <field name="content"/>
+                </page>
+            </xpath>
+            <field name="tag_ids" position="after">
+                <field name="type_text_editor"/>
+            </field>
+        </field>
+    </record>
+</odoo>

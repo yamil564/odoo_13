@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+      
+		<record id="ple_sale_line_view_form" model="ir.ui.view">
+			<field name="name"> PLE Ventas </field>
+            <field name="model">ple.sale.line</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <sheet>
+                        <group>
+            		<group>
+                        
+                                <field name ="invoice_id" />
+
+                                <field name ="asiento_contable" string="2. Nombre del asiento contable"/>
+                                <field name ="m_correlativo_asiento_contable"  string="3. M-correlativo asiento contable" />
+                                <field name ="fecha_emision_comprobante" string="4. Fecha emisión Comprobante"/>
+                                <field name ="fecha_vencimiento" string="5. Fecha de vencimiento"/>
+                                <field name ="tipo_comprobante" string="6. Tipo de Comprobante"/>
+                                <field name ="serie_comprobante" string="7. Serie del Comprobante"/>
+                                <field name ="numero_comprobante" string="8. Número Comprobante"/>
+                                <field name ="ventas_importe_total_maquina_registradora" string="9. Importe Máquina Registradora sin Crédito Fiscal"/>
+                                <field name ="tipo_documento_cliente" string="10. Tipo Documento Cliente" />
+                                <field name ="numero_documento_cliente" string="11. Número Documento Identidad Cliente" />
+                                <field name ="razon_social" string="12. Razón Social Cliente"/>
+                                <field name ="ventas_valor_facturado_exportacion" string="13. Valor Facturado Exportación"/>
+                                <field name ="ventas_base_imponible_operacion_gravada" string="14. Base Imponible Operación Gravada"/>
+                                <field name ="ventas_descuento_base_imponible" string="15. Descuento Base Imponible"/>
+                                <field name ="ventas_igv" string="16. IGV y/o Impuesto Promoción Municipal"/>
+                                <field name ="ventas_descuento_igv" string="17. Descuento del IGV" />
+                                <field name ="ventas_importe_operacion_exonerada" string="18. Importe total operación exonerada" />
+                                <field name ="ventas_importe_operacion_inafecta" string="19. Importe total operación inafecta"/>
+                                <field name ="isc" string="20. ISC"/>
+                                <field name ="ventas_base_imponible_arroz_pilado" string="21. Base Imponible Arroz Pilado"/>
+                                <field name ="ventas_impuesto_arroz_pilado" string="22. Impuesto Arroz Pilado"/>
+                                <field name ="impuesto_consumo_bolsas_plastico" string="23. Impuesto al Consumo Bolsas Plástico"/>
+
+                                <field name ="otros_impuestos" string="24. Otros conceptos tributarios"/>
+                                <field name ="importe_total_comprobante" string="25. Importe Total comprobante" />
+                                <field name ="codigo_moneda" string="26. Código Moneda" />
+                                <field name ="tipo_cambio" string="27. Tipo de Cambio"/>
+                                <field name="invoice_id_2" />
+                                <field name ="fecha_emision_original"  string="28. Fecha Emision Comprobante Original"/>
+                                <field name ="tipo_comprobante_original" string="29. Tipo Comprobante Original"/>
+                                <field name ="serie_comprobante_original" string="30. Serie Comprobante Original"/>
+                                <field name ="numero_comprobante_original"  string="31. Nùmero Comprobante Original"/>
+                                <field name ="ventas_identificacion_contrato_operadores" string="32. Identificación Contrato Operadores Irregulares"/>
+                                <field name ="error_1" string="33. Error Tipo 1" />
+                                <field name ="ventas_indicador_comprobantes_medios_pago" string="34. Indicador Comprobantes cancelados con medios de pago" />
+                                <field name ="oportunidad_anotacion" string="35. Oportunidad Anotación"/>
+                                <br/>
+
+
+            		</group>
+                </group>
+                     
+                </sheet>
+                </form>            	
+            </field>
+		</record>
+
+
+        <!--######################################-->
+
+        <record id="view_ple_sale_line_tree" model="ir.ui.view">
+            <field name="name">PLE Ventas</field>
+            <field name="model">ple.sale.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="PLE Ventas" create="false">
+                        
+                        <field name ="invoice_id" />
+
+                                <field name ="asiento_contable"/>
+                                <field name ="m_correlativo_asiento_contable"/>
+                                <field name ="fecha_emision_comprobante"/>
+                                <field name ="fecha_vencimiento"/>
+                                <field name ="tipo_comprobante"/>
+                                <field name ="serie_comprobante"/>
+                                <field name ="numero_comprobante"/>
+                                <field name ="ventas_importe_total_maquina_registradora"/>
+                                <field name ="tipo_documento_cliente"/>
+                                <field name ="numero_documento_cliente"/>
+                                <field name ="razon_social"/>
+                                <field name ="ventas_valor_facturado_exportacion"/>
+                                <field name ="ventas_base_imponible_operacion_gravada"/>
+                                <field name ="ventas_descuento_base_imponible"/>
+                                <field name ="ventas_igv"/>
+                                <field name ="ventas_descuento_igv"/>
+                                <field name ="ventas_importe_operacion_exonerada"/>
+                                <field name ="ventas_importe_operacion_inafecta"/>
+                                <field name ="isc"/>
+                                <field name ="ventas_base_imponible_arroz_pilado"/>
+                                <field name ="ventas_impuesto_arroz_pilado"/>
+                                <field name ="impuesto_consumo_bolsas_plastico"/>
+                                <field name ="otros_impuestos"/>
+                                <field name ="importe_total_comprobante"/>
+                                <field name ="codigo_moneda"/>
+                                <field name ="tipo_cambio"/>
+                                <field name="invoice_id_2" />
+                                <field name ="fecha_emision_original"/>
+                                <field name ="tipo_comprobante_original"/>
+                                <field name ="serie_comprobante_original"/>
+                                <field name ="numero_comprobante_original"/>
+                                <field name ="ventas_identificacion_contrato_operadores"/>
+                                <field name ="error_1"/>
+                                <field name ="ventas_indicador_comprobantes_medios_pago"/>
+                                <field name ="oportunidad_anotacion"/>
+
+                </tree>
+            </field>
+      </record>
+
+
+      <record id="action_ple_sale_line" model="ir.actions.act_window">
+            <field name="name">PLE Ventas</field>
+            <field name="res_model">ple.sale.line</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+
+
+      <record id="view_ple_sale_line_filter" model="ir.ui.view">
+              <field name="name">ple.sale.line.filter</field>
+              <field name="model">ple.sale.line</field>
+              <field name="arch" type="xml">
+            
+                <search string="PLE Ventas">
+
+                    <!--##################################################-->
+                    <field name ="asiento_contable"/>
+                    <field name ="serie_comprobante"/>
+                    <field name ="numero_comprobante"/>
+                    <field name ="numero_documento_cliente"/>
+                    <field name ="razon_social"/>
+                    
+                    <separator/>
+
+                    <!--#################################################-->
+                          <group expand="1" string="Group By">
+                              <filter string="Cliente" name="filter_cliente" context="{'group_by':'partner_id'}"/>
+                              <filter string="Tipo de Comprobante" name="filter_tipo_comprobante" context="{'group_by':'tipo_comprobante'}"/>
+                              <filter string="Fecha Emisión Comprobante" name="filter_fecha_emision_comprobante" context="{'group_by':'fecha_emision_comprobante'}"/>
+                          </group>
+                  </search>
+              </field>
+      </record>
+
+
+        <record id="action_ple_sale_line_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_ple_sale_line_tree"/>
+            <field name="act_window_id" ref="action_ple_sale_line"/>
+        </record>
+
+	</data>
+</odoo>

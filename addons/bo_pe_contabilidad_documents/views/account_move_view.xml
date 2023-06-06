@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_form_inherit_receipt_for_fees" model="ir.ui.view">
+            <field name="name">view_move_form_inherit_receipt_for_fees</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="gestionit_pe_fe.view_account_move_tipo_comprobante"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form/header" position="before">
+                    <field name="exist_in_invoice_document" invisible="1"/>
+
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px" attrs="{'invisible': [('exist_in_invoice_document','not in',[True])]}">
+                        <bold>Ya existe otro Documento con el mismo número de Serie y Correlativo !</bold> 
+                        <button name="open_exist_document_in_invoice" attrs="{'invisible': [('exist_in_invoice_document','not in',[True])]}" string="Ver Documento" type="object" class="oe_link oe_inline"/> 
+                    </div>
+
+                </xpath>
+                
+                <field name="inv_supplier_ref" position="after">
+                    
+                    <!--<field name="prefix_code" attrs="{'required':[('type','in',['in_invoice','in_refund'])]}"/>
+
+                    <field name="invoice_number" attrs="{'required':[('type','in',['in_invoice','in_refund'])]}"/>-->
+
+                    <field name="prefix_code" attrs="{'invisible':[('type','not in',['in_invoice','in_refund'])],'required':[('type','in',['in_invoice','in_refund'])],'readonly':[('state','in',['posted'])]}"/>
+
+                    <field name="invoice_number" attrs="{'invisible':[('type','not in',['in_invoice','in_refund'])],'required':[('type','in',['in_invoice','in_refund'])],'readonly':[('state','in',['posted'])]}"/>
+                    
+                </field>
+
+                <field name="inv_supplier_ref" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+
+               <!--<field name="invoice_type_code_catalog_51" position="attributes">
+                    <attribute name="invisible">[('type','not in',['out_invoice','out_refund'])]</attribute>
+                </field>-->
+
+            </field>
+        </record>
+
+
+         <!--<record id="view_move_form_inherit_catalog_51" model="ir.ui.view">
+            <field name="name">view_move_form_inherit_catalog_51</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="gestionit_pe_fe.view_account_move_tipo_comprobante"/>
+
+            <field name="groups_id" eval="[(4,ref('bo_pe_contabilidad_documents.group_catalog_51'))]"/>
+
+            <field name="arch" type="xml">
+
+                <field name="invoice_type_code_catalog_51" position="attributes">
+                    <attribute name="invisible">[('type','not in',['out_invoice','out_refund'])]</attribute>
+                </field>
+
+            </field>
+        </record>-->
+
+
+        <record id="view_account_invoice_filter_inherit_receipt_of_fees" model="ir.ui.view">
+            <field name="name">account.invoice.select.inherit.receipt.of.fees</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+
+                <field name="journal_id" position="after">
+
+                    <field name="type" invisible="1"/>
+                    <field name="prefix_code"/>
+                    <field name="invoice_number"/>
+
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_invoice_tree_inherit_receipt_of_fees" model="ir.ui.view">
+            <field name="name">account.invoice.tree.inherit.receipt.of.fees</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+
+                <field name="name" position="after">
+                    
+                    <field name="prefix_code"/>
+                    <field name="invoice_number"/>
+
+                </field>
+            </field>
+        </record>
+
+        <!--#################################################-->
+        <!--<record id="action_invoice_inherit_receipt_of_fees" model="ir.actions.act_window">
+            <field name="name">Recibo por Honorarios</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="view_id" ref="view_move_form_inherit_receipt_for_fees"/>
+            <field name="target">new</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear Recibo por Honorarios
+              </p>
+            </field>
+        </record>
+
+        <record id="action_invoice_inherit_receipt_of_fees_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_move_form_inherit_receipt_for_fees"/>
+            <field name="act_window_id" ref="action_invoice_inherit_receipt_of_fees"/>
+        </record>
+
+        <menuitem id="menu_invoice_inherit_receipt_of_fees" name="Recibo por Honorarios" parent="sale.product_menu_catalog" action="action_invoice_inherit_receipt_of_fees" sequence="3"/>-->
+
+
+    </data>
+</odoo>

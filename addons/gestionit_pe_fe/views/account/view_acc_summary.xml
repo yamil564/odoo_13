@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="gestionit_pe_fe.view_tree_summary" model ="ir.ui.view">
+            <field name="name">gestionit_pe_fe.view.tree.summary</field>
+            <field name="model">account.summary</field>
+            <field name="arch" type="xml">
+                <tree decoration-warning="estado_emision =='R'" decoration-bf="estado_emision in ['A','O']" decoration-info="estado_emision == 'P'" decoration-danger="estado_emision == 'R'">
+                    <field name="identificador_resumen" />
+                    <field name="fecha_emision_documentos"/>
+                    <field name="fecha_generacion"/>
+                    <field name="cod_operacion"/>
+                    <field name="estado_emision"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_form_summary" model="ir.ui.view">
+            <field name="name">gestionit_pe_fe.view.form.summary</field>
+            <field name="model">account.summary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="post" string="Publicar" type="object" class="oe_highlight" attrs="{'invisible':[['estado_emision','in',['A','E','O','R']]]}"/>
+                        <button name="action_generate_and_signed_xml" string="Generar XML" type="object" class="oe_highlight" groups="gestionit_pe_fe.group_fe_allow_generate_send_xml" attrs="{'invisible':[['estado_emision','in',['A','E','O','R']]]}"/>
+                        <button name="action_send_summary" string="Enviar XML" type="object" class="oe_highlight" groups="gestionit_pe_fe.group_fe_allow_generate_send_xml" attrs="{'invisible':[['estado_emision','in',['A','E','O','R']]]}"/>
+                        <button name="action_draft" string="Convertir a Borrador" type="object" groups="base.group_no_one" attrs="{'invisible':[['estado_emision','in',[False,'A','E','O','R']]]}"/>
+                        <button name="load_summary" string="Cargar Comprobantes" type="object" class="oe_highlight oe_right" attrs="{'invisible':[['estado_emision','not in',[False,'B','P']]]}" />
+                        <button name="action_request_status_ticket" string="Consulta del Resumen" type="object" class="oe_highlight oe_right" attrs="{'invisible':[['summary_ticket','=',False]]}"/>
+                        <field name="estado_emision" readonly="1" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="identificador_resumen"/>
+                        </h1>
+                        <group>
+                            <group>
+                                
+                                <field name="company_id" readonly="1" options="{'no_open':True}"/>
+                                <field name="cod_operacion" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}"/>
+                            </group>
+                            <group>
+                                <field name="fecha_generacion" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}"/>
+                                <field name="fecha_emision_documentos" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}"/>
+                                <field name="summary_ticket" string="Ticket"/>
+                                <field name="summary_description_response" attrs="{'invisible':[('summary_description_response','=',False)]}"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comprobantes" groups="base.group_no_one">
+                                <field name="account_invoice_ids" readonly="1" force_save="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="invoice_date"/>
+                                        <field name="invoice_origin"/>
+                                        <field name="amount_total"/>
+                                        <field name="estado_comprobante_electronico"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Líneas de Resumen Diario">
+                                <field name="summary_line_ids" mode="tree" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}">
+                                    <tree editable="top">
+                                        <field name="tipo_documento" readonly="1"/>
+                                        <field name="serie" readonly="1"/>
+                                        <field name="correlativo" readonly="1"/>
+                                        <field name="tipo_moneda" readonly="1"/>
+                                        <field name="monto_igv" readonly="1"/>
+                                        <field name="monto_total" readonly="1"/>
+                                        <field name="cod_operacion"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Registro de envíos a SUNAT" groups="base.group_no_one">
+                                <group>
+                                    <field name="current_log_status_id" readonly="1" force_save="1"/>
+                                </group>
+                                <label for="account_log_status_ids" string="Registro de envíos"/>
+                                <field name="account_log_status_ids" mode="tree" attrs="{'readonly':[['estado_emision','not in',['B']]]}">
+                                    <tree decoration-bf="is_last_log == True" decoration-muted="is_last_log == False">
+                                        <field name="name"/>
+                                        <field name="status"/>
+                                        <field name="summary_ticket"/>
+                                        <field name="create_date"/>
+                                        <field name="is_last_log" invisible="1"/>
+                                        <button name="action_set_last_log" type="object" string="Registro actual" attrs="{'invisible':[('is_last_log','=',True)]}"/>
+                                        <button name="action_set_last_log_unlink" type="object" string="Dejar" attrs="{'invisible':[('is_last_log','=',False)]}" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_popup_account_summary_anulacion" model="ir.ui.view">
+            <field name="name">Anulación de Comprobane</field>
+            <field name="model">account.summary.anulacion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <span>Esta seguro que desea anular este comprobante?</span>
+                    <group>
+                        <field name="account_invoice_id" readonly="1"/>
+                        <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                    </group>
+                    <footer>
+                        <button name="btn_anular_comprobante" string="Anular Comprobante" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_form_summary" model="ir.actions.act_window">
+            <field name="name">Resumen Diario</field>
+            <field name="res_model">account.summary</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Resumen Diario" id="menu_summary" action="action_view_form_summary" parent="gestionit_pe_fe.menu_comprobantes_documentos"/>
+    </data>
+</odoo>

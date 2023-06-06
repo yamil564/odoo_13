@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- COMPRAS -->
+        <record id="gestionit_ple_libro_compras" model="ir.ui.view">
+            <field name="name">Reporte - Libro de compras</field>
+            <field name="model">print.compras.reporte.contabilidad</field>
+            <field name="arch" type="xml">
+                <form string="Reporte de compras">
+                    <field name="invoice_report_printed" invisible="1"/>
+                    <group attrs="{'invisible':[('invoice_report_printed','=',True)]}">
+                        <group>
+                            <field name="months" required="1" style="width:200px;"/>
+                        </group>
+                        <group>
+                            <field name="years" required="1" style="width:200px;"/>
+                            <!-- <field name="tipo_reporte"/> -->
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('invoice_report_printed','=',False)]}">
+                        <field name="file_name" invisible="1"/>
+                        <field name="invoice_summary_file" readonly="1" filename="file_name"/>
+                    </group>
+                    <footer>
+                        <button string='GENERAR' name="generaReporte" type="object" class="btn-primary" attrs="{'invisible':[('invoice_report_printed','=',True)]}"/>
+                        <button string="CANCELAR" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- REGISTRO DE COMPRAS -->
+        <record id="reporte_compras" model="ir.actions.act_window">
+            <field name="name">Reporte de compras</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">print.compras.reporte.contabilidad</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- REGISTRO DE COMPRAS -->
+        <menuitem id="menu_print_reporte_compras" action="reporte_compras" sequence="210" parent="gestionit_pe_fe.menu_reportes_documentos" />
+    </data>
+</odoo>

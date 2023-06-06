@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="gestionit_pe_fe.view_product_uom_form_cat03">
+            <field name="name">Campos Adicionales - Cat03</field>
+            <field name="model">uom.uom</field>
+            <field name="inherit_id" ref="uom.product_uom_form_view"/>
+            <field name="arch" type="xml">
+                <field name="uom_type" position="before">
+                    <field name="code"/>
+                    <field name="description"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

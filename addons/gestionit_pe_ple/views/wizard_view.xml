@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rventas_xlsx_report_view" model="ir.ui.view">
+        <field name="name">Registro de Ventas - Xlsx Report</field>
+        <field name="model">rventas.xlsx.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <separator string="Excel Reports" />
+                <group col="4">
+                    <field name="months" />
+                    <field name="years" />
+                </group>
+                <group>
+                    <field name="tipo" />
+                </group>
+                <footer>
+                    <button name="print_xlsx" string="PRINT" type="object" default_focus="1" class="oe_highlight" />
+                    <button string="Cancel" class="btn btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_xlsx_report" model="ir.actions.act_window">
+        <field name="name">Excel</field>
+        <field name="res_model">rventas.xlsx.report.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="excel_report"
+        name="Registro de ventas"
+        action="action_xlsx_report"
+        parent="gestionit_pe_fe.menu_reportes_documentos"
+        sequence="10"/>
+</odoo>

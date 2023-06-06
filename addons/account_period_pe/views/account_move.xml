@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_move_form_view_period" model="ir.ui.view">
+        <field name="name">account.move.form.period</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="period_id" domain="[('state','=','draft')]" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_move_tree_view_period" model="ir.ui.view" >
+        <field name="name">account.move.tree.period</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="period_id"/>
+            </field>
+        </field>
+    </record>
+
+    <!--<record id="account_move_search_view_period" model="ir.ui.view">
+        <field name="name">account.move.search.period</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_filter"/>
+        <field name="arch" type="xml">
+            <filter context="{'group_by':'date'}" position="after">
+                <filter string="F.Proceso Contable" context="{'group_by':'process_account_date'}"/>
+                <filter string="Periodo Contable" context="{'group_by':'period_id'}"/>
+            </filter>
+        </field>
+    </record>-->
+
+</odoo>

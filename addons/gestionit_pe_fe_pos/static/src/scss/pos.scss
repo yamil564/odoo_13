@@ -1,0 +1,650 @@
+
+
+.selection-area {
+    height: 32px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7B7979), to(#393939));
+    background: -moz-linear-gradient(#7B7979, #393939);
+    background: -ms-linear-gradient(#7B7979, #393939);
+    background: linear-gradient(#7B7979, #393939);
+}
+
+.button_select {
+    border: 1px solid #AAA;
+    color: #FFF;
+    background: #666;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.label {
+    color: #555 !important;
+}
+
+.pos .searchbox input {
+    width: 175px;
+    border: 1px solid #cecbcb;
+    padding: 10px 20px;
+    padding-left: 38px;
+    margin: 6px;
+    background: url("../img/search.png") no-repeat 15px;
+    background-color: white;
+    border-radius: 20px;
+    font-family: Lato;
+    font-size: 13px;
+}
+
+.pos .breadcrumb {
+    display: inline-block !important;
+    float: left !important;
+    height: 48px !important;
+    line-height: 48px !important;
+    min-width: 48px !important;
+    background-color: #d3d3d3;
+    padding: 0px !important;
+}
+
+.product .remaining-qty-tag {
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    vertical-align: top;
+    color: white;
+    line-height: 13px;
+    background: #7f82ac;
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 0px #9A9CC5, 0px 3px 0px #7E86AC, 0px 3px 3px rgba(12, 14, 68, 0.67);
+}
+
+.pos-return-popup {
+    height: 80% !important;
+    width: 70% !important;
+}
+
+#return_order_number {
+    width: 30% !important;
+}
+
+.content {
+    margin-left: 5%;
+}
+
+.check_box_tag {
+    position: absolute;
+    top: -16px;
+    right: 84px;
+    vertical-align: top;
+    color: white;
+    line-height: 13px;
+    padding: 0px 5px;
+    border-radius: 2px;
+    width: 43px;
+}
+
+.js_quantity {
+    min-height: 0px !important;
+    height: 24px !important;
+    font-size: 14px !important;
+    padding: 0px !important;
+    text-align: center !important;
+    width: 60% !important;
+}
+
+.ac_product_list {
+    max-height: 310px !important;
+    overflow-y: auto;
+}
+
+/* ADD Product */
+.product-popup {
+    height: 500px !important;
+    padding: 3px !important;
+    border-radius: 5px !important;
+    /* 	top: 40% !important; */
+}
+
+.product-container {
+    height: 375px !important;
+    /* 	max-height:400px; */
+    overflow-y: scroll;
+}
+
+.title {
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    padding: 20px;
+    border-radius: 3px 3px 0px 0px;
+    border-bottom: solid 3px rgba(110, 200, 155, 1);
+}
+
+.product-input-table {
+    text-align: left;
+}
+
+.product-input-table td {
+    padding: 15px;
+}
+
+.product-input-table label {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.product-input-table tr td input {
+    min-height: 0px !important;
+    font-size: 14px;
+    height: 32px !important;
+    padding: 0px !important;
+}
+
+.saveclose, .savenew {
+    width: auto !important;
+    padding: 0px 5px;
+}
+
+#search_row {
+    border-bottom: thin solid #000;
+}
+
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+    z-index: 1500;
+}
+
+/*product screen*/
+.pos .productlist-screen .order-list {
+    font-size: 16px;
+    width: 100%;
+    line-height: 40px;
+}
+
+.pos .productlist-screen .product-list th, .pos .productlist-screen .product-list td {
+    padding: 0px 5px;
+}
+
+.pos .productlist-screen .product-list tr {
+    transition: all 150ms linear;
+    background: rgb(230, 230, 230);
+}
+
+.pos .productlist-screen .product-list thead > tr, .pos .productlist-screen .product-list tr:nth-child(even) {
+    background: rgb(247, 247, 247);
+}
+
+.pos .productlist-screen .product-list tr.highlight {
+    transition: all 150ms linear;
+    background: rgb(110, 200, 155) !important;
+    color: white;
+}
+
+.pos .productlist-screen .product-list tr.lowlight {
+    transition: all 150ms linear;
+    background: rgb(216, 238, 227);
+}
+
+.pos .productlist-screen .product-list tr.lowlight:nth-child(even) {
+    transition: all 150ms linear;
+    background: rgb(227, 246, 237);
+}
+
+.screen .bottom-content .button {
+    margin-right: 30px;
+    line-height: 32px;
+    padding: 1px 13px;
+    font-size: 20px;
+    background: rgb(230, 230, 230);
+    margin: 12px;
+    border-radius: 3px;
+    border: solid 1px rgb(209, 209, 209);
+    cursor: pointer;
+    transition: all 150ms linear;
+}
+
+.screen .top-content .button.not-selected {
+    background: rgb(230, 230, 230);
+    color: #000;
+}
+
+.screen .top-content .button.selected {
+    background: #088000;
+    color: #FFF;
+}
+
+.pos .productlist-screen .searchbox {
+    right: auto;
+    margin-left: -150px;
+    margin-top: 8px;
+    left: 88%;
+}
+
+.pos .productlist-screen .searchbox input {
+    width: 164px;
+}
+
+#pagination {
+    margin-top: 20px;
+    float: left;
+}
+
+#pagination div {
+    display: inline-block;
+}
+
+
+/* serial css */
+.serail_contains {
+    overflow-y: auto;
+    min-height: 0px !important;
+    height: 300px;
+    width: 980px;
+    max-height: 300px;
+    margin: 0px auto;
+}
+
+.serial_list {
+    height: 500px !important;
+    width: 1000px !important;
+}
+
+.serail_contains .serial_list_table {
+    width: 100% !important;
+}
+
+.serail_contains .serial_list_table tr {
+    border-bottom: thin solid #CCC;
+}
+
+.serail_contains .serial_list_table tr th {
+    font-size: 18px;
+    padding: 10px;
+    text-align: left;
+}
+
+.serail_contains .serial_list_table tbody tr {
+    cursor: pointer;
+}
+
+.serail_contains .serial_list_table tbody tr:hover {
+    background: #CCC
+}
+
+.serail_contains .serial_list_table tr td {
+    text-align: left;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.serial_search_box {
+    position: absolute;
+    right: 57px;
+    width: 20%;
+    top: 16px;
+    border: 1px solid #cecbcb;
+    border-radius: 20px;
+    background: #FFF;
+}
+
+.serial_search_box input {
+    min-height: 0px !important;
+    height: 32px !important;
+    padding: 10px 20px 8px 38px !important;
+    width: 100% !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+
+}
+
+.serial-search-clear {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 4px;
+    left: 1px;
+    cursor: pointer;
+    color: #CCC;
+    font-size: 16px;
+}
+
+#pagination {
+    font-size: 15px;
+}
+
+.serial_footer {
+    margin-top: 15px;
+}
+
+.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+}
+
+/* Return Order List */
+.pos .orderlist-screen .window,
+.pos .orderlist-screen .full-content .subwindow {
+    display: block;
+}
+
+.pos .orderlist-screen .full-content .subwindow-container {
+    display: block;
+    height: 100%;
+}
+
+.pos .orderlist-screen .full-content .subwindow.collapsed,
+.pos .orderlist-screen .full-content .subwindow-container.collapsed {
+    height: auto;
+}
+
+.pos .orderlist-screen .order-list {
+    font-size: 16px;
+    width: 100%;
+    line-height: 40px;
+}
+
+.pos .orderlist-screen .order-list th,
+.pos .orderlist-screen .order-list td {
+    padding: 0px 8px;
+}
+
+.pos .orderlist-screen .order-list tr {
+    transition: all 150ms linear;
+    background: rgb(230, 230, 230);
+}
+
+.pos .orderlist-screen .order-list thead > tr,
+.pos .orderlist-screen .order-list tr:nth-child(even) {
+    background: rgb(247, 247, 247);
+}
+
+.pos .orderlist-screen .order-list tr.highlight {
+    transition: all 150ms linear;
+    background: rgb(110, 200, 155) !important;
+    color: white;
+}
+
+.pos .orderlist-screen .order-list tr.lowlight {
+    transition: all 150ms linear;
+    background: rgb(216, 238, 227);
+}
+
+.pos .orderlist-screen .order-list tr.lowlight:nth-child(even) {
+    transition: all 150ms linear;
+    background: rgb(227, 246, 237);
+}
+
+.pos .orderlist-screen .order-details {
+    padding: 16px;
+    border-bottom: solid 5px rgb(110, 200, 155);
+}
+
+.pos .orderlist-screen .order-picture {
+    height: 64px;
+    width: 64px;
+    border-radius: 32px;
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    margin-right: 16px;
+    background: white;
+    position: relative;
+}
+
+.pos .orderlist-screen .order-picture > img {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    right: -9999px;
+    left: -9999px;
+    max-height: 64px;
+    margin: auto;
+}
+
+.pos .orderlist-screen .order-picture > .fa {
+    line-height: 64px;
+    font-size: 32px;
+}
+
+.pos .orderlist-screen .order-picture .image-uploader {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.pos .orderlist-screen .order-name {
+    font-size: 32px;
+    line-height: 64px;
+    margin-bottom: 16px;
+}
+
+.pos .orderlist-screen .close-buttons {
+    position: absolute;
+    right: 16px;
+    top: 15px;
+}
+
+.pos .orderlist-screen .close-buttons .button {
+    display: inline-block;
+    margin-left: 16px;
+    color: rgb(128, 128, 128);
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.pos .orderlist-screen .return-buttons {
+    position: absolute;
+    right: 60px;
+    top: 12px;
+}
+
+.pos .orderlist-screen .return-buttons .button {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 5px;
+    background: rgb(230, 230, 230);
+    padding: 3px 13px;
+    border-radius: 3px;
+    border: solid 1px rgb(209, 209, 209);
+    cursor: pointer;
+    transition: all 150ms linear;
+}
+
+.pos .orderlist-screen .order-details-box {
+    position: relative;
+    font-size: 16px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.pos .orderlist-screen .order-details-left {
+    width: 50%;
+    float: left;
+}
+
+.pos .orderlist-screen .order-details-right {
+    width: 50%;
+    float: right;
+}
+
+.pos .orderlist-screen .orderline-detail {
+
+}
+
+.pos .orderlist-screen .orderline-detail table {
+    width: 100%;
+}
+
+.pos .orderlist-screen .orderline-detail table tr {
+    border-bottom: 2px solid rgb(110, 200, 155);
+    line-height: 24px;
+}
+
+.pos .orderlist-screen .orderline-detail table thead {
+    font-size: 13px;
+    color: rgb(110, 200, 155) !important;
+}
+
+.pos .orderlist-screen .orderline-detail table tbody {
+    font-size: 10px;
+}
+
+.pos .orderlist-screen .orderline-detail table .order-total {
+    border: none !important;
+    font-size: 15px;
+}
+
+.pos .orderlist-screen .orderline-detail table .amount_total {
+    color: rgb(110, 200, 155) !important;
+    font-weight: bold;
+}
+
+.pos .orderlist-screen .order-details-box .order_payment {
+    font-weight: bold;
+    color: rgb(110, 200, 155) !important;
+}
+
+.pos .orderlist-screen .order-detail {
+    line-height: 24px;
+}
+
+.pos .orderlist-screen .order-detail > .label {
+    font-weight: bold;
+    display: inline-block;
+    width: 75px;
+    text-align: right;
+    margin-right: 8px;
+}
+
+.pos .orderlist-screen .order-details input,
+.pos .orderlist-screen .order-details select {
+    padding: 4px;
+    border-radius: 3px;
+    border: solid 1px #cecbcb;
+    margin-bottom: 4px;
+    background: white;
+    font-family: "Lato", "Lucida Grande", Helvetica, Verdana, Arial;
+    color: #555555;
+    width: 340px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.pos .orderlist-screen .order-details input.order-name {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 18px 6px;
+    width: 340px;
+}
+
+.pos .orderlist-screen .order-detail > .empty {
+    opacity: 0.3;
+}
+
+.pos .orderlist-screen .searchbox {
+    position: absolute;
+    right: 2px;
+}
+
+.pos .orderlist-screen .searchbox input {
+    max-width: 220px;
+}
+
+.pos .orderlist-screen .button.new-customer {
+    left: 50%;
+    margin-left: 120px;
+}
+
+.popup.popup_return_line table.popup-orderline-list {
+    width: 100%;
+}
+
+.popup.popup_return_line .button.complete_return {
+    padding: 5px;
+}
+
+.popup.popup_return_line .return_orderline {
+    max-height: 280px !important;
+    overflow: scroll;
+}
+
+.popup.popup_return_line table.popup-orderline-list tr {
+    border-bottom: thin solid black;
+    line-height: 15px;
+}
+
+.popup.popup_return_line table.popup-orderline-list thead {
+    font-size: 15px;
+}
+
+.popup.popup_return_line table.popup-orderline-list tbody {
+    font-size: 13px;
+}
+
+.popup.popup_return_line table.popup-orderline-list thead th {
+    padding: 5px;
+}
+
+.popup.popup_return_line table.popup-orderline-list tbody td {
+    padding: 5px;
+}
+
+.popup.popup_return_line {
+    width: 670px !important;
+}
+
+.rotate {
+    transform: rotate(-360deg);
+    transition: .7s;
+}
+
+.rotate-reset {
+    transform: rotate(0deg);
+    transition: .7s;
+}
+
+#pagination {
+    margin-top: 20px;
+    float: left;
+}
+
+#pagination div {
+    display: inline-block;
+}

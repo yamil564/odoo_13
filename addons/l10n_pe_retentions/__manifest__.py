@@ -1,0 +1,22 @@
+{
+    'name': 'Contabilidad de Retenciones en Ventas',
+    'version': '1.0.0',
+    'category': '',
+    'license': 'AGPL-3',
+    'summary': "Retenciones",
+    'author': "Franco Najarro",
+    'website': '',
+    'depends': ['base','base_setup', 'account','gestionit_pe_fe','bo_pe_contabilidad_documents'],
+    'data': [
+        'data/journal_data.xml',
+        'security/ir.model.access.csv',
+        'views/account_journal_view.xml',
+        'views/res_company_view.xml',
+        'views/res_partner_view.xml',
+        'views/wizard_paid_retention_view.xml',
+        #'views/account_invoice_view.xml',
+        'views/account_invoice_retention_view.xml',
+        'views/res_config_settings_view.xml',
+        ],
+    'installable': True,
+}

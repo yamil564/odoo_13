@@ -1,0 +1,8 @@
+<odoo>
+    <report id="report_libro_reclamaciones" 
+            string="Libro de reclamaciones" 
+            model="libro.reclamaciones" 
+            report_type="qweb-pdf" 
+            name="bo_libro_reclamaciones.report_libro_reclamaciones_template" 
+            file="bo_libro_reclamaciones.report_libro_reclamaciones_template" />
+</odoo>

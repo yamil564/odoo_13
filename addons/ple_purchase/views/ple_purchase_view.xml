@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="ple_purchase_view_form" model="ir.ui.view">
+            <field name="name">ple.purchase.form</field>
+            <field name="model">ple.purchase</field>
+            <field name="inherit_id" ref="ple_base.ple_base_view_form"/>
+            <field name="arch" type="xml">
+
+                   <xpath expr="//form/header" position="inside">
+
+
+                    <button name="button_view_tree_domiciliados"
+                            string="Compras Domiciliadas"
+                            states='open,send'
+                            type="object"
+                            icon="fa-square"
+                    />
+
+                    <button name="button_view_tree_no_domiciliados"
+                            string="Compras No Domiciliadas"
+                            states='open,send'
+                            type="object"
+                            icon="fa-square"
+                    />
+
+                    <button name="button_view_tree_recibo_honorarios"
+                            string="Recibos por Honorario"
+                            states='open,send'
+                            type="object"
+                            icon="fa-square"
+                    />
+
+                    </xpath>
+
+                <!--<field name="currency_id" position="replace">
+                </field>
+
+                <field name="bimonetario" position="replace">
+                </field>
+                <field name="currency_second_id" position="replace">
+                </field>-->
+
+                     <group name="grupo_base" position="replace">
+
+                        <group name="grupo_base" string="Fecha - Periodo Fiscal">
+                            
+                            <field name="company_id" options="{'no_create': True, 'no_create_edit':True}" groups="base.group_multi_company"/>
+
+                            <field name="fecha"/>
+                            <field name="date_from" attrs="{'invisible':[('fecha','=',False)],'required': [('fecha', '=', True)]}"/>
+                            <field name="date_to" attrs="{'invisible':[('fecha','=',False)],'required': [('fecha', '=',True)]}"/>
+                            <!-- <br/> -->
+
+                            <field name="periodo"/>
+                            <label for="fiscal_year" attrs="{'invisible':[('periodo','=',False)]}"/>
+                            <div attrs="{'invisible':[('periodo','=',False)]}">
+                                <field name="fiscal_year" placeholder="Año" class="oe_inline" attrs="{'invisible':[('periodo','=',False)],'required': [('periodo', '=', True)]}"/>
+                                <field name="fiscal_month" placeholder="Mes" class="oe_inline" attrs="{'invisible':[('periodo','=',False)],'required': [('periodo', '=', True)]}"/>
+                            </div>
+
+
+                        </group>
+
+
+                        <group  name="grupo_filtros_dinamicos" string="Filtros Dinámicos">
+                            
+                                <label for="partner_ids"/>
+                            <div>
+                                <field name="partner_option" placeholder="" class="oe_inline"/>
+                                <field name="partner_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+
+                            <label for="journal_ids"/>
+                            <div>
+                                <field name="journal_option" placeholder="" class="oe_inline"/>
+                                <field name="journal_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+                            <label for="move_ids"/>
+                            <div>
+                                <field name="move_option" placeholder="" class="oe_inline"/>
+                                <field name="move_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+
+                            <label for="currency_ids"/>
+                            <div>
+                                <field name="currency_option" placeholder="" class="oe_inline"/>
+                                <field name="currency_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                            </div>
+                    </group>
+
+                    <group>
+                        
+                        <field name="incluir_anteriores_no_declarados"/>
+                        
+                    </group>
+                    
+                    </group>
+
+
+                    <xpath expr="//form" position="inside">
+                       <notebook>
+                        <page name="Domiciliados" string="PLE-Domiciliados">
+                        
+                            <field name='ple_purchase_line_ids'>
+                               
+                                <tree>
+                                <field name ="move_id" />
+                                <field name ="asiento_contable" />
+                                <field name ="m_correlativo_asiento_contable" />
+                                <field name ="fecha_emision_comprobante" />
+                                <field name ="fecha_vencimiento" />
+                                <field name ="tipo_comprobante" />
+                                <field name ="serie_comprobante" />
+                                <field name ="anio_emision_DUA" />
+                                <field name ="numero_comprobante" />
+                                <field name ="operaciones_sin_igv" />
+                                <field name ="tipo_documento_proveedor" />
+                                <field name ="ruc_dni" />
+                                <field name ="razon_social" />
+                                <field name ="base_imponible_igv_gravadas" />
+                                <field name ="monto_igv_1" />
+                                <field name ="base_imponible_igv_no_gravadas" />
+                                <field name ="monto_igv_2" />
+                                <field name ="base_imponible_no_igv" />
+                                <field name ="monto_igv_3" />
+                                <field name ="valor_no_gravadas" />
+                                <field name ="isc" />
+                                <field name="impuesto_consumo_bolsas_plastico"/>
+                                <field name ="otros_impuestos" />
+                                <field name ="importe_adquisiciones_registradas" />
+                                <field name ="codigo_moneda" />
+                                <field name ="tipo_cambio" />
+                                <field name ="fecha_emision_original" />
+                                <field name ="tipo_comprobante_original" />
+                                <field name ="serie_comprobante_original" />
+                                <field name ="codigo_dep_aduanera" />
+                                <field name ="numero_comprobante_original" />
+                                <field name ="fecha_detraccion" />
+                                <field name ="numero_detraccion" />
+                                <field name ="marca_retencion" />
+                                <field name ="clasificacion_bienes" />
+                                <field name ="identificacion_contrato" />
+                                <field name ="error_1" />
+                                <field name ="error_2" />
+                                <field name ="error_3" />
+                                <field name ="error_4" />
+                                <field name ="indicador_comprobantes" />
+                                <field name ="oportunidad_anotacion" />
+
+                                </tree>             
+                            
+                            
+
+                              </field>
+                        
+                        </page>
+
+                          
+                        <page name="No Domiciliados" string="PLE-No Domiciliados">
+                        
+                            <field name='ple_purchase_line_no_domiciliados_ids'>
+
+                                <tree>
+                                    <field name ="move_id" />
+                                    <field name ="asiento_contable" />
+                                    <field name ="no_domiciliado_m_correlativo_asiento_contable" />
+                                    <field name ="fecha_emision_comprobante" />
+                                    <field name ="tipo_comprobante" />
+                                    <field name ="serie_comprobante" />
+                                    <field name ="numero_comprobante" />
+                                    <field name ="no_domiciliado_valor_adquisiciones" />
+                                    <field name ="no_domiciliado_otros_conceptos_adicionales" />
+                                    <field name ="importe_adquisiciones_registradas" />
+                                    <field name ="no_domiciliado_tipo_comprobante_credito_fiscal" />
+                                    <field name ="no_domiciliado_serie_comprobante_credito_fiscal" />
+                                    <field name ="anio_emision_DUA" />
+                                    <field name ="no_domiciliado_numero_comprobante_pago_impuesto" />
+                                    <field name ="monto_igv_1" />
+                                    <field name ="codigo_moneda" />
+                                    <field name ="tipo_cambio" />
+                                    <field name ="no_domiciliado_pais_residencia" />
+                                    <field name ="razon_social" />
+                                    <field name ="no_domiciliado_domicilio" />
+                                    <field name ="no_domiciliado_numero_identificacion" />
+                                    <field name ="no_domiciliado_identificacion_beneficiario" />
+                                    <field name ="no_domiciliado_razon_social_beneficiario" />
+                                    <field name ="no_domiciliado_pais_beneficiario" />
+                                    <field name ="no_domiciliado_vinculo_entre_contribuyente_residente" />
+                                    <field name ="no_domiciliado_renta_bruta" />
+                                    <field name ="no_domiciliado_deduccion_bienes" />
+                                    <field name ="no_domiciliado_renta_neta" />
+                                    <field name ="no_domiciliado_tasa_retencion" />
+                                    <field name ="no_domiciliado_impuesto_retenido" />
+                                    <field name ="no_domiciliado_convenios" />
+                                    <field name ="no_domiciliado_exoneracion" />
+                                    <field name ="no_domiciliado_tipo_renta" />
+                                    <field name ="no_domiciliado_modalidad_servicio_prestado" />
+                                    <field name ="no_domiciliado_aplicacion_ley_impuesto_renta" />
+                                    <field name ="no_domiciliado_oportunidad_anotacion" />
+
+
+                                </tree>      
+
+                                    <!-- ##################################### -->
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+
+                                                <field name ="move_id" />
+                                                <field name ="asiento_contable" string="2. Nombre del asiento contable" />
+                                                <field name ="no_domiciliado_m_correlativo_asiento_contable" string="3. M-correlativo asiento contable"  />
+                                                <field name ="fecha_emision_comprobante"  string="4. Fecha emisión Comprobante"/>
+                                                <field name ="tipo_comprobante"  string="5. Tipo de Comprobante" />
+                                                <field name ="serie_comprobante"  string="6. Serie del Comprobante"/>
+                                                <field name ="numero_comprobante" string="7. Número Comprobante"/>
+                                                <field name ="no_domiciliado_valor_adquisiciones" string="8. Valor Adquisiciones"/>
+                                                <field name ="no_domiciliado_otros_conceptos_adicionales" string="9. Conceptos Adicionales"/>
+                                                <field name ="importe_adquisiciones_registradas" string="10. Importe Adquisiciones Registradas"/>
+                                                <field name ="no_domiciliado_tipo_comprobante_credito_fiscal" string="11. Tipo Comprobante Crédito fiscal" />
+                                                <field name ="no_domiciliado_serie_comprobante_credito_fiscal" string="12. Serie Comprobante Crédito fiscal" />
+                                                <field name ="anio_emision_DUA"  string="13. Año Emisión DUA"/>
+                                                <field name ="no_domiciliado_numero_comprobante_pago_impuesto" string="14. Número Comprobante Pago Impuesto"/>
+                                                <field name ="monto_igv_1"   string="15. Monto IGV"/>
+                                                <field name ="codigo_moneda" string="16. Código Moneda"/>
+                                                <field name ="tipo_cambio"  string="17. Tipo de Cambio"/>
+                                                <field name ="no_domiciliado_pais_residencia" string="18. Código pais residencia del no domiciliado" />
+                                                <field name ="razon_social"  string="19. Razón Social"/>
+                                                <field name ="no_domiciliado_domicilio" string="20. Domicilio en el extranjero" />
+                                                <field name ="no_domiciliado_numero_identificacion"  string="21. Número Identificación del no domiciliado" />
+                                                <field name ="no_domiciliado_identificacion_beneficiario" string="22. Número Identificación beneficiario"/>
+                                                <field name ="no_domiciliado_razon_social_beneficiario"  string="23. Razón social beneficiario" />
+                                                <field name ="no_domiciliado_pais_beneficiario"  string="24. Pais residencia beneficiario"/>
+                                                <field name ="no_domiciliado_vinculo_entre_contribuyente_residente"  string="25. Vinculo contribuyente-residente extranjero"/>
+                                                <field name ="no_domiciliado_renta_bruta"  string="26. Renta Bruta"/>
+                                                <field name ="no_domiciliado_deduccion_bienes"  string="27. Deducción/Costo bienes capital"/>
+                                                <field name ="no_domiciliado_renta_neta" string="28. Renta Neta" />
+                                                <field name ="no_domiciliado_tasa_retencion"  string="29. Tasa de retención"/>
+                                                <field name ="no_domiciliado_impuesto_retenido" string="30. Impuesto retenido"/>
+                                                <field name ="no_domiciliado_convenios"  string="31. Convenios para evitar doble imposición"/>
+                                                <field name ="no_domiciliado_exoneracion"  string="32. Exoneración aplicada"/>
+                                                <field name ="no_domiciliado_tipo_renta"  string="33. Tipo de Renta"/>
+                                                <field name ="no_domiciliado_modalidad_servicio_prestado" string="34. Modalidad servicio prestado"/>
+                                                <field name ="no_domiciliado_aplicacion_ley_impuesto_renta" string="35. Aplicación Art. 76°" />
+                                                <field name ="no_domiciliado_oportunidad_anotacion" string="36. Oportunidad Anotación" />
+
+                                            </group>
+                                        </group>
+                     
+                                     </sheet>
+                                </form>        
+                            </field>
+                        
+                        </page>
+
+                        <page name="Recibo por Honorarios" string="PLE-Recibo por Honorarios">
+                        
+                                <field name='ple_purchase_line_recibo_honorarios_ids'>
+                               
+                                 <tree>
+                                <field name ="move_id" />
+                                <field name ="asiento_contable" />
+                                <field name ="m_correlativo_asiento_contable" />
+                                <field name ="fecha_emision_comprobante" />
+                                <field name ="fecha_vencimiento" />
+                                <field name ="tipo_comprobante" />
+                                <field name ="serie_comprobante" />
+                                <field name ="anio_emision_DUA" />
+                                <field name ="numero_comprobante" />
+                                <field name ="operaciones_sin_igv" />
+                                <field name ="tipo_documento_proveedor" />
+                                <field name ="ruc_dni" />
+                                <field name ="razon_social" />
+                                <field name ="base_imponible_igv_gravadas" />
+                                <field name ="monto_igv_1" />
+                                <field name ="base_imponible_igv_no_gravadas" />
+                                <field name ="monto_igv_2" />
+                                <field name ="base_imponible_no_igv" />
+                                <field name ="monto_igv_3" />
+                                <field name ="valor_no_gravadas" />
+                                <field name ="isc" />
+                                <field name ="otros_impuestos" />
+                                <field name ="importe_adquisiciones_registradas" />
+                                <field name ="codigo_moneda" />
+                                <field name ="tipo_cambio" />
+                                <field name ="fecha_emision_original" />
+                                <field name ="tipo_comprobante_original" />
+                                <field name ="serie_comprobante_original" />
+                                <field name ="codigo_dep_aduanera" />
+                                <field name ="numero_comprobante_original" />
+                                <field name ="fecha_detraccion" />
+                                <field name ="numero_detraccion" />
+                                <field name ="marca_retencion" />
+                                <field name ="clasificacion_bienes" />
+                                <field name ="identificacion_contrato" />
+                                <field name ="error_1" />
+                                <field name ="error_2" />
+                                <field name ="error_3" />
+                                <field name ="error_4" />
+                                <field name ="indicador_comprobantes" />
+                                <field name ="oportunidad_anotacion" />
+
+                                </tree>             
+                            
+                                <form>
+                                     <sheet>
+                                    <group>
+                                    <group>
+                                <field name ="move_id" />
+                                <field name ="asiento_contable" />
+                                <field name ="m_correlativo_asiento_contable" />
+                                <field name ="fecha_emision_comprobante" />
+                                <field name ="fecha_vencimiento" />
+                                <field name ="tipo_comprobante" />
+                                <field name ="serie_comprobante" />
+                                <field name ="anio_emision_DUA" />
+                                <field name ="numero_comprobante" />
+                                <field name ="operaciones_sin_igv" />
+                                <field name ="tipo_documento_proveedor" />
+                                <field name ="ruc_dni" />
+                                <field name ="razon_social" />
+                                <field name ="base_imponible_igv_gravadas" />
+                                <field name ="monto_igv_1" />
+                                <field name ="base_imponible_igv_no_gravadas" />
+                                <field name ="monto_igv_2" />
+                                <field name ="base_imponible_no_igv" />
+                                <field name ="monto_igv_3" />
+                                <field name ="valor_no_gravadas" />
+                                <field name ="isc" />
+                                <field name ="otros_impuestos" />
+                                <field name ="importe_adquisiciones_registradas" />
+                                <field name ="codigo_moneda" />
+                                <field name ="tipo_cambio" />
+                                <field name ="fecha_emision_original" />
+                                <field name ="tipo_comprobante_original" />
+                                <field name ="serie_comprobante_original" />
+                                <field name ="codigo_dep_aduanera" />
+                                <field name ="numero_comprobante_original" />
+                                <field name ="fecha_detraccion" />
+                                <field name ="numero_detraccion" />
+                                <field name ="marca_retencion" />
+                                <field name ="clasificacion_bienes" />
+                                <field name ="identificacion_contrato" />
+                                <field name ="error_1" />
+                                <field name ="error_2" />
+                                <field name ="error_3" />
+                                <field name ="error_4" />
+                                <field name ="indicador_comprobantes" />
+                                <field name ="oportunidad_anotacion" />
+                                </group>
+                                </group>
+                                </sheet>
+
+
+                                </form>
+                            
+
+                              </field>
+                        
+                          </page>
+
+                             </notebook>
+                    </xpath>                            
+            </field>
+        </record>
+
+
+        <record id="ple_purchase_view_tree" model="ir.ui.view">
+            <field name="name">ple.purchase.tree</field>
+            <field name="model">ple.purchase</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="fiscal_year"/>
+                    <field name="fiscal_month"/>
+                    <field name="company_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ple_purchase" model="ir.actions.act_window">
+            <field name="name">PLE-Compras</field>
+            <field name="res_model">ple.purchase</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('company_id','=',allowed_company_ids[0])]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear libro de compras
+              </p><p>
+                El libro de compras es un documento trubutario
+                y su representacion es en los siguientes formatos , txt, pdf, etc...
+              </p>
+            </field>
+        </record>
+
+        <record id="action_pe_purchase_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ple_purchase_view_tree"/>
+            <field name="act_window_id" ref="action_ple_purchase"/>
+        </record>
+
+        <record id="action_pe_purchase_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ple_purchase_view_form"/>
+            <field name="act_window_id" ref="action_ple_purchase"/>
+        </record>
+
+         <menuitem id="menu_ple_purchase" parent="ple_base.menu_registro" sequence="0" action="action_ple_purchase"/>
+    </data>
+</odoo>

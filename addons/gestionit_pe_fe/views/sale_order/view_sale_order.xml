@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.sale_order_tipo_documento">
+        <field name="name">sale.order.tipo.documento</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="date_due"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="apply_same_discount_on_all_lines" groups="product.group_discount_per_so_line"/>
+                <field name="discount_on_all_lines" string="Descuento (%)" attrs="{'required':[('apply_same_discount_on_all_lines','=',True)],'invisible':[('apply_same_discount_on_all_lines','=',False)]}"/>
+                <button name="action_apply_same_discount_on_all_lines" string="Aplicar dscto (%) en todas las líneas" type="object" class="oe_highlight" attrs="{'invisible':[('apply_same_discount_on_all_lines','=',False)]}"/>
+            </xpath>
+            <xpath expr="//kanban//templates//div" position="inside">
+                <a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
+            </xpath>
+
+            <!-- <field name="amount_tax" position="replace"/> -->
+            <!-- <field name="amount_untaxed" position="replace"> -->
+            <field name="amount_tax" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="amount_untaxed" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="amount_untaxed" position="after">
+                <field name="descuento_global" groups="gestionit_pe_fe.group_fe_discount_global_sale_invoices"/>
+                <field name="total_venta_gravado"/>
+                <field name="total_venta_inafecto"/>
+                <field name="total_venta_exonerada"/>
+                <field name="total_venta_gratuito"/>
+                <field name="total_descuento_global" />
+                <field name="total_descuentos"/>
+                <field name="total_igv" string="IGV (18%)"/>
+            </field>
+            <xpath expr="//tree/field[@name='price_unit']" position="after">
+                <field name="qty_by_location" invisible="1"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_uom']" position="attributes">
+                <attribute name="options">{'no_create':True,'no_open': True,'no_create_edit':True}</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <field name="payment_term_type" invisible="1"/>
+                <page string="Plazos de pago" attrs="{'invisible':[('payment_term_type','!=','Credito')]}">
+                    <group>
+                        <group>
+                            <field name="paymentterm_line" always_reload="1" attrs="{'readonly':[('state','not in','draft')]}">
+                                <tree editable="bottom">
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="date_due" string="Fecha de Vencimiento"/>
+                                    <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="residual_credit_paymentterm"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page/field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
+                <field name="qty_available_today" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_form_change_position_warehouse">
+        <field name="name">view.form.change.position.warehouse</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="warehouse_id" position="move"/>
+                <field name="client_order_ref" position="move"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.sale_order_restrict_edit_price">
+        <field name="name">sale.order.restrict.price</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(4,ref('gestionit_pe_fe.group_fe_restrict_edit_price_from_sale'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='price_unit']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//form//field[@name='price_unit']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_form_restrict_select_tax_sale_inv_line">
+        <field name="name">view.form.restrict.select.tax.sale.inv.line</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(4,ref('gestionit_pe_fe.group_fe_restrict_select_tax_sale_inv_line'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='tax_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//form//field[@name='tax_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="custom_view_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="name">custom.view.order.form.inherit.sale.stock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <field name="warehouse_id" position="before">
+                <field name="warehouses_allowed_ids" widget="many2many_tags" invisible="True"/>
+            </field>
+            <field name="warehouse_id" position="attributes">
+                <attribute name="domain">[('id','in',warehouses_allowed_ids)]</attribute>
+                <attribute name="options">{'no_open':True,'no_create':True,'no_quick_create':True,'no_edit':True}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

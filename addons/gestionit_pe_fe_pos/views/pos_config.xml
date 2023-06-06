@@ -1,0 +1,91 @@
+<odoo>
+    <record id="view_pos_config_form" model="ir.ui.view">
+        <field name="name">pos.config.form.view.inherit.pos.journals</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='iface_invoicing']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>    
+            <xpath expr="//div[@id='iface_invoicing']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="iface_invoicing">
+                    <div class="o_setting_left_pane">
+                        <field name="module_account_invoicing"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="module_account_invoicing" string="Facturación Electrónica"/>
+                        <div class="text-muted">
+                            Emisión de facturas, boletas y notas de crédito electrónica
+                        </div>
+                        <div class="content-group mt16" attrs="{'invisible': [('module_account_invoicing', '=', False)]}">
+                            <div class="row mt16">
+                                <label string="Series disponibles" for="invoice_journal_ids" class="col-lg-3 o_light_label"/>
+                                <field name="invoice_journal_ids" 
+                                        domain="[('company_id', '=', company_id), ('invoice_type_code_id', 'in', ['01','03','07']),('type','=','sale')]" 
+                                        attrs="{'required': [('module_account_invoicing', '=', True)]}" 
+                                        context="{'default_company_id': company_id, 'default_type': 'sale'}"
+                                        widget="many2many_tags"
+                                        options="{'no_open': True,'no_create': True,'no_quick_create':True}"
+                                        />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="required_journal"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="required_journal" string="Elegir Factura o Boleta obligatoriamente"/>
+                        <div class="text-muted">
+                            Evita generar ventas sin haber seleccionado un diario para facturación.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box" id="receipt_show_logo">
+                    <div class="o_setting_left_pane">
+                        <field name="receipt_show_logo"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="receipt_show_logo" string="Mostrar logo en ticket"/>
+                        <div class="text-muted">
+                            Muestra el logo de la empresa en la impresión del ticket de venta.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box" id="receipt_show_default_code">
+                    <div class="o_setting_left_pane">
+                        <field name="receipt_show_default_code"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="receipt_show_default_code" string="Mostrar Ref.Interna en Ticket"/>
+                        <div class="text-muted">
+                            Muestra la Ref.Interna del producto en el Ticket
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box" id="products_show_default_code">
+                    <div class="o_setting_left_pane">
+                        <field name="products_show_default_code"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="products_show_default_code" string="Mostrar Ref.Interna en Lista de Productos"/>
+                        <div class="text-muted">
+                            Muestra la Ref.Interna en la vista de productos
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box" id="partner_anonymous_id">
+                    <div class="o_setting_right_pane">
+                        <label for="anonymous_id" string="Cliente anónimos"/>
+                        <div class="text-muted">
+                            Se establece un cliente anómimo o cliente varios por defecto para emisión de boletas y tickets
+                        </div>
+                        <field name="anonymous_id" Toptions="{'no_create':True,'no_edit':True,'no_quick_create':True}" required="1"/>
+                    </div>
+                </div>
+                
+            </xpath>
+        </field>
+    </record>
+</odoo>

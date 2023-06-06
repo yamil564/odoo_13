@@ -1,0 +1,227 @@
+<odoo>
+    <record id="view_tree_libro_reclamaciones" model="ir.ui.view">
+        <field name="name">view.tree.libro.reclamaciones</field>
+        <field name="model">libro.reclamaciones</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="consumer_type"/>
+                <field name="consumer_name"/>
+                <field name="consumer_email"/>
+                <field name="consumer_phone"/>
+                <field name="consumer_state_id" optional="hide"/>
+                <field name="consumer_younger" optional="hide"/>
+                <field name="product_type"/>
+                <field name="product_name"/>
+                <field name="date_order"/>
+                <field name="claim_type"/>
+                <field name="create_date"/>
+                <field name="state"/>
+                <field name="claim_user_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_form_libro_reclamacitines" model="ir.ui.view">
+        <field name="name">view.form.libro.reclamaciones</field>
+        <field name="model">libro.reclamaciones</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_claim_sent" type="object" string="Enviar correo" class="oe_highlight" attrs="{'invisible':[('state','=','cancel')]}"/>
+                    <button name="action_in_process" type="object" string="En Proceso" class="oe_highlight" attrs="{'invisible':[('state','!=','new')]}"/>
+                    <button name="action_claim_cancel" type="object" string="Cancelar Reclamación"  attrs="{'invisible':[('state','in',['new','resolved','cancel'])]}"/>
+                    <button name="action_claim_resolved" type="object" string="Resolver Reclamación" class="oe_highlight" attrs="{'invisible':[('state','in',['new','cancel','resolved'])]}"/>
+                    <button name="action_revert" type="object" string="Convertir a En proceso"  attrs="{'invisible':[('state','not in',['cancel'])]}"/>
+                    
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" readonly="1" force_save="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="create_date" string="Fecha de reclamo" attrs="{'readonly':[('state','in',['cancel','resolved'])]}" readonly="1"/>
+                            <field name="claim_user_id" string="Responsable" attrs="{'readonly':[('state','in',['cancel','resolved'])]}"/>
+                        </group>
+                    </group>
+                    <!-- IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE -->
+                    <group string="IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE">
+                        <group>
+                            <field name="consumer_type" widget="radio" readonly="1" />
+                            <field name="consumer_company_name" attrs="{'invisible':[('consumer_type','=','individual')]}" readonly="1"/>
+                            <field name="consumer_company_document" attrs="{'invisible':[('consumer_type','=','individual')]}" readonly="1"/>
+                            <field name="consumer_name" readonly="1"/>
+                            <field name="consumer_lastname" readonly="1"/>
+                            <field name="consumer_email" attrs="{'readonly':[('state','in',['cancel','resolved'])]}"/>
+                            <field name="consumer_document_type" widget="radio" readonly="1"/>
+                            <field name="consumer_document" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="consumer_phone" attrs="{'readonly':[('state','in',['cancel','resolved'])]}"/>
+                            <field name="consumer_address" attrs="{'readonly':[('state','in',['cancel','resolved'])]}"/>
+                            <field name="consumer_country_id" readonly="1" force_save="1"/>
+                            <field name="consumer_state_id" domain="[('state_id','=',False),('country_id','=',consumer_country_id)]" options="{'no_quick_create': True, 'no_create_edit' : True,'no_create':True}" readonly="1"/>
+                            <field name="consumer_province_id" domain="[('state_id','=',consumer_state_id),('province_id','=',False)]" options="{'no_quick_create': True, 'no_create_edit' : True,'no_create':True}" readonly="1"/>
+                            <field name="consumer_district_id" domain="[('state_id','=',consumer_state_id),('province_id','=',consumer_province_id)]" options="{'no_quick_create': True, 'no_create_edit' : True,'no_create':True}" readonly="1"/>
+                            <field name="consumer_younger" readonly="1"/>
+                        </group>
+                    </group>
+                    <!-- DATOS DEL PADRE, MADRE O TUTOR -->
+                    <group string="DATOS DEL PADRE, MADRE O TUTOR" attrs="{'invisible':[('consumer_younger','=',False)]}">
+                        <field name="consumer_younger_name" attrs="{'required':[('consumer_younger','=',True)]}" readonly="1"/>
+                        <field name="consumer_younger_lastname" attrs="{'required':[('consumer_younger','=',True)]}" readonly="1"/>
+                        <field name="consumer_younger_document" attrs="{'required':[('consumer_younger','=',True)]}" readonly="1"/>
+                    </group>
+                    <!-- IDENTIFICACIÓN DEL BIEN CONTRATADO -->
+                    <group string="IDENTIFICACIÓN DEL BIEN CONTRATADO">
+                        <group>
+                            <field name="product_type" widget="radio"  readonly="1"/>
+                            <field name="product_code"  readonly="1"/>
+                            <field name="product_name"  readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="order_name" readonly="1"/>
+                            <field name="date_order" readonly="1"/>
+                        </group>
+                    </group>
+                    <!-- DETALLE DE RECLAMO O QUEJA -->
+                    <group string="DETALLE DE RECLAMO O QUEJA">
+                        <field name="claim_type" widget="radio" readonly="1"/>
+                        <field name="claim_amount" readonly="1"/>
+                        <field name="claim_detail" readonly="1"/>
+                        <field name="claim_request" readonly="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kanban_libro_reclamaciones" model="ir.ui.view">
+        <field name="name">view.kanban.libro.reclamaciones</field>
+        <field name="model">libro.reclamaciones</field>
+        <field name="arch" type="xml">
+            <kanban class="o_reclamacion_kanban" default_group_by="state">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="consumer_name"/>
+                <field name="consumer_email"/>
+                <field name="consumer_company_name"/>
+                <field name="consumer_company_document"/>
+                <field name="product_name"/>
+                <field name="claim_amount"/>
+                <field name="consumer_phone"/>
+                <field name="state"/>
+                <field name="claim_user_id"/>
+                <field name="message_needaction_counter"/>
+                <field name="activity_ids"/>
+                <field name="activity_state"/>
+                <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                    <br/>
+                                </strong>
+                                <t t-if="record.consumer_type == 'company'">
+                                    Empresa: <field name="consumer_company_name"/>
+                                <br/>
+                                    RUC: <field name="consumer_company_document"/>
+                            <br/>
+                        </t>
+                        <t t-else="">
+                            <field name="consumer_name"/>
+                            <br/>
+                        </t>
+                        <strong>Email:</strong>
+                        <field name="consumer_email"/>
+                        <br/>
+                        <strong>Teléfono:</strong>
+                        <field name="consumer_phone"/>
+                        <br/>
+                        <strong>Producto:</strong>
+                        <field name="product_name"/>
+                        <br/>
+                        <strong>Monto Reclamado:</strong>
+                        <field name="claim_amount"/>
+                        <br/>
+                        <br/>
+                        <div class="o_kanban_record_bottom">
+                            <div class="oe_kanban_bottom_left">
+                                <!-- <field name="priority" widget="priority"/> -->
+                                <t t-if="record.message_needaction_counter.raw_value">
+                                    <span role="alert" class="oe_kanban_mail_new" title="Unread Messages">
+                                        <i class="fa fa-comments" aria-label="Messages" role="img"/>
+                                        <t t-raw="record.message_needaction_counter.raw_value"/>
+                                    </span>
+                                </t>
+                                <div class="o_kanban_inline_block">
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_bottom_right">
+                                <img t-att-src="kanban_image('res.users', 'image_128', record.claim_user_id.raw_value)" t-att-title="record.claim_user_id.value" t-att-alt="record.claim_user_id.value" class="oe_kanban_avatar float-right"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </t>
+        </templates>
+    </kanban>
+</field>
+</record>
+
+
+<record id="view_search_libro_reclamaciones" model="ir.ui.view">
+<field name="name">view.search.libro.reclamaciones</field>
+<field name="model">libro.reclamaciones</field>
+<field name="arch" type="xml">
+    <search>
+        <field name="name" string="Reclamo"/>
+        <field name="consumer_company_name" string="Cliente" filter_domain="['|','|','|','|','|','|','|','|','|','|','|',
+                                                                        ('consumer_company_name','ilike',self),
+                                                                        ('consumer_company_document','ilike',self),
+                                                                        ('consumer_name','ilike',self),
+                                                                        ('consumer_lastname','ilike',self),
+                                                                        ('consumer_document','ilike',self),
+                                                                        ('consumer_younger_name','ilike',self),
+                                                                        ('consumer_younger_lastname','ilike',self),
+                                                                        ('consumer_younger_document','ilike',self),
+                                                                        ('consumer_phone','ilike',self),
+                                                                        ('consumer_email','ilike',self),
+                                                                        ('consumer_address','ilike',self),
+                                                                        ('order_name','ilike',self)]"/>
+        <separator/>
+        <filter name="claim_type_reclamo" string="Reclamo" domain="[('claim_type','=','reclamo')]"/>
+        <filter name="claim_type_queja" string="Queja" domain="[('claim_type','=','queja')]"/>
+        <separator/>
+        <filter name="consumer_type_individual" string="Persona Natural" domain="[('consumer_type','=','individual')]"/>
+        <filter name="consumer_type_company" string="Empresa" domain="[('consumer_type','=','company')]"/>
+        <separator/>
+        <group expand="1" string="Agrupado por">
+            <filter name="claim_type" string="Tipo de reclamo" context="{'group_by':'claim_type'}"/>
+            <filter name="consumer_type" string="Tipo de cliente" context="{'group_by':'consumer_type'}"/>
+            <filter name="date_order" string="Órden de venta" context="{'group_by':'date_order'}"/>
+            <filter name="create_date" string="Fecha de reclamo" context="{'group_by':'create_date'}"/>
+        </group>
+    </search>
+</field>
+</record>
+
+<record id="view_action_libro_reclamaciones" model="ir.actions.act_window">
+<field name="name">Libro de Reclamaciones</field>
+<field name="res_model">libro.reclamaciones</field>
+<field name="view_mode">kanban,tree,form</field>
+</record>
+
+<menuitem id="menu_action_libro_reclamaciones" string="Libro de Reclamaciones" name="Libro de Reclamaciones" action="view_action_libro_reclamaciones" web_icon="bo_libro_reclamaciones,static/description/icon.png" sequence="10"/>
+</odoo>

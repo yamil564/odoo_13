@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_order_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                 <field name="invoice_status" position="after">
+                     <field name="delivery_state" nolabel="1" 
+                                    decoration-danger="delivery_state == 'waiting'" 
+                                    decoration-success="delivery_state == 'done'" 
+                                    decoration-info="delivery_state == 'partial_delivery'" 
+                                    decoration-warning="delivery_state == 'fully_ready' or delivery_state == 'partial_ready'" 
+                                    widget="badge" optional="show"/>
+                 </field>
+            </field>
+        </record>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//notebook" position="before">
+                    <group name="sale_shipping">
+                        <group name="shipping_date">
+                            <label for="delivery_state" string="Delivery Status" attrs="{'readonly': [('compute_field', '=', False)], 'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
+                            <div name="delivery_state_div" class="o_row">
+                                <field name="compute_field" invisible="1"/>
+                                <field name="delivery_state" attrs="{'readonly': [('compute_field', '=', False)], 'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
+                            </div>
+
+                            <label for="delivery_due" string="Delivery Due" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
+                            <div name="delivery_due_div" class="o_row">
+                                <field name="delivery_due" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
+                            </div>
+
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_view_filter_delivery_state_payment_state" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit.sale</field>
+            <field name="model">sale.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='order_date']" position="after">
+                    <separator/>
+                        <filter string="Done" name="done" domain="[('delivery_state','=','done')]" />
+                        <filter string="Fully Ready" name="fully_ready" domain="[('delivery_state','=','fully_ready')]" />
+                        <filter string="Partial Ready" name="partial_ready" domain="[('delivery_state','=','partial_ready')]" />
+                        <filter string="Partial Delivery" name="partial_delivery" domain="[('delivery_state','=','partial_delivery')]" />
+                        <filter string="Waiting" name="waiting" domain="[('delivery_state','=','waiting')]" />
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

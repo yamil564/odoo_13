@@ -1,0 +1,30 @@
+<odoo>
+    <record id="res_config_settings_facebook_pixel" model="ir.ui.view">
+        <field name="name">res.config.settings.facebook.pixel</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='google_analytics_setting']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="has_facebook_pixel"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="has_facebook_pixel"/>
+                        <div class="text-muted">
+                            Seguimiento de website de Facebook
+                        </div>
+                        <div class="content-group" attrs="{'invisible':[('has_facebook_pixel','=',False)]}">
+                            <div class="row mt16">
+                                <label for="facebook_pixel_code" class="col-lg-3 o_light_label" string="Código"/>
+                                <field name="facebook_pixel_code" attrs="{'required':[('has_facebook_pixel','=',True)]}" placeholder="XXXXXXXXXXXXX"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    
+</odoo>

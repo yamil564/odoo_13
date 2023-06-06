@@ -1,0 +1,61 @@
+<odoo>
+    <template id="portal_record_sidebar_unbrand" inherit_id="portal.portal_record_sidebar">
+        <xpath expr="//div[hasclass('card-footer')]" position="replace">
+        </xpath>
+    </template>
+    
+    <template id="portal_invoice_page_ei_xml_cdr" inherit_id="account.portal_invoice_page">
+        <xpath expr="//div[hasclass('o_download_pdf')]" position="inside">
+            <div class="btn-group flex-grow-1 mb-1 mr-1 ml-1" t-if="invoice.has_ei_xml()">
+                <a class="btn btn-secondary btn-block o_print_btn o_portal_ei_xml" 
+                    t-att-href="invoice.get_portal_url(suffix='/ei/xml')" 
+                    id="download_ei_xml" 
+                    title="XML" 
+                    target="_blank">
+                    <i class="fa fa-code"/> XML
+                </a>
+            </div>
+            <div class="btn-group flex-grow-1 mb-1 mr-1" t-if="invoice.has_ei_cdr()">
+                <a class="btn btn-secondary btn-block o_print_btn o_portal_ei_cdr" 
+                    t-att-href="invoice.get_portal_url(suffix='/ei/cdr')" 
+                    id="dowload_ei_cdr" 
+                    title="CRD" 
+                    target="_blank">
+                    <i class="fa fa-code"/> CDR
+                </a>
+            </div>
+        </xpath>
+    </template>
+    
+    <template id="sale_order_portal_template" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//li[contains(@t-if,'sale_order.amount_undiscounted - sale_order.amount_untaxed')]" position="replace">
+            <li t-if="sale_order.amount_undiscounted - sale_order.total_venta_gravado &gt; 0.01" class="list-group-item flex-grow-1">
+                <small><b class="text-muted">Tu Ahorro</b></small>
+                <small>
+                    <b t-field="sale_order.amount_undiscounted"
+                        t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'
+                        style="text-decoration: line-through"
+                        class="d-block mt-1"
+                        data-id="amount_undiscounted" />
+                </small>
+                <t t-if="sale_order.amount_untaxed == sale_order.amount_total">
+                    <h4 t-field="sale_order.amount_total" class="text-success" data-id="total_amount"/>
+                </t>
+                <t t-else="">
+                    <h4 t-field="sale_order.amount_untaxed" class="text-success mb-0" data-id="total_untaxed"/>
+                    <small>(<span t-field="sale_order.amount_total" data-id="total_amount"/> Incl. tax)</small>
+                </t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_content" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//span[contains(@data-id,'total_untaxed')]" position="replace">
+            <span
+                data-id="total_untaxed"
+                t-field="sale_order.total_venta_gravado"
+                t-options='{"widget": "monetary","display_currency": sale_order.pricelist_id.currency_id}'
+            />
+        </xpath>
+    </template>
+</odoo>

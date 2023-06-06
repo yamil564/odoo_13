@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery=".js_customer_name" t-operation="replace">
+            <span class='js_customer_name'>
+                <t t-if="widget.pos.get_client()">
+                    <t t-esc="widget.pos.get_client_display_name()" />
+                </t>
+                <t t-if="!widget.pos.get_client()">
+                    Customer
+                </t>
+            </span>
+        </t>
+    </t>
+</templates>

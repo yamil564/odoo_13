@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+<!-- ####### EL BOTON DE IMPRIMIR UNICAMENTE ESTARA DISPONIBLE CUANDO EL LIBRO SE ENCUENTRE EN ESTADO ABIERTO "!!!!!!" -->
+        <record id="ple_diary_view_form" model="ir.ui.view">
+            <field name="name">ple.diary.form</field>
+            <field name="model">ple.diary</field>
+            <field name="inherit_id" ref="ple_base.ple_base_view_form"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//form/header" position="inside">
+                        <button name="button_view_tree" string="Vista Dinámica" states="open" type="object" icon="fa-bars"/>
+                 </xpath>
+
+
+                 <!--<xpath expr="//form/group/group/field[@name='print_format']" position="after">
+                    <field name="fecha_impresion"/>
+                    <field name="block_counter"/>
+                    <field name="block_size"/>
+                    <field name="fin_asiento" invisible="1"/>
+                    <field name="fin_documento" invisible="1"/>
+                      <div>
+
+                            <button name="reinicializar_parametros_bloque" 
+                                string="Reinicializar Impresión"
+                                type="object"
+                                icon="fa-plus"
+                            />
+                        </div>
+                </xpath>-->
+
+                <!--<field name="currency_id" position="replace">
+                </field>
+
+                <field name="bimonetario" position="replace">
+                </field>
+                <field name="currency_second_id" position="replace">
+                </field>-->
+
+                <!-- ########################### -->
+                <group name="grupo_base" position="replace">
+
+                        <group name="grupo_base" string="Fecha - Periodo Fiscal">
+                            
+                            <field name="company_id" options="{'no_create': True, 'no_create_edit':True}" groups="base.group_multi_company"/>
+
+                            <field name="periodo"/>
+                            <label for="fiscal_year" attrs="{'invisible':[('periodo','=',False)]}"/>
+                            <div attrs="{'invisible':[('periodo','=',False)]}">
+                                <field name="fiscal_year" placeholder="Año" class="oe_inline" attrs="{'invisible':[('periodo','=',False)],'required': [('periodo', '=', True)]}"/>
+                                <field name="fiscal_month" placeholder="Mes" class="oe_inline" attrs="{'invisible':[('periodo','=',False)],'required': [('periodo', '=', True)]}"/>
+                            </div>
+
+                            <field name="fecha"/>
+                            <field name="date_from" attrs="{'invisible':[('fecha','=',False)],'required': [('fecha', '=', True)]}"/>
+                            <field name="date_to" attrs="{'invisible':[('fecha','=',False)],'required': [('fecha', '=',True)]}"/>
+
+                        </group>
+
+
+                        <group  name="grupo_filtros_dinamicos" string="Filtros Dinámicos">
+                            <group>
+
+
+                                <label for ="partner_ids"/>
+                                <div>
+                                    <field name="options_partner" placeholder="" class="oe_inline"/>
+                                    <field name="partner_ids" class="oe_inline" placeholder="" widget="many2many_tags" options="{'no_create': True}"/>
+                                </div>
+
+                                <label for ="account_ids"/>
+                                <div>
+                                    <field name="options_account" placeholder="" class="oe_inline"/>
+                                    <field name="account_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                                </div>
+
+                                <label for ="journal_ids"/>
+                                <div>
+                                    <field name="options_journal" placeholder="" class="oe_inline"/>
+                                    <field name="journal_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                                </div>
+
+                                <label for ="move_ids"/>
+                                <div>
+                                    <field name="options_move" placeholder="" class="oe_inline"/>
+                                    <field name="move_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                                </div>
+
+                                <label for ="payment_ids"/>
+                                <div>
+                                    <field name="options_payment" placeholder="" class="oe_inline"/>
+                                    <field name="payment_ids" placeholder="" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+                                </div>
+                            </group>
+                        </group>
+
+                        <group>
+                            <field name="incluir_anteriores_no_declarados"/>
+                        </group>
+
+                    </group>
+
+
+                <!-- ############################## -->
+
+                    <!--<group name="grupo_base_impresion" position="inside">
+                        <separator string="Nomenclatura de impresión del PLE"/>
+                        <field name="identificador_operaciones"/>
+                        <field name="identificador_libro"/>
+                    </group>-->
+
+                    <xpath expr="//form" position="inside">
+                       <notebook>
+                        <page name="PLE_Libro_diary" string="PLE Libro diario">
+                        
+                                <field name='ple_diary_line_ids'>
+                                    
+
+
+                                <tree> 
+
+                                    <field name ="move_id" />
+                                    <field name ="move_line_id" />
+                                    <field name ="asiento_contable" />
+                                    <field name ="m_correlativo_asiento_contable" />
+                                    <field name ="codigo_cuenta_desagregado_id" />
+                                    <field name ="codigo_cuenta_desagregado" />
+                                    <field name ="codigo_unidad_operacion" />
+                                    <field name ="codigo_centro_costos" />
+                                    <field name ="tipo_moneda_origen" />
+                                    <field name ="tipo_doc_iden_emisor" />
+                                    <field name ="num_doc_iden_emisor" />
+                                    <field name ="tipo_comprobante_pago" />
+                                    <field name ="num_serie_comprobante_pago" />
+                                    <field name ="num_comprobante_pago" />
+                                    <field name ="fecha_contable" />
+                                    <field name ="fecha_vencimiento" />
+                                    <field name ="fecha_operacion" />
+                                    <field name ="glosa" />
+                                    <field name ="glosa_referencial" />
+                                    <field name ="movimientos_debe"  sum="movimientos_debe"/>
+                                    <field name ="movimientos_haber"  sum="movimientos_haber"/>
+                                    <field name ="dato_estructurado" />
+                                    <field name ="indicador_estado_operacion" />
+                               
+                                </tree>      
+
+
+                              </field>
+                        
+                          </page>
+
+                            <page name="PLE_Libro_diary" string="PLE Libro diario Simplificado">
+                        
+                                <field name='ple_diary_line_ids'>
+                                         <!-- <tree default_order = "origin_plan desc"> -->
+                                      <!-- <field name = "context"> {'order': 'state'} </field> -->
+                                       <!-- default_order="asiento_contable"> -->
+                                 <!-- default_order = "print_order">  -->
+                                <tree> 
+
+                                    <field name ="move_id" />
+                                    <field name ="move_line_id" />
+                                    <field name ="asiento_contable" />
+                                    <field name ="m_correlativo_asiento_contable" />
+                                    <field name ="codigo_cuenta_desagregado_id" />
+                                    <field name ="codigo_cuenta_desagregado" />
+                                    <field name ="codigo_unidad_operacion" />
+                                    <field name ="codigo_centro_costos" />
+                                    <field name ="tipo_moneda_origen" />
+                                    <field name ="tipo_doc_iden_emisor" />
+                                    <field name ="num_doc_iden_emisor" />
+                                    <field name ="tipo_comprobante_pago" />
+                                    <field name ="num_serie_comprobante_pago" />
+                                    <field name ="num_comprobante_pago" />
+                                    <field name ="fecha_contable" />
+                                    <field name ="fecha_vencimiento" />
+                                    <field name ="fecha_operacion" />
+                                    <field name ="glosa" />
+                                    <field name ="glosa_referencial" />
+                                    <field name ="movimientos_debe"  sum="movimientos_debe"/>
+                                    <field name ="movimientos_haber"  sum="movimientos_haber"/>
+                                    <field name ="dato_estructurado" />
+                                    <field name ="indicador_estado_operacion" />
+                               
+                                </tree>      
+
+
+                              </field>
+                        
+                          </page>
+
+                           <page name="PLE_Libro_diary" string="PLE Libro diario Mayor">
+                        
+                                <field name='ple_diary_line_ids'>
+                                         <!-- <tree default_order = "origin_plan desc"> -->
+                                      <!-- <field name = "context"> {'order': 'state'} </field> -->
+                                       <!-- default_order="asiento_contable"> -->
+                                 <!-- default_order = "print_order">  -->
+                                 <!-- domain = "[('currency_id', '=', currency)]" -->
+                                <tree> 
+
+                                    <field name ="move_id" />
+                                    <field name ="move_line_id" />
+                                    <field name ="asiento_contable" />
+                                    <field name ="m_correlativo_asiento_contable" />
+                                    <field name ="codigo_cuenta_desagregado_id" />
+                                    <field name ="codigo_cuenta_desagregado" />
+                                    <field name ="codigo_unidad_operacion" />
+                                    <field name ="codigo_centro_costos" />
+                                    <field name ="tipo_moneda_origen" />
+                                    <field name ="tipo_doc_iden_emisor" />
+                                    <field name ="num_doc_iden_emisor" />
+                                    <field name ="tipo_comprobante_pago" />
+                                    <field name ="num_serie_comprobante_pago" />
+                                    <field name ="num_comprobante_pago" />
+                                    <field name ="fecha_contable" />
+                                    <field name ="fecha_vencimiento" />
+                                    <field name ="fecha_operacion" />
+                                    <field name ="glosa" />
+                                    <field name ="glosa_referencial" />
+                                    <field name ="movimientos_debe"  sum="movimientos_debe"/>
+                                    <field name ="movimientos_haber"  sum="movimientos_haber"/>
+                                    <field name ="dato_estructurado" />
+                                    <field name ="indicador_estado_operacion" />
+                               
+                                </tree>      
+
+
+                              </field>
+                        
+                          </page>
+
+                             </notebook>
+                    </xpath>                            
+            </field>
+        </record>
+
+
+        <record id="ple_diary_view_tree" model="ir.ui.view">
+            <field name="name">ple.diary.tree</field>
+            <field name="model">ple.diary</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fiscal_year"/>
+                    <field name="fiscal_month"/>
+                    <field name="company_id"/>
+
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ple_diary" model="ir.actions.act_window">
+            <field name="name">PLE-Libro diario</field>
+            <field name="res_model">ple.diary</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('company_id','=',allowed_company_ids[0])]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear libro diario
+              </p><p>
+                El libro diario es un documento tributario
+                y su representacion es en los siguientes formatos: txt, pdf, etc...
+              </p>
+            </field>
+        </record>
+
+        <record id="action_pe_diary_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ple_diary_view_tree"/>
+            <field name="act_window_id" ref="action_ple_diary"/>
+        </record>
+
+        <record id="action_pe_diary_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ple_diary_view_form"/>
+            <field name="act_window_id" ref="action_ple_diary"/>
+        </record>
+
+         <menuitem id="menu_ple_diary" parent="ple_base.menu_diario" sequence="0" action="action_ple_diary"/>
+    </data>
+</odoo>

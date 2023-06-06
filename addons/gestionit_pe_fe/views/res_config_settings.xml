@@ -1,0 +1,53 @@
+<odoo>
+    <record id="guia_remision_setting" model="ir.ui.view">
+        <field name="name">Opciones de Facturación Electrónica BigOdoo</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Facturación electrónica" data-key="gestionit_pe_fe" string="Facturación electrónica">
+                    <h2>Guía de remisión</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="calc_peso"/>
+                            </div>
+                            <div class="o_setting_right_pane" name="l10n_eu_service_right_pane">
+                                <label for="calc_peso"/>
+                                <div class="text-muted">
+                                    Calcular peso automáticamente.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Descuento Global</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="product_global_discount_id" string="Producto de descuento global"/>
+                                <br/>
+                                <field name="product_global_discount_id" context="{'default_is_charge_or_discount':True,
+                                                                                'default_type':'service',
+                                                                                'default_purchase_ok':False}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Configuración de cuenta de retención</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="account_account_retention_id" string="Cuenta de Retención"/>
+                                <br/>
+                                <field name="account_account_retention_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

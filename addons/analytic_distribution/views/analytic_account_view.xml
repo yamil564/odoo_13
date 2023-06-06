@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_analytic_tag_form_view" model="ir.ui.view">
+        <field name="name">account.analytic.tag.form</field>
+        <field name="model">account.analytic.tag</field>
+        <field name="inherit_id" ref="analytic.account_analytic_tag_form_view"/>
+        <field name="arch" type="xml">
+            <field name="active_analytic_distribution" position="after">
+                <!-- <field name="account_contra_id"
+                    attrs="{'invisible': [('active_analytic_distribution', '=', False)], 'required':[('active_analytic_distribution','=',True)]}"/> -->
+                <field name="account_contra_id"
+                    attrs="{'invisible': [('active_analytic_distribution', '=', False)]}"/>
+            </field>
+            <xpath expr="//field[@name='analytic_distribution_ids']/tree/field[@name='percentage']" position="before">
+                <field name="account_destino_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

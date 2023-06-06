@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record id="bo_libro_reclamaciones.group_libro_reclamaciones" model="res.groups">
+            <field name="name">Admin Libro Reclamaciones</field>
+            <field name="comment">Admin Libro Reclamaciones</field>
+        </record>
+        <record model="ir.model.access" id="access_model_libro_reclamaciones">
+            <field name="name">access.model.libro.reclamaciones</field>
+            <field name="model_id" ref="bo_libro_reclamaciones.model_libro_reclamaciones"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="bo_libro_reclamaciones.group_libro_reclamaciones"/>
+        </record>
+        <record model="ir.model.access" id="access_model_res_country_portal">
+            <field name="name">access.model.res.country.portal</field>
+            <field name="model_id" ref="base.model_res_country"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_public"/>
+        </record>
+        <record model="ir.model.access" id="access_model_res_country_state_portal">
+            <field name="name">access.model.res.country.state.portal</field>
+            <field name="model_id" ref="base.model_res_country_state"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_public"/>
+        </record>
+        <record model="ir.model.access" id="access_model_libro_reclamaciones_portal">
+            <field name="name">access.model.libro.reclamaciones</field>
+            <field name="model_id" ref="bo_libro_reclamaciones.model_libro_reclamaciones"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_public"/>
+        </record>
+
+        <record model="ir.rule" id="libro_reclamaciones_comp_rule">
+            <field name="name">Libro de reclamaciones multi-company</field>
+            <field name="model_id" ref="model_libro_reclamaciones"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,89 @@
+<odoo>
+    <record model="ir.ui.view" id="view_res_currency_rate_sale_purchase">
+        <field name="name">view.form.res.currency.rate.sale.purchase</field>
+        <field name="model">res.currency</field>
+        <field name="inherit_id" ref="base.view_currency_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="type" string="Tipo" required="True" widget="radio"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_res_tree_currency_rate_sale_purchase">
+        <field name="name">view.tree.res.currency.rate.sale.purchase</field>
+        <field name="model">res.currency</field>
+        <field name="inherit_id" ref="base.view_currency_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="type" string="Tipo"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tipo_cambio_tree_inherit">
+        <field name="name">Agregar tipo cambio compra venta tree</field>
+        <field name="model">res.currency.rate</field>
+        <field name="inherit_id" ref="base.view_currency_rate_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rate']" position="after">
+                <field name="type" string="Venta"></field>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="gestionit_pe_tipocambio.view_form_rate_simple">
+        <field name="name">view.form.rate.simple.name</field>
+        <field name="model">res.currency.rate</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="currency_id" readonly="1" force_save="1" options="{'no_open':1}"/>
+                        <field name="name" readonly="1" force_save="1"/>
+                        <field name="company_id" readonly="1" force_save="1" options="{'no_open':1}"/>
+                    </group>
+                    <group>
+                        <field name="type" readonly="1" force_save="1" string="Tipo"/>
+                        <field name="rate" digits="[12,12]" invisible="1"/>
+                        <field name="factor" digits="[12,12]" string="T/C" readonly="1" force_save="1"/>
+                        <field name="currency_name" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button type="object" string="Guardar" name="save" class="oe_highlight" groups="gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen"/>
+                    <button type="object" string="Obtener T/C" 
+                            name="action_update_rate_sale_pen_usd" 
+                            class="oe_highlight" 
+                            groups="gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen"
+                            attrs="{'invisible':['|',('currency_name','!=','USD'),('type','!=','sale')]}"/>
+                            
+                    <button type="object" string="Obtener T/C" 
+                            name="action_update_rate_purchase_pen_usd" 
+                            class="oe_highlight" 
+                            groups="gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen"
+                            attrs="{'invisible':['|',('currency_name','!=','USD'),('type','!=','purchase')]}"/>
+
+                    <button type="object" string="Obtener T/C" 
+                            name="action_update_rate_commercial_pen_usd"
+                            class="oe_highlight" 
+                            groups="gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen"
+                            attrs="{'invisible':['|',('currency_name','!=','USD'),('type','!=','commercial')]}"/>
+                            
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="gestionit_pe_tipocambio.view_form_rate_simple_edit" model="ir.ui.view">
+        <field name="name">view.form.rate.simple.name.edit</field>
+        <field name="model">res.currency.rate</field>
+        <field name="groups_id" eval="[(4,ref('gestionit_pe_tipocambio.res_groups_access_exchange_usd_pen'))]"/>
+        <field name="inherit_id" ref="gestionit_pe_tipocambio.view_form_rate_simple"/>
+        <field name="arch" type="xml">
+            <field name="factor" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+        </field>
+    </record> 
+</odoo>

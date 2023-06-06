@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+			
+		<record id="group_send_whatsapp_button" model="res.groups">
+			<field name="name">Mostrar botón de envío Whatsapp</field>
+		</record>
+			
+	</data>
+</odoo>

@@ -1,0 +1,7 @@
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" href="/bo_integration_botpress/static/src/scss/style.scss" />
+        </xpath>
+    </template>
+</odoo>

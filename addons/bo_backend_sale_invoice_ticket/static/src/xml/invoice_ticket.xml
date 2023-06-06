@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="InvoiceTicketMain">
+        <div class='pos'>
+            <!-- <div class='pos-topheader'>
+                <div class="pos-branding">
+                </div>
+            </div> -->
+            <div class='pos-content'>
+                <div class='window'>
+                    <div class='subwindow'>
+                        <div class='subwindow-container'>
+                            <div class='subwindow-container-fix screens'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-name="InvoiceScreenWidget">
+        <div class='receipt-screen screen'>
+            <div class='screen-content'>
+                <div class='top-content'>
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Atrás
+                    </span>
+                    <!-- <h1>Comprobante</h1> -->
+                    <!-- <h1>Change: <span class='change-value'>0.00</span></h1> -->
+                    <!-- <span class='button next'>
+                        Next Order
+                        <i class='fa fa-angle-double-right'></i>
+                    </span> -->
+                </div>
+                <div class="centered-content touch-scrollable">
+                    <h2 class="print_invoice" style="display: none;">The order has been synchronized earlier. To print the invoice please refer to the order in the backend</h2>
+                    <div class="button print">
+                        <i class='fa fa-print'></i> Imprimir ticket
+                    </div>
+                    <div class="pos-receipt-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    <!-- <t t-name="InvoiceTicketMain">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_invoice_ticket">
+            </div>
+        </div>
+    </t> -->
+    <!-- OrderReceipt -->
+    <t t-name="ReceiptInvoice">
+        <div class="pos-receipt">
+            <div class="logo" t-if="receipt.company.logo">
+                <div class="pos-center-align">
+                    <img t-att-src='receipt.company.logo' width="100%"/>
+                </div>
+            </div>
+            <div class="pos-center-align">
+                <b>
+                    <t t-esc="receipt.company.name"/>
+                </b>
+            </div>
+            <div class="pos-center-align">
+                <t t-esc="receipt.company.street || '-'"/>
+            </div>
+            <div class="pos-center-align">Teléfono:
+                <t t-esc="receipt.company.phone || ''"/>
+            </div>
+            <div class="pos-center-align">E-mail:
+                <t t-esc="receipt.company.email || ''"/>
+            </div>
+            <div class="pos-center-align">R.U.C.:
+                <t t-esc="receipt.company.vat || ''"/>
+            </div>
+            <!-- <t t-if="widget.pos.config.is_header_or_footer">
+                <div style='text-align:center'>
+                    <t t-esc="widget.pos.config.receipt_header" />
+                </div>
+                <br />
+            </t> -->
+            <!-- <t t-if="widget.model_id" -->
+            <div class="pos-center-align type-docu">
+                <h4 class="display_name_document">
+                    <t t-if="widget.model_id == 'account.move'">
+                        <t t-if="receipt.invoice_type_code == '00'">
+                            <b> NOTA DE VENTA ELECTRÓNICA</b>
+                            <br/>
+                            <b>
+                                <t t-esc="receipt.name" />
+                            </b>
+                        </t>
+                        <t t-if="receipt.invoice_type_code == '03'">
+                            <b> BOLETA DE VENTA ELECTRÓNICA</b>
+                            <br/>
+                            <b>
+                                <t t-esc="receipt.name" />
+                            </b>
+                        </t>
+                        <t t-if="receipt.invoice_type_code == '01'">
+                            <b> FACTURA DE VENTA ELECTRÓNICA </b>
+                            <br/>
+                            <b>
+                                <t t-esc="receipt.name" />
+                            </b>
+                        </t>
+                        <t t-if="receipt.invoice_type_code == '07'">
+                            <b> NOTA DE CRÉDITO ELECTRÓNICA </b>
+                            <br/>
+                            <b>
+                                <t t-esc="receipt.name" />
+                            </b>
+                        </t>
+                        <t t-if="receipt.invoice_type_code == '100'">
+                            <b> RECIBO </b>
+                            <br/>
+                            <b>
+                                <t t-esc="receipt.name" />
+                            </b>
+                        </t>
+                    </t>
+                    <t t-if="widget.model_id == 'sale.order'">
+                        <b> PEDIDO </b>
+                        <br/>
+                        <b>
+                            <t t-esc="receipt.name" />
+                        </b>
+                    </t>
+                </h4>
+            </div>
+            <!-- <div class="pos-left-align"><b>Fecha: <t t-esc="receipt.invoice_date"/></b></div> -->
+            <!-- <br/> -->
+            <div class="section-customer">
+                <t t-if="receipt.partner">
+                    <div class="receipt-user">
+                        <b>FECHA DE EMISIÓN:</b>
+                        <t t-esc="receipt.invoice_date || ''"/>
+                    </div>
+                    <div class="receipt-user">
+                        <b>CLIENTE:</b>
+                        <t t-esc="receipt.partner.name || ''"/>
+                    </div>
+                    <div class="receipt-user">
+                        <b>
+                            <t t-esc="receipt.partner.vat_label || ''"/>
+                        </b>
+                        <t t-esc="receipt.partner.vat || ''"/>
+                    </div>
+                    <t t-if="receipt.partner.street">
+                        <div class="receipt-user">
+                            <b>DIRECCIÓN:</b>
+                            <t t-esc="receipt.partner.street || ''"/>
+                        </div>
+                    </t>
+                    <div class="receipt-user">
+                        <b>TELÉFONO:</b>
+                        <t t-esc="receipt.partner.phone || ''"/>
+                    </div>
+                </t>
+                <div>
+                    <t t-if="widget.model_id == 'account.move'">
+                        <b>N° PEDIDO:</b>
+                        <t t-esc="receipt.origin"/>
+                        <br/>
+                    </t>
+                    <b>TÉRMINO DE PAGO:</b>
+                    <t t-esc="receipt.payment_id"/>
+                </div>
+            </div>
+            <!-- <div t-if="receipt.invoice_type_code == '07'">
+                <span><b>Comprobante a rectificar: </b> <t t-esc="receipt.get_refund_invoice().name"/></span><br/>
+                <span><b>Sustento de nota: </b> <t t-esc="receipt.get_credit_note_comment()"/></span><br/>
+                <span><b>Tipo de nota de crédito: </b> <t t-esc="receipt.get_credit_note_type_name()"/></span><br/>
+            </div> -->
+            <!-- <br/> -->
+            <table class='receipt-orderlines' style="border-top: 1px black dotted">
+                <colgroup>
+                    <col width='15%' />
+                    <col width='55%' />
+                    <col width='15%' />
+                    <col width='15%' />
+                </colgroup>
+                <tr>
+                    <th>
+                        <b>CANT.</b>
+                    </th>
+                    <th style="text-align: center;">
+                        <b>DESCRIPCIÓN</b>
+                    </th>
+                    <th>
+                        <b>P.U.</b>
+                    </th>
+                    <th>
+                        <b>IMPORTE</b>
+                    </th>
+                </tr>
+                <tr t-foreach="receipt.orderlines" t-as="orderline" style="border-bottom: 1px black dotted">
+                    <td class="pos-left-align">
+                        <t t-esc="widget.format_currency_no_symbol(Math.abs(orderline.quantity),2)"/>
+                        <!-- <t t-esc="orderline.quantity"/> -->
+                    </td>
+                    <td>
+                        <t t-esc="orderline.product_name"/>
+                        <!-- <t t-esc="receipt.lot_values.find(function(el)(orderline.product_id == el.product_id))">
+
+                        </t> -->
+                        <!-- <t t-if="orderline.has_product_lot">
+                            <t t-foreach="orderline.pack_lot_lines.models" t-as="line">
+                                <t t-esc="line.get('lot_name')+' '"/>
+                            </t>
+                        </t> -->
+                        <!-- <t t-if="orderline.get_discount() > 0">
+                            <div class="pos-disc-font">
+                                Dsct.  <t t-esc="orderline.get_discount()"/>%
+                            </div>
+                        </t> -->
+                    </td>
+                    <td class="pos-center-align">
+                        <t t-esc="widget.format_currency_no_symbol(Math.abs(orderline.price_unit),0)"/>
+                        <!-- <t t-esc="orderline.price_unit"/> -->
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency_no_symbol(Math.abs(orderline.price_total),0)"/>
+                        <!-- <t t-esc="orderline.price_subtotal"/> -->
+                    </td>
+                </tr>
+            </table>
+            <!-- <br/> -->
+            <table class='receipt-total' style="width:100%">
+                <tr name="total_op_gravadas">
+                    <td>
+                        <b>OP. GRAVADAS</b>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency(receipt.total_venta_gravado,2)" />
+                        <!-- <t t-esc="receipt.total_venta_gravado" /> -->
+                    </td>
+                </tr>
+                <tr t-if="receipt.total_descuentos > 0">
+                    <td>
+                        <b>DESCUENTO:</b>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency(receipt.total_descuentos,2)"/>
+                        <!-- <t t-esc="receipt.total_descuentos"/> -->
+                    </td>
+                </tr>
+                <tr name="total_igv">
+                    <td>
+                        <b>IGV 18% Venta</b>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency(receipt.amount_igv,2)" />
+                        <!-- <t t-esc="receipt.amount_igv" /> -->
+                    </td>
+                </tr>
+                <tr name="total_venta">
+                    <td>
+                        <b>IMPORTE TOTAL:</b>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency(Math.abs(receipt.amount_total),2)"/>
+                        <!-- <t t-esc="receipt.amount_total"/> -->
+                    </td>
+                </tr>
+            </table>
+            <!-- <br /> -->
+            <!-- <div id="paymentlines">
+                <table class='receipt-paymentlines' style="width:100%">
+                    <tr t-foreach="receipt.paymentlines" t-as="line">
+                        <td>
+                            <b><t t-esc="line.payment_method"/></b>
+                        </td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(line.amount,0.0001,'total',1)"/>
+                        </td>
+                    </tr>
+                </table>
+                <table class='receipt-change' style="width:100%">
+                    <tr>
+                        <td><b>Vuelto:</b></td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(receipt.change,0.00001,'total',1)"/>
+                        </td>
+                    </tr>
+                </table>
+            </div> -->
+            <div class="receipt-user" id ="receipt_cashier">
+                <b>SON:</b>
+                <t t-esc="receipt.son"/>
+                <br />
+                <b t-if="receipt.cashier">LE ATENDIÓ:</b>
+                <t t-esc="receipt.cashier"/>
+                <br />
+            </div>
+            <br/>
+            <t t-if="receipt.qr_string">
+                <t t-if="['01','03','07'].indexOf(receipt.invoice_type_code) &gt; 0  or ['01','03','07'].indexOf(receipt.invoice_type_code) == 0">
+                    <div id="qrcode" style="align-items: center;flex-direction: column;display: flex;"></div>
+                    <script type="text/javascript">
+                        var qrcode = new QRCode('qrcode' , {
+                            text: "http://jindo.dev.naver.com/collie",
+                            width: 100,
+                            height: 100,
+                            colorDark : "#000000",
+                            colorLight : "#ffffff",
+                            correctLevel : QRCode.CorrectLevel.H
+                        });
+                        qrcode.makeCode("<t t-esc='receipt.qr_string'></t>");
+                    </script>
+                </t>
+            </t>
+            <!-- <t t-if="widget.pos.config.is_header_or_footer">
+                <div style='text-align:center'>
+                    <t t-esc="widget.pos.config.receipt_footer" />
+                </div>
+            </t> -->
+            <div class="pos-center-align">
+                <t t-if="widget.model_id == 'account.move'">
+                    <br/>
+                    <span t-if="receipt.invoice_type_code == '01'" style="font-size:14px">
+                        <b> Representación impresa de, FACTURA ELECTRÓNICA
+                            <t t-if="receipt.company.website_invoice_search"> consulte en
+                                <t t-esc="receipt.company.website_invoice_search"/>
+                            </t>
+                        </b>
+                    </span>
+                    <span t-if="receipt.invoice_type_code == '03'" style="font-size:14px">
+                        <b>Representación impresa de, BOLETA ELECTRÓNICA
+                            <t t-if="receipt.company.website_invoice_search"> consulte en
+                                <t t-esc="receipt.company.website_invoice_search"/>
+                            </t>
+                        </b>
+                    </span>
+                    <br/>
+                    <span t-if="receipt.company.website and receipt.invoice_type_code != '100'" style="font-size:13px">
+                        <b>Comprobante emitido por el sistema de
+                            <t t-esc="receipt.company.website"/>
+                        </b>
+                    </span>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

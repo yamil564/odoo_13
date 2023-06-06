@@ -1,0 +1,14 @@
+<odoo noupdate="1">
+    <record id="sunat_validez_comprobante_access_client_id" model="ir.config_parameter">
+        <field name="key">sunat.validez.comprobante.client_id</field>
+        <field name="value"></field>
+    </record>
+    <record id="sunat_validez_comprobante_access_client_secret" model="ir.config_parameter">
+        <field name="key">sunat.validez.comprobante.client_secret</field>
+        <field name="value"></field>
+    </record>
+    <record id="report_url" model="ir.config_parameter">
+        <field name="key">report.url</field>
+        <field name="value">http://localhost:8069</field>
+    </record>
+</odoo>

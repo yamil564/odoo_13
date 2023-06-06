@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_backup_s3_form" model="ir.ui.view">
+            <field name="name">Configure S3</field>
+            <field name="model">s3.configure</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <header>
+                        <button class="oe_highlight" name="scheduling" string=" BackUp " type="object" />
+                    </header>
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <separator string="Local backup configuration" />
+                        </group>
+                        <group>
+                            <field name="auth_key"/>
+                            <field name="auth_secret"/>
+                            <field name="bucket_name"/>
+                            <field name="location"/>
+                            <field name="source"/>
+                            <field name="destination"/>
+                            <field name="host"/>
+                            <field name="port"/>
+                            <field name="name"/>
+                            <field name="backup_type" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_backup_s3_tree" model="ir.ui.view">
+            <field name="name">Configure S3</field>
+            <field name="model">s3.configure</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Backups">
+                    <field name="name"/>
+                    <field name="auth_key"/>
+                    <field name="auth_secret"/>
+                    <field name="bucket_name"/>
+                    <field name="source"/>
+                    <field name="destination"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_backup_s3_search" model="ir.ui.view">
+            <field name="name">Configure S3</field>
+            <field name="model">s3.configure</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search options">
+                    <field name="name"/>
+                    <field name="auth_key"/>
+                    <field name="auth_secret"/>
+                    <field name="bucket_name"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_backup_conf_form1" model="ir.actions.act_window">
+            <field name="name">Configure S3</field>
+            <field name="res_model">s3.configure</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_backup_s3_tree" />
+        </record>
+        <menuitem id="auto_backup_menu" name="S3-Backup" parent="base.menu_custom" />
+        <menuitem action="action_backup_conf_form1" id="backup_conf_menu1" parent="auto_backup_menu" />
+    </data>
+</odoo>

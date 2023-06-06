@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+
+    <t t-extend="PaymentPopOver">
+        <t t-jquery="button.js_unreconcile_payment" t-operation="replace">
+           <t t-if="payment_id">
+               <button class="btn btn-sm btn-primary js_unreconcile_payment float-left" t-att-partial-id="partial_id" t-att-payment-id="payment_id" t-att-move-id="move_id" style="margin-top:5px; margin-bottom:5px;" groups="account.group_account_invoice">Unreconcile</button>
+           </t>
+           <t t-else="">
+           </t>
+        </t>
+    </t>
+
+</templates>

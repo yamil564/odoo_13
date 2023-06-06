@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="plan_cuentas">
+        <h1>Plan de cuentas</h1>
+        <div id="jstree_demo"/>
+    </t>
+</template>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_printer_ple_diary,modelo wizard_printer_ple_diary,model_wizard_printer_ple_diary,,1,1,1,1
+access_ple_diary,modelo ple_diary,model_ple_diary,,1,1,1,1
+access_ple_diary_line,modelo ple_diary_line,model_ple_diary_line,,1,1,1,1
+

@@ -1,0 +1,16 @@
+
+<odoo>
+    <template id="frontend_layout_google_conversion_tracking" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']" position="after">
+            <t t-if="website.has_google_conversion_tracking">
+                <t t-set="code" t-value="website.google_conversion_tracking_code"/>
+                <script async="async" t-attf-src="https://www.googletagmanager.com/gtag/js?id=#{code}"></script> 
+                <script> 
+                    window.dataLayer = window.dataLayer || []; 
+                    function gtag(){dataLayer.push(arguments);} 
+                    gtag('js', new Date()); gtag('config', '<t t-esc="code"/>'); 
+                </script>
+            </t>
+        </xpath>
+    </template>
+</odoo>

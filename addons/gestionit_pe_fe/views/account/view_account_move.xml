@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="gestionit_pe_fe.view_account_move_tipo_comprobante" model="ir.ui.view">
+        <field name="name">Tipo de comprobante</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//span[hasclass('o_form_label')]//field[@name='type']" position="replace">
+                <field name="type" invisible ="1"/>
+                <field name="invoice_type_code" invisible ="1"/>
+            </xpath>
+            <xpath expr="//h1" position="replace">
+                <h1>
+                    <span attrs="{'invisible': ['|','|',('type', '!=', 'out_invoice'),('invoice_type_code','!=','01'),('state', '!=', 'draft')]}">Factura de venta- Borrador</span>
+                    <span attrs="{'invisible': ['|','|',('type', '!=', 'out_invoice'),('invoice_type_code','!=','03'),('state', '!=', 'draft')]}">Boleta de venta - Borrador</span>
+                    <span attrs="{'invisible': ['|','|',('type', '!=', 'out_refund'), ('invoice_type_code','!=','07'),('state', '!=', 'draft')]}">Nota de crédito - Borrador</span>
+                    <span attrs="{'invisible': ['|','|',('type', '!=', 'out_refund'), ('invoice_type_code','!=','08'),('state', '!=', 'draft')]}">Nota de débito - Borrador</span>
+                    <span attrs="{'invisible': ['|','|',('type', '!=', 'in_invoice'),('invoice_type_code','not in',['01','03']), ('state', '!=', 'draft')]}">Factura o Boleta de proveedor - Borrador</span>
+                    <span attrs="{'invisible': ['|','|',('type', '!=', 'in_refund'), ('invoice_type_code','!=','07'), ('state', '!=', 'draft')]}">Nota de cŕedito de proveedor - Borrador</span>
+                    <span attrs="{'invisible': ['|', '|', ('type', '!=', 'out_receipt'), ('state', '!=', 'draft'), ('name', '!=', '/')]}">Draft Sales Receipt</span>
+                    <span attrs="{'invisible': ['|', '|', ('type', '!=', 'in_receipt'), ('state', '!=', 'draft'), ('name', '!=', '/')]}">Draft Purchase Receipt</span>
+                </h1>
+            </xpath>
+            <xpath expr="//field[@name='invoice_date_due']" position="attributes">
+                <attribute name="attrs">{'readonly': ['|', '|', ('invoice_payment_term_id', '!=', False), ('type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),('state','=','posted')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//tree//field[@name='price_unit']" position="attributes">
+                <attribute name="attrs">{'readonly':[('price_unit','&lt;',0)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//tree//field[@name='tax_ids']" position="attributes">
+                <attribute name="attrs">{'readonly':[('price_unit','&lt;',0)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//tree//field[@name='quantity']" position="attributes">
+                <attribute name="attrs">{'readonly':[('price_unit','&lt;',0)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//tree//field[@name='product_id']" position="attributes">
+                <attribute name="attrs">{'readonly':[('price_unit','&lt;',0)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='product_uom_id']" position="attributes">
+                <attribute name="options">{'no_create':True,'no_open': True,'no_create_edit':True}</attribute>
+            </xpath>
+            <!-- <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='discount']" position="attributes">
+                <attribute name="attrs">{'readonly':[('price_unit','&lt;',0)]}</attribute>
+            </xpath> -->
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='price_total']" position="before">
+                <field name="price_subtotal" string="Subtotal"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='price_subtotal']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='discount']" position="attributes">
+                <attribute name="attrs">{'column_invisible':[('parent.type','in',['out_refund','in_refund'])],'readonly':[('price_unit','&lt;',0)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="replace">
+                <field name="inv_supplier_ref" attrs="{'invisible': [('type','in',['out_refund','out_invoice'])],'required':[('type','in',['in_invoice','in_refund'])]}" placeholder="Factura / Boleta / RHE"/>
+                <field name="ref" placeholder="Ref. de Proveedor"/>
+                <field name="tipo_nota_credito" attrs="{'invisible': [('invoice_type_code','!=','07')],'required':[('invoice_type_code','=','07')]}"/>
+                <field name="tipo_nota_debito" attrs="{'invisible': [('invoice_type_code','!=','08')],'required':[('invoice_type_code','=','08')]}"/>
+                <field name="sustento_nota" attrs="{'invisible': [('invoice_type_code','!=','07'),('invoice_type_code','!=','08')],'required':[('invoice_type_code','in',['07', '08'])]}"/>
+                <field name="reversed_entry_id" string="Comprobante asociado" attrs="{'invisible': [('invoice_type_code','!=','07')],'required':[('invoice_type_code','=','07')]}"/>
+                <field name="debit_origin_id" string="Comprobante asociado" attrs="{'invisible': [('invoice_type_code','!=','08')],'required':[('invoice_type_code','=','08')]}"/>
+                <field name="account_summary_id" attrs="{'invisible': [('invoice_type_code','!=','03')]}" />
+                <field name="estado_comprobante_electronico" readonly="1" force_save="1"/>
+                <!-- Detracciones -->
+
+                <field name="is_invoice_in_me" invisible="1"/>
+
+                <field name="has_detraction"
+                            groups="gestionit_pe_fe.group_fe_detraction_user"
+                            attrs="{'readonly':[['state','not in',['draft']]],'invisible':[('type','in',['out_refund','in_refund'])]}"/>
+                <field name="type_detraction" options="{'no_open':True,'no_create':True,'no_quick_create':True}"
+                            groups="gestionit_pe_fe.group_fe_detraction_user"
+                            attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}" />
+                <field name="detraction_rate"
+                            groups="gestionit_pe_fe.group_fe_detraction_user"
+                            attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"/>
+                <field name="detraction_code" groups="gestionit_pe_fe.group_fe_detraction_user" attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"/>
+
+                <field name="account_journal_national_bank" options="{'no_open':True,'no_create':True,'no_quick_create':True}" string="Número de cuenta del Banco de la Nación" groups="gestionit_pe_fe.group_fe_detraction_user" attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"/>
+                <field name="bank_account_number_national" groups="gestionit_pe_fe.group_fe_detraction_user" attrs="{'required':[('has_detraction','=',True)],'readonly':[['state','not in',['draft']]]}" invisible="1"/>
+
+                
+                
+
+                <field name="original_detraction_amount"
+                        groups="gestionit_pe_fe.group_fe_detraction_user"
+                        widget="monetary" options="{'currency_field': 'currency_id'}"
+                        attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"/>
+
+                <field name="detraction_amount"
+                        groups="gestionit_pe_fe.group_fe_detraction_user"
+                        widget="monetary" options="{'currency_field': 'currency_id'}"
+                        attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"/>
+
+
+                <!--<field name="original_detraction_amount_pen"
+                        groups="gestionit_pe_fe.group_fe_detraction_user"
+                        widget="monetary" options="{'currency_field': 'company_currency_id'}"
+                        attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"/>-->
+
+
+                <field name="detraction_amount_pen"
+                        groups="gestionit_pe_fe.group_fe_detraction_user"
+                        widget="monetary" options="{'currency_field': 'company_currency_id'}"
+                        attrs="{'required':[('has_detraction','=',True)],'invisible':['|',('has_detraction','=',False),('is_invoice_in_me','!=',True)],'readonly':[['state','not in',['draft']]]}"/>
+
+                <!-- ##########-->
+
+                <field name="detraction_medio_pago"
+                        groups="gestionit_pe_fe.group_fe_detraction_user"
+                        attrs="{'required':[('has_detraction','=',True)],'invisible':[('has_detraction','=',False)],'readonly':[['state','not in',['draft']]]}"
+                        options="{ 'no_open': True,'no_create':True,'no_edit':True,'no_create_edit':True}"
+                        />
+
+                <!-- Mismo descuento en todas las líneas-->
+                <field name="apply_same_discount_on_all_lines"
+                        groups="product.group_discount_per_so_line"
+                        attrs="{'readonly':[['state','not in',['draft']]],'invisible':[('type','in',['out_refund','in_refund'])]}"/>
+                <field name="discount_on_all_lines"
+                        string="Descuento (%)"
+                        attrs="{'required':[('apply_same_discount_on_all_lines','=',True)],'invisible':['|',('apply_same_discount_on_all_lines','=',False),('type','in',['out_refund','in_refund'])  ]}"/>
+                <button name="action_apply_same_discount_on_all_lines"
+                        string="Aplicar dscto (%) en todas las líneas"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible':['|',('apply_same_discount_on_all_lines','=',False),('type','in',['out_refund','in_refund'])  ]}"/>
+
+
+            </xpath>
+            <xpath expr="//field[@name='journal_id']" position="replace">
+                <!-- <field name="tipo_operacion" string="Tipo de Operación" attrs="{'readonly':[['state','not in',['draft']]]}" widget="radio" /> -->
+                <field name="invoice_type_code_catalog_51"
+                        string="Tipo de Operación"
+                        attrs="{'readonly':[['state','not in',['draft']]]}"
+                        widget="selection"
+                        options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"
+                        />
+                <field name="documento_baja_id" readonly="1" invisible="1"/>
+                <field name="documento_baja_state" readonly="1" invisible="1"/>
+
+                <field name="warehouses_allowed_ids" widget="many2many_tags" groups="base.group_no_one" domain="[('company_id','=',company_id)]" readonly="1" force_save="1" invisible="1"/>
+                <!-- <div class="o_td_label">
+                        <label for="warehouse_id" string="Almacén"/>
+                    </div> -->
+                <field name="warehouse_id" domain="[('id','in',warehouses_allowed_ids)]" string="Almacén" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                <field name="journal_ids" widget="many2many_tags" string="Series Permitidas" groups="base.group_no_one" invisible="1"/>
+                <field name="journal_type" invisible="1"/>
+                <!-- <field name="company_id"/>
+                    <field name="currency_id"/> -->
+
+                <!-- <div class="o_td_label">
+                        <label for="journal_id" string="Serie"/>
+                    </div> -->
+
+                <field name="journal_id" string="Serie" options="{'no_create': True,'no_open':True}" domain="[('invoice_type_code_id','=',invoice_type_code), ('id','in',journal_ids),('type','=',journal_type)]"/>
+
+                <!--######################################################################-->
+                <!--<field name="journal_id" string="Serie" options="{'no_create': True,'no_open':True}" attrs="{'readonly':[('type','in',['out_invoice','out_refund'])]}"/>-->
+                <!-- SE COMENTA ESTE DOMAIN !!!! -->
+                <!-- domain="[('invoice_type_code_id','=',invoice_type_code), ('id','in',journal_ids),('type','=',journal_type)]"/>-->
+            
+            </xpath>
+            <xpath expr="//header" position="after">
+                <field name="estado_emision" invisible="1"/>
+                <div class="alert alert-success" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('estado_emision','!=','A')]}">
+                        1. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO ENVIADO </a>
+                    </bold> - Documento con estado: Aceptado por SUNAT.
+                </div>
+                <div class="alert alert-primary" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('estado_emision','!=','P')]}">
+                        1. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO ENVIADO </a>
+                    </bold> - Documento con estado: Pendiente de envío.
+                </div>
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('estado_emision','!=','N')]}">
+                        1. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO ENVIADO </a>
+                    </bold> - Documento con estado: Envío erróneo.
+                </div>
+
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('documento_baja_state','!=','A')]}">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Aceptada -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('documento_baja_state','!=','E')]}">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Pendiente de anulación -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('documento_baja_state','!=','N')]}">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja con Envío Erroneo -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('documento_baja_state','!=','O')]}">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Aceptada con Observaciones -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('documento_baja_state','!=','P')]}">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Pendiente de envío a SUNAT -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <!-- <div class="alert alert-danger" role="alert" 
+                        style="margin-bottom:0px;" 
+                        attrs="{'invisible': ['|',('account_summary_id.cod_operacion','!=','2'),('account_summary_id.estado_emision','!=','P')]}">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Pendiente de envío a SUNAT -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div> -->
+            </xpath>
+            <xpath expr="//page[@id='aml_tab']" position="after">
+                <field name="invoice_payment_term_type" invisible="1"/>
+                <page string="Plazos de pago"
+                        attrs="{'invisible':[('invoice_payment_term_type','!=','Credito')]}">
+                    <group>
+                        <group>
+                            <field name="paymentterm_line" always_reload="1" attrs="{'readonly':[('state','not in','draft')]}" string="Plazos de pago">
+                                <tree editable="bottom">
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="date_due" string="Fecha de Vencimiento"/>
+                                    <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="residual_credit_paymentterm"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='invoice_origin']" position="after">
+                <field name="order_reference" attrs="{'readonly':[('state','not in','draft')]}"/>
+                <field name="document_reference_ids" attrs="{'readonly':[('state','not in','draft')]}">
+                    <tree editable="bottom">
+                        <field name="document_type_code" required="1"/>
+                        <field name="document_number" required="1"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+    <record id="gestionit_pe_fe.view_account_move_almacenes_series_permitidas" model="ir.ui.view">
+        <field name="name">Almacenes y series permitidas</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="before">
+                <!-- <field name="warehouses_allowed_ids" widget="many2many_tags" groups="base.group_no_one" domain="[('company_id','=',company_id)]" readonly="1" force_save="1"/>
+                    <field name="warehouse_id" domain="[('id','in',warehouses_allowed_ids)]" string="Almacén" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                    <field name="journal_ids" widget="many2many_tags" string="Series Permitidas" groups="base.group_no_one"/>
+                    <field name="journal_type" invisible="1"/> -->
+            </xpath>
+            <xpath expr="//field[@name='journal_id']" position="attributes">
+                <!-- <attribute name="domain">[('invoice_type_code_id','=',invoice_type_code), ('id','in',journal_ids),('type','=',journal_type)]</attribute> -->
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_account_invoice_form_desglose_venta">
+        <field name="name">Totales de venta</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_by_group']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="after">
+                <!-- Descuento Global-->
+                <field name="apply_global_discount"
+                        string="Aplicar descuento Global?"
+                        attrs="{'invisible':[('type','in',['out_refund','in_refund'])]}"
+                        groups="gestionit_pe_fe.group_fe_discount_global_sale_invoices"/>
+                <field name="descuento_global"
+                        string="Descuento Global (%)"
+                        attrs="{'invisible':[('apply_global_discount','=',False),('type','in',['out_refund','in_refund'])]}"
+                        groups="gestionit_pe_fe.group_fe_discount_global_sale_invoices"/>
+
+                <!--Retenciones-->
+                <field name="apply_retention"
+                        string="Aplicar Retención?"
+                        attrs="{'invisible':[('type','in',['out_refund','in_refund'])]}"
+                        groups="gestionit_pe_fe.group_fe_apply_retention"/>
+                <field name="retention_rate"
+                        string="Retención (%)"
+                        attrs="{'invisible':[('apply_retention','=',False),('type','in',['out_refund','in_refund'])]}"
+                        groups="gestionit_pe_fe.group_fe_apply_retention"/>
+                <field name="amount_retention" string="Monto de Retención"/>
+
+                <!-- <field name="amount_untaxed" string="Sub-Total"/>
+                <field name="amount_tax"/> -->
+                <field name="amount_by_group" widget="text" attrs="{'invisible':[('type','in',['out_invoice','out_refund'])]}"/>
+                <field name="total_venta_gravado" string="Monto Gravado"/>
+                <field name="amount_igv"/>
+                <field name="total_venta_exportacion" string="Monto Exportación" attrs="{'invisible':[('total_venta_exportacion','=',0)]}"/>
+                <field name="total_venta_inafecto" string="Monto Inafecto"/>
+                <field name="total_venta_exonerada" string="Monto Exonerado"/>
+                <field name="total_venta_gratuito" string="Monto Gratuito"/>
+
+                <field name="total_descuento_global" attrs="{'invisible':[('invoice_type_code','not in',['01','03'])]}" string="Descuento Global"/>
+                <field name="total_descuentos" string="Total de Descuentos"/>
+            </xpath>
+            <div class="oe_button_box" position="inside">
+                <button type="object" class="oe_stat_button" name="action_view_credit_notes" icon="fa-minus" attrs="{'invisible': [('credit_note_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="credit_note_count"/>
+                        </span>
+                        <span class="o_stat_text">Notas de Crédito</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_account_invoice_form_json_page">
+        <field name="name">account.move.form.logs</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page string="Comprobante" groups="base.group_no_one" name="comprobante">
+                    <group>
+                        <group>
+                            <field name="estado_emision" />
+                            <field name="estado_comprobante_electronico" />
+                            <field name="estado_contribuyente_ruc" />
+                        </group>
+                        <group>
+                            <field name="condicion_domicilio_contribuyente" />
+                            <field name="consulta_validez_observaciones" />
+                        </group>
+                    </group>
+                    <label for="current_log_status_id" string="Actual registro de envío" style="font-weight:bold;"/>
+                    <field name="current_log_status_id" readonly="1" force_save="1"/>
+                    <br/>
+                    <label for="account_log_status_ids" string = "Registro de envíos" style="font-weight:bold;"/>
+                    <field name="account_log_status_ids" mode="tree" attrs="{'readonly':[['state','not in',['draft']]]}">
+                        <tree decoration-bf="is_last_log == True" decoration-muted="is_last_log == False">
+                            <field name="name"/>
+                            <field name="account_move_id"/>
+                            <field name="status"/>
+                            <field name="create_date"/>
+                            <field name="is_last_log" invisible="1"/>
+                            <button name="action_set_last_log" type="object" string="Registro actual" attrs="{'invisible':[('is_last_log','=',True)]}"/>
+                            <button name="action_set_last_log_unlink" type="object" string="Dejar" attrs="{'invisible':[('is_last_log','=',False)]}" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_account_invoice_form_buttons">
+        <field name="name">Acciones de Comprobante electrónico</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_reverse']" position="attributes">
+                <attribute name="string">Generar nota de crédito</attribute>
+                <!-- <button name="generar_nota_credito" string="Generar Nota de Crédito" class="oe_highlight" type="object" attrs="{'invisible': ['|','|',('invoice_type_code','not in',['00','01','03']),('state','in',('cancel','draft'))]}"/>
+                    <button name="generar_nota_debito" string="Generar Nota de Débito" class="oe_highlight" type="object" attrs="{'invisible': ['|','|',('invoice_type_code','not in',['00','01','03']),('state','in',('cancel','draft'))]}"/> -->
+            </xpath>
+
+            <field name="date" position="after">
+
+                <field name="mostrar_button_draft" invisible="1"/>
+                <field name="mostrar_button_cancel_anulados" invisible="1"/>
+
+            </field>
+            
+            <xpath expr="//button[@name='button_draft']" position="after">
+
+                <button name="action_validez_comprobante"
+                        string="Validez de comprobante"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('type','in',['in_invoice','in_refund']),('state','not in',('posted'))]}"/>
+
+
+                <button name="button_cancel_anulados_sunat"
+                        string="Cancelar Anulado"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('mostrar_button_cancel_anulados','!=',True)]}"/>
+
+            </xpath>
+
+
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                
+                <!--<field name="mostrar_button_draft" invisible="1"/>-->
+
+                <attribute name="string">Convertir a borrador</attribute>
+                <attribute name="groups">gestionit_pe_fe.group_fe_allow_convert_draft_account_move</attribute>
+                <attribute name="attrs">{'invisible' : ['|','|',('mostrar_button_draft','!=',True),('restrict_mode_hash_table', '=', True),('state', 'not in', ('posted', 'cancel'))]}</attribute>
+
+            </xpath>
+
+            <xpath expr="//button[@name='button_cancel']" position="attributes">
+                <attribute name="string">Cancelar</attribute>
+                <attribute name="groups">gestionit_pe_fe.group_fe_allow_cancel_account_move</attribute>
+            </xpath>
+            <xpath expr="//button[@name='preview_invoice']" position="attributes">
+                <attribute name="string">Pre-visualización</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+                <attribute name="string">Enviar correo</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_guia_remision" type="object" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('guia_remision_count', '=', 0)]}">
+                    <field name="guia_remision_count" widget="statinfo" string="GRE"/>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='preview_invoice']" position="after">
+
+                <field name="mostrar_btn_comunicacion_baja" invisible="1"/>
+
+                <button name="action_generate_and_signed_xml"
+                        string="Generar XML"
+                        class="oe_highlight"
+                        type="object"
+                        groups="gestionit_pe_fe.group_fe_allow_generate_send_xml"
+                        attrs="{'invisible': ['|',('state','!=','posted'),('type','not in',['out_invoice','out_refund'])]}"/>
+                <button name="action_send_invoice" string="Enviar XML" class="oe_highlight" type="object" groups="gestionit_pe_fe.group_fe_allow_generate_send_xml" attrs="{'invisible': ['|',('state','!=','posted'),('type','not in',['out_invoice','out_refund'])]}"/>
+
+                
+                <button name="btn_comunicacion_baja"
+                            string="Anular Comprobante"
+                            class="oe_highlight"
+                            type="object"
+                            groups="gestionit_pe_fe.res_groups_anulacion_buttons"
+                            attrs="{'invisible': ['|','|',('state','not in',['posted']),('type','in',['in_invoice','in_refund']),('mostrar_btn_comunicacion_baja','not in',[True])]}"/>
+
+            <!--attrs="{'invisible': ['|','|',('estado_comprobante_electronico','=','2_ANULADO'),('state','not in',['posted']),'|',('type','in',['in_invoice','in_refund']),('mostrar_btn_comunicacion_baja','not in',[True])]}"/>-->
+
+
+                <button name="action_open_guia_remision"
+                            string="Generar Guía de Remisión"
+                            class="oe_highlight"
+                            type="object"
+                            attrs="{'invisible': ['|',('guia_remision_count','!=',0),('type','in',['in_invoice','in_refund'])]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="gestionit_pe_fe.view_popup_debit_note">
+        <field name="name">Pop-up nota de débito</field>
+        <field name="model">account.debit.note</field>
+        <field name="inherit_id" ref="account_debit_note.view_account_debit_note"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reason']" position="replace">
+                <field name="debit_note_type" required="1" />
+                <field name="reason" required="1" />
+                <field name="tipo_comprobante_a_rectificar" invisible="1"/>
+                <field name="journal_type" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='journal_id']" position="replace">
+                <field string="Serie" name="journal_id" domain="[('type', '=', journal_type),('invoice_type_code_id', '=', '08'),('tipo_comprobante_a_rectificar', '=', tipo_comprobante_a_rectificar)]" options="{'no_open':True,'no_create':True,'no_quick_create':True}" required="1"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="string">Serie</attribute>
+                    <attribute name="required">1</attribute>
+                </xpath> -->
+            <xpath expr="//field[@name='reason']" position="attributes">
+                <attribute name="string">Sustento de nota</attribute>
+                <attribute name="required">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="string">Fecha</attribute>
+            </xpath>
+            <xpath expr="//field[@name='copy_lines']" position="attributes">
+                <attribute name="string">Copiar detalle</attribute>
+                <attribute name="default">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='create_debit']" position="attributes">
+                <attribute name="string">Crear</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="custom_pop_message_wizard_view_form" model="ir.ui.view">
+        <field name="name">custom.pop.message.form</field>
+        <field name="model">custom.pop.message</field>
+        <field name="arch" type="xml">
+            <form string="Mensaje Importante">
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;">
+                    <field name="name" readonly="1"/>
+                    <field name="accion" readonly="1"/>
+                    <!--Si desea enviar este documento debe ser <bold><a class="alert-link" href="#outstanding" role="button">DUPLICADO</a></bold>.-->
+                </div>
+                <footer>
+                    <button string="Aceptar" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_view_account_invoice_filter" model="ir.ui.view">
+        <field name="name">custom.view.account.invoice.filter.name</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='myinvoices']" position="after">
+                <!-- <filter string="Hoy" domain="[('invoice_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('invoice_date', '&lt;=',datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/> -->
+                <separator/>
+                <filter name="estado_comprobante_electronico_aceptado" string="ACEPTADO EN SUNAT" domain="[('estado_comprobante_electronico','=','1_ACEPTADO')]"/>
+                <filter name="estado_comprobante_electronico_no_existe" string="NO EXISTE EN SUNAT" domain="[('estado_comprobante_electronico','in',[False,'-','0_NO_EXISTE'])]"/>
+                <filter name="estado_comprobante_electronico_anulado" string="ANULADO EN SUNAT" domain="[('estado_comprobante_electronico','=','2_ANULADO')]"/>
+                <separator/>
+                <filter name="tipo_comprobante_factura" string="FACTURAS" domain="[('invoice_type_code','=','01')]"/>
+                <filter name="tipo_comprobante_boleta" string="BOLETAS" domain="[('invoice_type_code','=','03')]"/>
+                <filter name="tipo_comprobante_nota_credito" string="NOTA DE CRÉDITO" domain="[('invoice_type_code','=','07')]"/>
+                <filter name="tipo_comprobante_nota_debito" string="NOTA DE DÉBITO" domain="[('invoice_type_code','=','08')]"/>
+
+                <separator/>
+
+                <filter name="estado_existe_items_gratuitos" string="OPERACIÓN GRATUITA" domain="[('exist_items_gratuito','=',True)]"/>
+
+            </xpath>
+            <xpath expr="//group/filter" position="before">
+                <filter string="Estado de comprobante electrónico" name="estado_comprobante_electronico" context="{'group_by':'estado_comprobante_electronico'}"/>
+                <filter string="Emisión de comprobante" name="estado_emision" context="{'group_by':'estado_emision'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

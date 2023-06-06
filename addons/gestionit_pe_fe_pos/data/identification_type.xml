@@ -1,0 +1,14 @@
+<odoo>
+    <record model='l10n_latam.identification.type' id='gestionit_pe_consulta_ruc_dni.it_RUC'>
+        <field name='available_in_pos' eval="1"/>
+    </record>
+
+    <record model='l10n_latam.identification.type' id='l10n_pe.it_DNI'>
+        <field name='available_in_pos' eval="1"/>
+    </record>
+
+    <record model='l10n_latam.identification.type' id='l10n_pe.it_NDTD'>
+        <field name='available_in_pos' eval="1"/>
+    </record>
+
+</odoo>

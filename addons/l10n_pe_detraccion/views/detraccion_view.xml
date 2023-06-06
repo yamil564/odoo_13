@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="tipo_detraccion_search" model="ir.ui.view">
+            <field name="name">Tipo Detraccion</field>
+            <field name="model">tipo.detraccion</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Detraccion">
+                    <field name="name" string="Name" filter_domain="['|',('name','ilike',self),('code','ilike',self)]"/>
+                    <field name="anexo"/>
+                    <field name="code"/>
+                    <field name="code_fe"/>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="tipo_detraccion_form" model="ir.ui.view">
+            <field name="name">tipo.detraccion.form</field>
+            <field name="model">tipo.detraccion</field>
+            <field name="arch" type="xml">
+                <form string="Detracciones">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="anexo"/>
+                                <field name="code"/>
+                                <field name="code_fe"/>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detalle">
+                                <field 
+                                    name="line_ids" widget="one2many_list">
+                                    <tree editable="bottom">
+                                        <field name="product_id" 
+                                            widget="many2many_tags"
+                                            options="{'no_create': True}"/>
+                                        <field name="amount"/>
+                                        <field name="porcentaje" string="Porcentaje (%)"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <label for="description"/>
+                        <field name="description" />
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tipo_detraccion_tree" model="ir.ui.view">
+            <field name="name">tipo.detraccion.tree</field>
+            <field name="model">tipo.detraccion</field>
+            <field name="arch" type="xml">
+                <tree string="Detraccion">
+                    <field name="anexo"/>
+                    <field name="code"/>
+                    <field name="code_fe"/>
+                    <field name="name"/>
+                    <field name="line_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tipo_detraccion_action" model="ir.actions.act_window">
+            <field name="name">Detracciones</field>
+            <field name="res_model">tipo.detraccion</field>
+            <field name="search_view_id" ref="tipo_detraccion_search"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click aqui para crear una Detraccion
+                </p>
+                <p>
+                    Tipo Detraccion
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Detraccion" id="root_tipo_detracciones" parent="account.menu_finance_configuration"/>
+        <menuitem action="tipo_detraccion_action" id="tipo_detracciones_id" parent="root_tipo_detracciones"/>
+
+    </data>
+</odoo>

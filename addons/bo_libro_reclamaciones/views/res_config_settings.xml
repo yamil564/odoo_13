@@ -1,0 +1,62 @@
+<odoo>
+    <record id="res_config_libro_reclamaciones" model="ir.ui.view">
+        <field name="name">Configuración de Libro de reclamaciones</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']" position="inside">
+                <h2 class="mt32">Libro de Reclamaciones</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Secuencia de Libro de reclamaciones</span>
+                            <div class="text-muted">
+                                Establece el prefijo para la secuencia de registro de reclamos y quejas.
+                            </div>
+                            <div class="content-group" >
+                                <field name="claim_sequence_id"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Responsable de reclamos y quejas</span>
+                            <div class="text-muted">
+                                Usuario responsable de la gestión de reclamos y quejas. Este será establecido por defecto en los reclamos creados.
+                            </div>
+                            <div class="content-group" >
+                                <field name="claim_user_id"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <div class="content-group">
+                                <span class="o_form_label">Información previa al envío del reclamo o queja</span>
+                                <div class="text-muted">
+                                    Información que se muestra al cliente en el formulario del Libro de reclamaciones antes del botón enviar.
+                                </div>
+                                <field name="prev_info_claim" class="w-100"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <div class="content-group">
+                                <span class="o_form_label">Mensaje posterior al envío del reclamo o queja</span>
+                                <div class="text-muted">
+                                    Mensaje que se muestra al cliente después de "Enviar" su reclamo o queja.
+                                </div>
+                                <field name="post_info_claim" class="w-100"/>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

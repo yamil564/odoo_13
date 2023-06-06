@@ -1,0 +1,903 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_whatsapp_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0-20220425\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-17 11:49+0000\n"
+"PO-Revision-Date: 2022-06-17 11:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,body_html:sh_whatsapp_integration.email_template_edi_invoice_custom
+msgid ""
+"\n"
+"            \n"
+"\t           <div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    \t% if object.company_id.invoice_order_information_in_message:\n"
+"\t\t\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t\tDear ${object.partner_id.name} ,%0A%0A\n"
+"\t\t\t\t\t\t    </ul>\n"
+"\t\t\t\t\t\t    % if object.name and object.state != \"draft\":\n"
+"\t\t\t\t\t\t\t\tHere is the your invoice *${object.name}*. \n"
+"\t\t\t\t\t\t\t%else:\n"
+"\t\t\t\t\t\t\t\tHere is your invoice \n"
+"\t\t\t\t\t\t\t\t*${object.name}* amounting in \n"
+"\t\t\t\t\t\t\t\t${'{:.2f}'.format(object.amount_total)} ${object.currency_id.symbol}\n"
+"\t\t\t\t\t\t\t\tfrom ${object.company_id.name} %0A%0A \t\n"
+"\t\t\t\t\t\t\t% endif\t\n"
+"\t\t\t\t\t\t\t% if object.invoice_payment_state == \"paid\":\n"
+"\t\t\t\t\t\t\t\tThis invoice is already paid. %0A%0A\n"
+"\t\t\t\t\t\t\t%else:\n"
+"\t\t\t\t\t\t\t\tPlease remit payment at your earliest %20 convenience. %0A%0A\t\n"
+"\t\t\t\t\t\t\t% endif\t\n"
+"\t\t\t\t\t\t% endif \n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t% if object.company_id.invoice_product_detail_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t    Following is your invoice details. %0A%0A\n"
+"\t\t\t\t\t\t\t</li>\n"
+"\t\t\t\t\t\t\t%for line in object.invoice_line_ids:\n"
+"\t\t\t\t\t\t\t\t% if line.name :\n"
+"\t\t\t\t\t\t\t\t\t<li style=\"list-style-type:none;\"> *${line.name}* %0A *Qty:* ${line.quantity} %0A *Price:* ${line.move_id.currency_id.symbol} ${'{:.2f}'.format(line.price_total)}  %0A ________________________  %0A%0A </li> \n"
+"\t\t\t\t\t\t\t\t% endif\n"
+"\t\t\t\t\t\t\t% endfor\n"
+"\t\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\t\t*Subtotal Amount:* ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_untaxed)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Tax Amount:* ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_tax)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Total Amount:* ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)} %0A%0A\n"
+"\t\t\t\t    \t% endif\n"
+"\t\t\t\t        <br />\n"
+"\t\t\t\t        % if object.company_id.inv_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*thank you for your preference!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Click here to download Report* %20 :${object.invoice_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br />\n"
+"\t\t\t\t        % if object.company_id.invoice_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif   \n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"\t\t\t\t\t\n"
+"            "
+msgstr ""
+"\n"
+"            \n"
+"\t           <div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    \t% if object.company_id.invoice_order_information_in_message:\n"
+"\t\t\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t\tEstimado ${object.partner_id.name} ,%0A%0A\n"
+"\t\t\t\t\t\t    </ul>\n"
+"\t\t\t\t\t\t    % if object.name and object.state != \"draft\":\n"
+"\t\t\t\t\t\t\t\tA continuación Ud. puede ver los detalles de su comprobante *${object.name}*. \n"
+"\t\t\t\t\t\t\t%else:\n"
+"\t\t\t\t\t\t\t\tA continuación Ud. puede ver los detalles de su comprobante \n"
+"\t\t\t\t\t\t\t\t*${object.name}* Con un monto de \n"
+"\t\t\t\t\t\t\t\t${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)}\n"
+"\t\t\t\t\t\t\t\tEmitido por la empresa ${object.company_id.name} %0A%0A \t\n"
+"\t\t\t\t\t\t\t% endif\t\n"
+"\t\t\t\t\t\t\t% if object.invoice_payment_state == \"paid\":\n"
+"\t\t\t\t\t\t\t\tEsta factura ya está pagada. %0A%0A\n"
+"\t\t\t\t\t\t\t%else:\n"
+"\t\t\t\t\t\t\t\tPor favor, remita el pago lo antes posible %20. %0A%0A\t\n"
+"\t\t\t\t\t\t\t% endif\t\n"
+"\t\t\t\t\t\t% endif \n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t% if object.company_id.invoice_product_detail_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t    Con los siguientes Detalles. %0A%0A\n"
+"\t\t\t\t\t\t\t</li>\n"
+"\t\t\t\t\t\t\t%for line in object.invoice_line_ids:\n"
+"\t\t\t\t\t\t\t\t% if line.name :\n"
+"\t\t\t\t\t\t\t\t\t<li style=\"list-style-type:none;\"> *${line.name}* %0A *Cantidad:* ${line.quantity} %0A *Precio:* ${line.move_id.currency_id.symbol} ${'{:.2f}'.format(line.price_total)}  %0A ________________________  %0A%0A </li> \n"
+"\t\t\t\t\t\t\t\t% endif\n"
+"\t\t\t\t\t\t\t% endfor\n"
+"\t\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\t\t*Monto Grabado:* ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_untaxed)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Impuestos:* ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_tax)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Monto Total:* ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)} %0A%0A\n"
+"\t\t\t\t    \t% endif\n"
+"\t\t\t\t        <br />\n"
+"\t\t\t\t        % if object.company_id.inv_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*¡¡¡Muchas Gracias por su preferencia!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Puede Descargar su comprobante en el siguiente enlace* %20 :${object.invoice_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br />\n"
+"\t\t\t\t        % if object.company_id.invoice_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif   \n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"\t\t\t\t\t\n"
+"            "
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,report_name:sh_whatsapp_integration.mail_template_data_payment_receipt_custom
+#: model:mail.template,report_name:sh_whatsapp_integration.mail_template_data_stock_picking_custom
+msgid "${(object.name or '').replace('/','-')}"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,report_name:sh_whatsapp_integration.email_template_edi_sale_custom
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,subject:sh_whatsapp_integration.email_template_edi_sale_custom
+msgid ""
+"${object.company_id.name} ${object.state in ('draft', 'sent') and "
+"'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,subject:sh_whatsapp_integration.email_template_edi_purchase_custom
+msgid ""
+"${object.company_id.name} ${object.state in ('draft', 'sent') and 'Request "
+"For Quotation' or 'Order'} (Ref ${object.name or 'n/a' })"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,subject:sh_whatsapp_integration.email_template_edi_invoice_custom
+msgid "${object.company_id.name} Invoice (Ref ${object.name or 'n/a'})"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,subject:sh_whatsapp_integration.mail_template_data_payment_receipt_custom
+msgid ""
+"${object.company_id.name} Payment Receipt (Ref ${object.name or 'n/a' })"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,subject:sh_whatsapp_integration.mail_template_data_stock_picking_custom
+msgid ""
+"${object.company_id.name} Stock Transfer (Ref ${object.name or 'n/a' })"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/controllers/main.py:0
+#, python-format
+msgid "%s is not the reference of a report"
+msgstr "%sno es la referencia de un informe"
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,body_html:sh_whatsapp_integration.mail_template_data_payment_receipt_custom
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t    Dear ${object.partner_id.name} ,%0A%0A Here is the Payment %20 *${object.name}* %20 from ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t\t    % if object.company_id.invoice_order_information_in_message:\n"
+"\t\t\t\t\t    \t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t            Following is your Payment details. %0A%0A\n"
+"\t\t\t\t\t        </li>\n"
+"\t\t\t\t\t\t    %if object.payment_type == 'inbound':\n"
+"\t\t\t\t\t\t    \tWe received\n"
+"\t\t\t\t\t\t    \n"
+"\t\t\t\t\t\t    %else:\n"
+"\t\t\t\t\t\t    \tWe paid\n"
+"\t\t\t\t\t\t\t%endif\n"
+"\t\t\t\t\t\t    payment of %20 *${format_amount(object.amount, object.currency_id)}* %20\n"
+"\t\t\t\t\t\t    by %20 *${object.journal_id.name}* %20.%0A%0A\n"
+"\t\t\t\t\t\t    Thank You.%0A%0A \n"
+"\t\t\t\t\t    % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.inv_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*thank you for your preference!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Click here to download Report* %20 :${object.payment_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.invoice_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"\t\t\t\t\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t    Estimado ${object.partner_id.name} ,%0A%0A Acontinuación Ud. puede ver los datos de su pago %20 *${object.name}* %20 Emitido por la empresa ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t\t    % if object.company_id.invoice_order_information_in_message:\n"
+"\t\t\t\t\t    \t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t            Los siguientes son sus datos de pago. %0A%0A\n"
+"\t\t\t\t\t        </li>\n"
+"\t\t\t\t\t\t    %if object.payment_type == 'inbound':\n"
+"\t\t\t\t\t\t    \tRecibimos\n"
+"\t\t\t\t\t\t    \n"
+"\t\t\t\t\t\t    %else:\n"
+"\t\t\t\t\t\t    \tPagamos\n"
+"\t\t\t\t\t\t\t%endif\n"
+"\t\t\t\t\t\t    pago de %20 *${format_amount(object.amount, object.currency_id)}* %20\n"
+"\t\t\t\t\t\t    por %20 *${object.journal_id.name}* %20.%0A%0A\n"
+"\t\t\t\t\t\t    Gracias.%0A%0A \n"
+"\t\t\t\t\t    % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.inv_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*¡¡¡Gracias por su preferencia!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Puede Descargar su comprobante en el siguiente enlace* %20 :${object.payment_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.invoice_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"\t\t\t\t\n"
+"            "
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,body_html:sh_whatsapp_integration.mail_template_data_stock_picking_custom
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t        Dear ${object.partner_id.name} ,%0A%0A Here is the Stock Transfer *${object.name}* from ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t        % if object.company_id.inventory_information_in_message:\n"
+"\t\t\t\t\t        <li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t            Following is your Transfer details. %0A%0A\n"
+"\t\t\t\t\t        </li>\n"
+"\t\t\t\t\t        % for line in object.move_ids_without_package: \n"
+"\t\t\t\t\t        \t% if line.quantity_done:\n"
+"\t\t\t\t\t        \t\t<li style=\"list-style-type: none;\">* ${line.name}* %0A *Qty:* ${line.product_uom_qty} %0A *Required Qty:* ${line.product_uom_qty} %0A *Delivery Qty:* ${line.quantity_done} %0A %0A ________________________ %0A%0A</li>\n"
+"\t\t\t\t\t\n"
+"\t\t\t\t\t       \t\t% else:\n"
+"\t\t\t\t\t        \t\t<li style=\"list-style-type: none;\">*${line.name}* %0A *Qty:* ${line.product_uom_qty} %0A *Required Qty:* ${line.product_uom_qty} %0A ________________________ %0A%0A</li>\n"
+"\t\t\t\t\t        \t% endif  \n"
+"\t\t\t\t\t        % endfor \n"
+"\t\t\t\t\t    % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.stock_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*thank you for your preference!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Click here to download Report* : %20 ${object.stock_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.inventory_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t        \t% endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t    </p>\n"
+"\t\t\t</div>\n"
+"\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t        Estimado ${object.partner_id.name} ,%0A%0A Aquí está la transferencia de acciones *${object.name}* from ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t        % if object.company_id.inventory_information_in_message:\n"
+"\t\t\t\t\t        <li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t            Los siguientes son los detalles de su transferencia. %0A%0A\n"
+"\t\t\t\t\t        </li>\n"
+"\t\t\t\t\t        % for line in object.move_ids_without_package: \n"
+"\t\t\t\t\t        \t% if line.quantity_done:\n"
+"\t\t\t\t\t        \t\t<li style=\"list-style-type: none;\">* ${line.name}* %0A *Cantidad:* ${line.product_uom_qty} %0A *Requerido:* ${line.product_uom_qty} %0A *Entregado:* ${line.quantity_done} %0A %0A ________________________ %0A%0A</li>\n"
+"\t\t\t\t\t\n"
+"\t\t\t\t\t       \t\t% else:\n"
+"\t\t\t\t\t        \t\t<li style=\"list-style-type: none;\">*${line.name}* %0A *Cantidad:* ${line.product_uom_qty} %0A *Requerido:* ${line.product_uom_qty} %0A ________________________ %0A%0A</li>\n"
+"\t\t\t\t\t        \t% endif  \n"
+"\t\t\t\t\t        % endfor \n"
+"\t\t\t\t\t    % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.stock_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*¡¡¡Muchas gracias por su preferencia!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Puede descargar su comprobante en el siguiente enlace* : %20 ${object.stock_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.inventory_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t        \t% endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t    </p>\n"
+"\t\t\t</div>\n"
+"\n"
+"            "
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,body_html:sh_whatsapp_integration.email_template_edi_sale_custom
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t        % if object.company_id.order_information_in_message:\n"
+"\t\t\t\t\t\t\tDear ${object.partner_id.name} ,%0A%0A\n"
+"\t\t\t\t\t\t\t\tHere is the your Order *${object.name}*\n"
+"\t\t\t\t\t\t\t\tamounting in \n"
+"\t\t\t\t\t\t\t\t${'{:.2f}'.format(object.amount_total)} ${object.currency_id.symbol}\n"
+"\t\t\t\t\t\t\t\tfrom ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t% endif \n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t    % if object.company_id.order_product_detail_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t    Following is your order details. %0A%0A\n"
+"\t\t\t\t\t\t\t</li>\n"
+"\t\t\t\t\t\t\t%for line in object.order_line:\n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t\t<li style=\"list-style-type:none;\"> *${line.name}* %0A *Qty:* ${line.product_uom_qty} %0A *Price:* ${line.order_id.currency_id.symbol} ${'{:.2f}'.format(line.price_unit)} %0A ________________________  %0A%0A </li> \n"
+"\t\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t% endfor\n"
+"\t\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\t\t*Subtotal Amount:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_untaxed)}  %0A%0A\n"
+"\t\t\t\t\t\t\t*Tax Amount:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_tax)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Total Amount:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)} %0A%0A\n"
+"\t\t\t\t    \t% endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*thank you for your preference!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Click here to download Report* %20 :${object.sale_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t        % if object.company_id.order_information_in_message:\n"
+"\t\t\t\t\t\t\tEstimado ${object.partner_id.name} ,%0A%0A\n"
+"\t\t\t\t\t\t\t\tA continuación Ud. puede ver los detalles de su comprobante *${object.name}*\n"
+"\t\t\t\t\t\t\t\tCon un monto de \n"
+"\t\t\t\t\t\t\t\t${'{:.2f}'.format(object.amount_total)} ${object.currency_id.symbol}\n"
+"\t\t\t\t\t\t\t\tEmitido por la empresa ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t% endif \n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t    % if object.company_id.order_product_detail_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t    Con los siguientes detalles. %0A%0A\n"
+"\t\t\t\t\t\t\t</li>\n"
+"\t\t\t\t\t\t\t%for line in object.order_line:\n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t\t<li style=\"list-style-type:none;\"> *${line.name}* %0A *Cantidad:* ${line.product_uom_qty} %0A *Precio:* ${line.order_id.currency_id.symbol} ${'{:.2f}'.format(line.price_unit)} %0A ________________________  %0A%0A </li> \n"
+"\t\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t% endfor\n"
+"\t\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\t\t*Monto grabado:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_untaxed)}  %0A%0A\n"
+"\t\t\t\t\t\t\t*Impuestos:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_tax)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Monto total:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)} %0A%0A\n"
+"\t\t\t\t    \t% endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*¡¡¡Muchas gracias por su preferencia!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Puede descargar su comprobante en el siguiente enlace* %20 :${object.sale_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"            "
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,body_html:sh_whatsapp_integration.email_template_edi_purchase_custom
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t        % if object.company_id.purchase_order_information_in_message:\n"
+"\t\t\t\t\t\t\tDear ${object.partner_id.name} ,%0A%0A\n"
+"\t\t\t\t\t\t\t\tHere is the your Order *${object.name}*\n"
+"\t\t\t\t\t\t\t\tamounting in \n"
+"\t\t\t\t\t\t\t\t${'{:.2f}'.format(object.amount_total)} ${object.currency_id.symbol}\n"
+"\t\t\t\t\t\t\t\tfrom ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t% endif \n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t    % if object.company_id.purchase_product_detail_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t    Following is your order details. %0A%0A\n"
+"\t\t\t\t\t\t\t</li>\n"
+"\t\t\t\t\t\t\t%for line in object.order_line:\n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t\t<li style=\"list-style-type:none;\"> *${line.name}* %0A *Qty:* ${line.product_uom_qty} %0A *Price:* ${line.order_id.currency_id.symbol} ${'{:.2f}'.format(line.price_unit)}  %0A ________________________  %0A%0A </li> \n"
+"\t\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t% endfor\n"
+"\t\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\t\t*Subtotal Amount:* ${object.currency_id.symbol} %20 ${'{:.2f}'.format(object.amount_untaxed)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Tax Amount:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_tax)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Total Amount:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)} %0A%0A\n"
+"\t\t\t\t    \t% endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.po_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*thank you for your preference!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Click here to download Report* %20 :${object.purchase_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.purchase_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"\t\t\t    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"\t\t\t\t    <ul style=\"list-style-type: none;\">\n"
+"\t\t\t\t        % if object.company_id.purchase_order_information_in_message:\n"
+"\t\t\t\t\t\t\tEstimado ${object.partner_id.name} ,%0A%0A\n"
+"\t\t\t\t\t\t\t\tA continuación Ud. puede ver los detalles de su comprobante *${object.name}*\n"
+"\t\t\t\t\t\t\t\tCon un monto de \n"
+"\t\t\t\t\t\t\t\t${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)}\n"
+"\t\t\t\t\t\t\t\tEmitido por la empresa ${object.company_id.name} %0A%0A \n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t% endif \n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t    % if object.company_id.purchase_product_detail_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">\n"
+"\t\t\t\t\t\t\t    Con los siguientes detalles. %0A%0A\n"
+"\t\t\t\t\t\t\t</li>\n"
+"\t\t\t\t\t\t\t%for line in object.order_line:\n"
+"\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t\t<li style=\"list-style-type:none;\"> *${line.name}* %0A *Cantidad:* ${line.product_uom_qty} %0A *Precio:* ${line.order_id.currency_id.symbol} ${'{:.2f}'.format(line.price_unit)}  %0A ________________________  %0A%0A </li> \n"
+"\t\t\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t\t% endfor\n"
+"\t\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\t\t*Monto grabado:* ${object.currency_id.symbol} %20 ${'{:.2f}'.format(object.amount_untaxed)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Impuestos:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_tax)} %0A%0A\n"
+"\t\t\t\t\t\t\t*Monto total:* %20 ${object.currency_id.symbol} ${'{:.2f}'.format(object.amount_total)} %0A%0A\n"
+"\t\t\t\t    \t% endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.po_send_pdf_in_message:\n"
+"\t\t\t\t\t\t\t<li style=\"list-style-type: none;\">*¡¡¡Muchas gracias por su preferencia!!!* %20 %0A%0A</li>\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">*Puede descargar su comprobante en el siguiente enlace* %20 :${object.purchase_url} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t        <br/>\n"
+"\t\t\t\t        % if object.company_id.purchase_signature and object.env.user.sign :\n"
+"\t\t\t\t        \t<li style=\"list-style-type: none;\">%20 ${object.env.user.sign} %0A%0A</li>\n"
+"\t\t\t\t        % endif\n"
+"\t\t\t\t    </ul>\n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t</div>\n"
+"            "
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_message_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_number_form
+msgid ""
+"<strong>Note:</strong><br/>\n"
+"                                1) Use *text* to make text bold.<br/>\n"
+"                                2) Use _text_ to make text italic.<br/>\n"
+"                                3) Use %0A after/before Text if you want to add blank line.<br/>\n"
+"                                4) use %20 after/before any Text if you want to give space.<br/>\n"
+"                                5) go to users =&gt; preferences to add signature."
+msgstr ""
+"<strong>Note:</strong><br/>\n"
+"                                1) Utilice *texto* para poner el texto en negrita.<br/>\n"
+"                                2) Utilice _text_ para hacer que el texto esté en cursiva.<br/>\n"
+"                                3) Utilice %0A después/antes del texto si desea añadir una línea en blanco.<br/>\n"
+"                                4) Use %20 después/antes de cualquier texto si quiere dar espacio.<br/>\n"
+"                                5) Ir a usuarios =&gt; preferencias para añadir la firma."
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_move__report_token
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_payment__report_token
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_purchase_order__report_token
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sale_order__report_token
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_stock_picking__report_token
+msgid "Access Token"
+msgstr "Token de Acceso"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__account_invoice_id
+msgid "Account Invoice"
+msgstr "Factura de la cuenta"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__account_payment_id
+msgid "Account Payment"
+msgstr "Pago de Cuenta"
+
+#. module: sh_whatsapp_integration
+#: model:res.groups,name:sh_whatsapp_integration.group_account_whatsapp_feature
+msgid "Account Whatsapp Feature"
+msgstr "Función de la cuenta de Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__attachment_ids
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#. module: sh_whatsapp_integration
+#: model:res.groups,name:sh_whatsapp_integration.group_crm_whatsapp_msg_feature
+msgid "CRM Whatsapp Feature"
+msgstr "Función CRM Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_message_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_number_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/models/account_payment_inherit.py:0
+#: code:addons/sh_whatsapp_integration/models/customer_invoice_inherit.py:0
+#: code:addons/sh_whatsapp_integration/models/purchase_order_inherit.py:0
+#: code:addons/sh_whatsapp_integration/models/stock_picking_inherit.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "Componer correo electrónico"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__create_date
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__display_name
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__crm_lead_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__inventory_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__invoice_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__purchase_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__crm_lead_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__inventory_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__invoice_display_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__purchase_display_in_message
+msgid "Display in Chatter Message?"
+msgstr "¿Mostrar en el mensaje de Chatter?"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__id
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/controllers/main.py:0
+#, python-format
+msgid "Invalid report type: %s"
+msgstr "Tipo de informe no válido: %s"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_invoice_send__is_wp
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_mail_compose_message__is_wp
+msgid "Is whatsapp ?"
+msgstr "¿Es whatsapp?"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard____last_update
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__write_date
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__crm_lead_id
+msgid "Lead"
+msgstr "Oportunidad"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_move__text_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_payment__text_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_purchase_order__text_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sale_order__text_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_stock_picking__text_message
+msgid "Message"
+msgstr "Mensaje"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__inventory_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__invoice_order_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__order_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__purchase_order_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__inventory_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__invoice_order_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__order_information_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__purchase_order_information_in_message
+msgid "Order Information in message?"
+msgstr "¿Información del pedido en el mensaje?"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__invoice_product_detail_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__order_product_detail_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__purchase_product_detail_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__invoice_product_detail_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__order_product_detail_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__purchase_product_detail_in_message
+msgid "Order Product details in message?"
+msgstr "¿Detalles del producto en el mensaje?"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_account_payment
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/models/purchase_order_inherit.py:0
+#: model:ir.model,name:sh_whatsapp_integration.model_purchase_order
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__purchase_order_id
+#, python-format
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: sh_whatsapp_integration
+#: model:res.groups,name:sh_whatsapp_integration.group_purchase_whatsapp_feature
+msgid "Purchase Whatsapp Feature"
+msgstr "Comprar la función de Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model:mail.template,report_name:sh_whatsapp_integration.email_template_edi_purchase_custom
+msgid "RFQ_${(object.name or '').replace('/','_')}"
+msgstr ""
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__partner_ids
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__partner_ids
+msgid "Recipients"
+msgstr "Destinatarios"
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/models/purchase_order_inherit.py:0
+#, python-format
+msgid "Request for Quotation"
+msgstr "Solicitud de presupuesto"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__sale_order_id
+msgid "Sale Order"
+msgstr "Orden de Venta"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sh_whatsapp_integration
+#: model:res.groups,name:sh_whatsapp_integration.group_sales_whatsapp_feature
+msgid "Sales Whatsapp Feature"
+msgstr "Función de venta de Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_message_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_number_form
+msgid "Send"
+msgstr "Enviar"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.invoice_form_inherit_custom
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.purchase_order_inherit_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_email_compose_form_mass_mailing
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.view_account_payment_inherit_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.view_order_inherit_custom_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.view_picking_inherit_custom_form
+msgid "Send By Whatsapp"
+msgstr "Enviar por Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.invoice_form_inherit_custom
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.purchase_order_inherit_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.view_account_payment_inherit_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.view_order_inherit_custom_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.view_picking_inherit_custom_form
+msgid "Send By Whatsapp Direct"
+msgstr "Enviar por Whatsapp Direct"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_inventory_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_invoice_bill_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_purchase_res_config_settings
+msgid "Send Report URL in Message"
+msgstr "Enviar la URL del informe en el mensaje"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__inv_send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__po_send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__stock_send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__inv_send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__po_send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__send_pdf_in_message
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__stock_send_pdf_in_message
+msgid "Send Report URL in message?"
+msgstr "¿Enviar la URL del informe en el mensaje?"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_sales_res_config_settings
+msgid "Send Report Url in Message"
+msgstr "Enviar url de informe en mensaje"
+
+#. module: sh_whatsapp_integration
+#: model:ir.ui.menu,name:sh_whatsapp_integration.menu_subwhatsapp_number
+#: model:ir.ui.menu,name:sh_whatsapp_integration.menu_whatsapp_number
+#: model:ir.ui.menu,name:sh_whatsapp_integration.submenu_whatsapp_number
+msgid "Send Whatsapp"
+msgstr "Enviar Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model:ir.actions.act_window,name:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_message_action
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_partner_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_message_form
+msgid "Send Whatsapp Message"
+msgstr "Enviar mensaje de Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model:res.groups,name:sh_whatsapp_integration.group_send_whatsapp_quick
+msgid "Send Whatsapp Quick"
+msgstr "Enviar Whatsapp rápido"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_sh_send_whatsapp_message_wizard
+#: model:ir.model,name:sh_whatsapp_integration.model_sh_send_whatsapp_number_wizard
+msgid "Send whatsapp message wizard"
+msgstr "Asistente para enviar mensajes de whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_inventory_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_invoice_bill_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_res_config_settings_view_crm_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_purchase_res_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_sales_res_config_settings
+msgid "Show Message in Chatter"
+msgstr "Mostrar mensaje en el chat"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_inventory_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_invoice_bill_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_purchase_res_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_sales_res_config_settings
+msgid "Show Order Information in message"
+msgstr "Mostrar la información del pedido en el mensaje"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_invoice_bill_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_purchase_res_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_sales_res_config_settings
+msgid "Show Order Product details in message"
+msgstr "Mostrar detalles del producto en el mensaje"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_inventory_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_invoice_bill_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_res_config_settings_view_crm_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_purchase_res_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_sales_res_config_settings
+msgid "Show Signature"
+msgstr "Mostrar firma"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_users__sign
+msgid "Signature"
+msgstr "Firma"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__crm_lead_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__inventory_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__invoice_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__purchase_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_company__signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__crm_lead_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__inventory_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__invoice_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__purchase_signature
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_res_config_settings__signature
+msgid "Signature?"
+msgstr "¿Firma?"
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/models/stock_picking_inherit.py:0
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_message_wizard__stock_picking_id
+#, python-format
+msgid "Stock Picking"
+msgstr "Selección de acciones"
+
+#. module: sh_whatsapp_integration
+#: model:res.groups,name:sh_whatsapp_integration.group_stock_whatsapp_feature
+msgid "Stock Whatsapp Feature"
+msgstr "Función de Whatsapp en stock"
+
+#. module: sh_whatsapp_integration
+#: code:addons/sh_whatsapp_integration/controllers/main.py:0
+#, python-format
+msgid "This document does not exist."
+msgstr "Este documento no existe."
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_move__invoice_url
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_account_payment__payment_url
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_purchase_order__purchase_url
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sale_order__sale_url
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_stock_picking__stock_url
+msgid "Url"
+msgstr "Url"
+
+#. module: sh_whatsapp_integration
+#: model:ir.model,name:sh_whatsapp_integration.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: sh_whatsapp_integration
+#: model:ir.actions.act_window,name:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_number_action
+#: model:ir.model.fields,field_description:sh_whatsapp_integration.field_sh_send_whatsapp_number_wizard__whatsapp_mobile
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.crm_case_form_inherit_custom_view_leads
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_whatsapp_integration_send_whatsapp_number_form
+msgid "Whatsapp Number"
+msgstr "Número de Whatsapp"
+
+#. module: sh_whatsapp_integration
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_inventory_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_invoice_bill_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_res_config_settings_view_crm_form
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_purchase_res_config_settings
+#: model_terms:ir.ui.view,arch_db:sh_whatsapp_integration.sh_show_whatsapp_send_sales_res_config_settings
+msgid "Whatsapp send"
+msgstr "Enviar Whatsapp"

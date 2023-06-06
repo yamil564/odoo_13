@@ -1,0 +1,5 @@
+<odoo>
+    <report id="comprobantes_report_xlsx" model="wizard.comprobantes.report" string="Reporte de Comprobantes XLSX" report_type="xlsx" name="report_comprobantes.comprobantes_report_xlsx" file="comprobantes_report_xlsx" attachment_use="False" />
+
+    <!-- <report id="compr_report_xlsx_prov" model="wizard.comprobantes.report" string="Reporte de Comprobante de Líneas por Proveedor XLSX" report_type="xlsx" name="report_comprobantes.compr_report_xlsx_prov" file="compr_report_xlsx_prov" attachment_use="False" /> -->
+</odoo>

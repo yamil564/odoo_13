@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_comprobantes_report_comprobantes,report_comprobantes.report_comprobantes,model_report_comprobantes_report_comprobantes,,1,0,0,0

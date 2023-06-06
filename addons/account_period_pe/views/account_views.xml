@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_fiscalyear_form" model="ir.ui.view">
+        <field name="name">account.fiscalyear.form</field>
+        <field name="model">account.fiscalyear</field>
+        <field name="arch" type="xml">
+            <form string="Año Fiscal">
+            <header>
+                <button name="create_period" states="draft" string="Crear periodos mensuales" type="object" class="oe_highlight"  attrs="{'invisible': [('state','not in','draft')]}"/>
+                <button name="create_period3" states="draft" string="Crear períodos de 3 meses" type="object" class="oe_highlight"  attrs="{'invisible': [('state','not in','draft')]}"/>
+                <button name="action_close_fy" string="Cerrar" type="object" class="oe_highlight"  attrs="{'invisible': [('state','not in','draft')]}"/>
+                <field name="state" widget="statusbar" nolabel="1" />
+            </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_stop"/>
+                    </group>
+                </group>
+                <field colspan="4" name="period_ids" nolabel="1" widget="one2many_list">
+                    <form string="Periodo">
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="date_start"/>
+                            <field name="date_stop"/>
+                            <field name="special"/>
+                            <field name="state" invisible="1"/>
+                        </group>
+                    </form>
+                </field>
+            </form>
+        </field>
+    </record>
+    <record id="view_account_fiscalyear_tree" model="ir.ui.view">
+        <field name="name">account.fiscalyear.tree</field>
+        <field name="model">account.fiscalyear</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'draft'" decoration-muted="state =='done'" string="Año Fiscal">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="date_stop"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!--<record id="view_account_fiscalyear_search" model="ir.ui.view">
+        <field name="name">account.fiscalyear.search</field>
+        <field name="model">account.fiscalyear</field>
+        <field name="arch" type="xml">
+            <search string="Search Año Fiscal">
+                <field name="name" filter_domain="['|', ('name','ilike',self), ('code','ilike',self)]" string="Año Fiscal"/>
+                <filter string="Abierto" domain="[('state','=','draft')]"/>
+                <filter string="Cerrado" domain="[('state','=','done')]"/>
+                <field name="state"/>
+                <group expand="0" string="Group By">
+                    <filter string="Estado" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>-->
+
+    <record id="action_account_fiscalyear" model="ir.actions.act_window">
+        <field name="name">Años Fiscales</field>
+        <field name="res_model">account.fiscalyear</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Clic para comenzar un nuevo Año Fiscal.
+          </p><p>
+            Defina el Año Financiero de su Empresa de acuerdo con sus necesidades. Un
+            año financiero es un periodo al final del cual se componen las cuentas
+            de una Empresa (generalmente 12 meses). El Año Financiero es
+            generalmente referido por la fecha en que finaliza. Por ejemplo,
+            si el Año Financiero de una Empresa finaliza el 30NOV2020, entonces
+            todo entre 01DIC2019 al 30NOV2020 se denominará FY2020.
+          </p>
+        </field>
+    </record>
+    <menuitem id="next_id_23" name="Periodos" parent="account.menu_finance_configuration" sequence="5" />
+    <menuitem id="menu_action_account_fiscalyear" action="action_account_fiscalyear" parent="account_period_pe.next_id_23"/>
+
+
+    <record id="view_account_period_form" model="ir.ui.view">
+        <field name="name">account.period.form</field>
+        <field name="model">account.period</field>
+        <field name="arch" type="xml">
+            <form string="Periodo Contable">
+                <header>
+                    <button string="Cerrar" type="object" class="oe_highlight" name="action_close_period" attrs="{'invisible': [('state','not in','draft')]}"/>
+                    <button string="Reabrir Periodo" type="object" class="oe_highlight" name="action_open_period" attrs="{'invisible': [('state','not in','done')]}"/>
+                    <field name="state" widget="statusbar" nolabel="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="fiscalyear_id" widget="selection"/>
+                            <label for="date_start" string="Duración"/>
+                            <div>
+                                <field name="date_start" class="oe_inline" nolabel="1"/> -
+                                <field name="date_stop" class="oe_inline" nolabel="1" />
+                            </div>
+                            <field name="maximum_tax_date" attrs="{'required':[('special', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="special"/>
+                            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_account_period_tree" model="ir.ui.view">
+        <field name="name">account.period.tree</field>
+        <field name="model">account.period</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'draft'" decoration-muted="state =='done'" string="Periodo">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="date_start"/>
+                <field name="date_stop"/>
+                <field name="maximum_tax_date"/>
+                <field name="special"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!--<record id="view_account_period_search" model="ir.ui.view">
+        <field name="name">account.period.search</field>
+        <field name="model">account.period</field>
+        <field name="arch" type="xml">
+            <search string="Search Period">
+                <field name="name" filter_domain="['|', ('name','ilike',self), ('code','ilike',self)]" string="Periodo"/>
+                <filter string="Abierto" domain="[('state','=','draft')]"/>
+                <filter string="Cerrado" domain="[('state','=','done')]"/>
+            </search>
+        </field>
+    </record>-->
+    <record id="action_account_period" model="ir.actions.act_window">
+        <field name="name">Periodos Contables</field>
+        <field name="res_model">account.period</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_draft': 1}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Clic para agregar un Periodo contable.
+          </p><p>
+            Un Periodo contable generalmente es un mes o un trimestre. Esto
+            por lo general corresponde a los periodos de la declaración de impuestos.
+          </p>
+        </field>
+    </record>
+    <menuitem id="menu_action_account_period" action="action_account_period" parent="account_period_pe.next_id_23"/>
+
+
+</odoo>

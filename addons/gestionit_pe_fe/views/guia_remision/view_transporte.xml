@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="gestionit_pe_fe.view_form_res_parter_transportista_tab" model="ir.ui.view">
+            <field name="name">view.form.res.partner.transportista.tab</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="es_conductor" string="Es Conductor?"/>
+                    <field name="es_empresa_transporte_publico" string="Es Empresa de Transporte?"/>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page string="Datos del Conductor" attrs="{'invisible':[('es_conductor','=',False)]}">
+                        <group>
+                            <field name="parent_id" attrs="{'required':[('es_conductor','=',True)]}"/>
+                            <field name="licencia" string="Licencia" attrs="{'required':[('es_conductor','=',True)]}"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_form_vehiculo" model="ir.ui.view">
+            <field name="name">gestionit.view.form.vehiculo</field>
+            <field name="model">gestionit.vehiculo</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="tipo_transporte"/>
+                                <field name="marca"/>
+                                <field name="inscripcion_mtc"/>
+                            </group>
+                            <group>
+                                <field name="numero_placa"/>
+                                <field name="modelo"/>
+                                <field name="operativo"/>
+                                <field name="propietario_id" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="gestionit_pe_fe.view_tree_vehiculo" model="ir.ui.view">
+            <field name="name">gestionit.view.tree.vehiculo</field>
+            <field name="model">gestionit.vehiculo</field>
+            <field name="priority" eval="14"/>
+            <field name="arch" type="xml">
+                <tree decoration-danger="operativo == 'fuera_de_servicio'">
+                    <field name="tipo_transporte"/>
+                    <field name="numero_placa"/>
+                    <field name="marca"/>
+                    <field name="operativo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_form_partner_conductor" model="ir.ui.view">
+            <field name="name">efac.view.form.partner.conductor</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="parent_id" readonly="1" options="{'no_open':True}"/>
+                            <field name="l10n_latam_identification_type_id" 
+                                    string="Tipo Doc." domain="[('l10n_pe_vat_code','in',['0','1','7','4'])]"
+                                    widget="radio" options="{'horizontal':1}"/>
+                            <field name="vat" string="Número Doc."/>
+                            <field name="licencia" string="Licencia"/>
+                            <field name="name" string="Nombre" required="1"/>
+                            <field name="street" string="Dirección"/>
+                            <field name="country_id" string="País"
+                                    options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="state_id" string="Departamento"
+                                    attrs="{'readonly':[('country_id','=',False)]}"
+                                    force_save = "1"
+                                    domain="[('country_id','=',country_id),('state_id','=',False),('province_id','=',False)]"
+                                    options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="province_id" string="Provincia"
+                                    attrs="{'readonly':[('country_id','=',False),('state_id','=',False)]}"
+                                    force_save = "1"
+                                    domain="[('country_id','=',country_id),('state_id','=',state_id),('province_id','=',False)]"
+                                    options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="district_id" string="Distrito"
+                                    attrs="{'readonly':[('country_id','=',False),('state_id','=',False),('province_id','=',False)]}"
+                                    force_save = "1"
+                                    domain="[('country_id','=',country_id),('state_id','=',state_id),('province_id','=',province_id)]"
+                                    options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="ubigeo" string="Ubigeo Código"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_tree_partner_conductor" model="ir.ui.view">
+            <field name="name">efac.view.tree.partner.conductor</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Nombre"/>
+                    <field name="l10n_latam_identification_type_id" string="Tipo Doc."/>
+                    <field name="vat" string="Número Doc."/>
+                    <field name="licencia" string="Licencia"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_tree_partner_transportista" model="ir.ui.view">
+            <field name="name">gestionit.view.tree.partner.transportista</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Nombre o Razón Social"/>
+                    <field name="l10n_latam_identification_type_id" string="Tipo de Doc."/>
+                    <field name="vat" string="Número de doc."/>
+                    <field name="street" string="Dirección"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="gestionit_pe_fe.view_form_partner_transportista" model="ir.ui.view">
+            <field name="name">gestionit.view.form.partner.transportista</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="l10n_latam_identification_type_id" 
+                                        string="Tipo de Documento" 
+                                        attrs="{'required':[('type','in',['contact','invoice'])],'invisible':[('type','not in',['contact','invoice'])]}"/>
+                                <field name="type" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="vat" 
+                                        string="Número de Documento" 
+                                        attrs="{'required':[('type','in',['contact','invoice'])],'invisible':[('type','not in',['contact','invoice'])]}"/>
+                            </group>
+                        </group>
+                        <group>
+                                <field name="street" string="Dirección"
+                                        attrs="{'required':['|',('l10n_latam_identification_type_id','=','6'),('type','in',['other','private'])]}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="country_id" invisible="1"/>
+                                <field name="state_id" invisible="1"/>
+                                <field name="province_id" invisible="1"/>
+                                <field name="district_id" string="Código de Ubigeo" 
+                                        attrs="{'required':['|',('l10n_latam_identification_type_id','=','6'),('type','in',['other','private'])]}"
+                                        domain="[('country_id','=',country_id),('province_id','!=',False),('state_id','!=',False)]"
+                                        context="{'ubigeo_search': True }"
+                                        options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="ubigeo" string="ubigeo" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="vehiculo_ids" 
+                                    mode="tree"
+                                    context="{'default_propietario_id':id}">
+                                <tree decoration-danger="operativo == 'fuera_de_servicio'">
+                                    <field name="tipo_transporte"/>
+                                    <field name="numero_placa"/>
+                                    <field name="marca"/>
+                                    <field name="operativo"/>
+                                </tree>
+                            </field>
+
+                            <field name="child_ids" 
+                                    mode="tree" 
+                                    context="{
+                                                'form_view_ref':'gestionit.view_form_partner_conductor',
+                                                'default_parent_id':id,
+                                                'default_type':'contact'
+                                            }">
+                                <tree>
+                                    <field name="name" string="Nombre"/>
+                                    <field name="l10n_latam_identification_type_id" string="Tipo Doc."/>
+                                    <field name="vat" string="Número Doc."/>
+                                    <field name="licencia" string="Licencia"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.action_view_empresas_transporte" model="ir.actions.act_window">
+            <field name="name">Empresas de Transporte</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_es_empresa_transporte_publico':True,'default_company_type':'company'}</field>
+            <field name="domain">[('es_empresa_transporte_publico','=',True)]</field>
+        </record>
+
+        
+        <record id="gestionit_pe_fe.action_view_form_empresas_transporte" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="gestionit_pe_fe.action_view_empresas_transporte" />
+            <field name="view_id" ref="gestionit_pe_fe.view_form_partner_transportista" />
+            <field name="view_mode">form</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="gestionit_pe_fe.action_view_tree_empresas_transporte" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="gestionit_pe_fe.action_view_empresas_transporte" />
+            <field name="view_id" ref="gestionit_pe_fe.view_tree_partner_transportista" />
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+        </record>
+
+    <!--
+        <record id="gestionit.action_view_vehiculos_privados" model="ir.actions.act_window">
+            <field name="name">Vehículos Privados</field>
+            <field name="res_model">gestionit.vehiculo</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'propietario_id':user.company_id.partner_id.id}</field>
+            <field name="domain">[('propietario_id','=',user.company_id.partner_id.id)]</field>
+        </record>
+    -->
+        
+        <record id="gestionit_pe_fe.action_server_vehiculos_privados" model="ir.actions.server">
+            <field name="type">ir.actions.server</field>
+            <field name="name">Vehículos Privados</field>
+            <field name="model_id" ref="gestionit_pe_fe.model_gestionit_vehiculo" />
+            <field name="state">code</field>
+            <field name="code">action = model.action_view_vehiculos_privados()</field>
+        </record>
+        
+        <record id="gestionit_pe_fe.action_server_conductores_privados" model="ir.actions.server">
+            <field name="type">ir.actions.server</field>
+            <field name="name">Conductores Privados</field>
+            <field name="model_id" ref="gestionit_pe_fe.model_res_partner" />
+            <field name="state">code</field>
+            <field name="code">action = model.action_view_conductores_privados()</field>
+        </record>
+    </data>
+</odoo>

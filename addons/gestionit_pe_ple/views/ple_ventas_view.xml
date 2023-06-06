@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- VENTAS -->
+        <record id="gestionit_ple_libro_ventas" model="ir.ui.view">
+            <field name="name">Reporte - Libro de ventas</field>
+            <field name="model">print.ventas.reporte.contabilidad</field>
+            <field name="arch" type="xml">
+                <form string="Reporte de ventas">
+                    <field name="invoice_report_printed" invisible="1"/>
+                    <group attrs="{'invisible':[('invoice_report_printed','=',True)]}">
+                        <group>
+                            <field name="months" required="1" style="width:200px;"/>
+                        </group>
+                        <group>
+                            <field name="years" required="1" style="width:200px;"/>
+                            <!-- <field name="tipo_reporte"/> -->
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('invoice_report_printed','=',False)]}">
+                        <field name="file_name" invisible="1"/>
+                        <field name="invoice_summary_file" readonly="1" filename="file_name"/>
+                    </group>
+                    <footer>
+                        <button string='GENERAR' name="generaReporte" type="object" class="btn-primary" attrs="{'invisible':[('invoice_report_printed','=',True)]}"/>
+                        <button string="CANCELAR" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!-- REGISTRO DE VENTAS -->
+        <record id="reporte_ventas" model="ir.actions.act_window">
+            <field name="name">Reporte de ventas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">print.ventas.reporte.contabilidad</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <!-- REGISTRO DE VENTAS -->
+        <menuitem id="menu_print_reporte_ventas" action="reporte_ventas" sequence="210" parent="gestionit_pe_fe.menu_reportes_documentos" />
+    </data>
+</odoo>

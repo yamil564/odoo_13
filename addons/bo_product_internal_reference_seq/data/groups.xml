@@ -1,0 +1,5 @@
+<odoo>
+    <record id="res_groups_limit_edit_default_code" model="res.groups">
+        <field name="name">Restringir edición manual de Referencia Interna</field>
+    </record>
+</odoo>

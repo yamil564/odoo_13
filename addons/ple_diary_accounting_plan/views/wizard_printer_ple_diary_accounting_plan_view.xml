@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_wizard_printer_ple_diary_accounting_plan_form" model="ir.ui.view">
+        <field name="name">view.wizard.printer.ple.diary.accounting.plan.form</field>
+        <field name="model">wizard.printer.ple.diary.accounting.plan</field>
+        <field name="inherit_id" ref="ple_base.view_wizard_printer_ple_base_form"/>
+        <field name="arch" type="xml">
+
+                    <group name="grupo_base_impresion" position="after">
+
+                        <group name="grupo_nomenclatura_impresion" string="Nomenclatura de impresión del PLE">
+                            <group>
+                                <field name="identificador_operaciones"/>
+                                <field name="identificador_libro"/>
+                            </group>
+                        </group>
+                        
+                    </group>
+
+        </field>
+    </record>
+
+
+
+    <record id="view_wizard_printer_ple_diary_accounting_plan_tree" model="ir.ui.view">
+        <field name="name">view.wizard.printer.ple.diary.accounting.plan.tree</field>
+        <field name="model">wizard.printer.ple.diary.accounting.plan</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="print_format"/>
+                <field name="print_order"/>
+                <field name="identificador_operaciones"/>
+                <field name="identificador_libro"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_wizard_printer_ple_diary_accounting_plan" model="ir.actions.act_window">
+
+        <field name="name">FORMULARIO DE IMPRESIÓN DEL LIBRO PLE</field>
+        <field name="res_model">wizard.printer.ple.diary.accounting.plan</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_wizard_printer_ple_diary_accounting_plan_form"/>
+        <field name="target">new</field>
+
+    </record>
+
+
+    <record id="action_wizard_printer_ple_diary_accounting_plan_form" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_wizard_printer_ple_diary_accounting_plan_form"/>
+        <field name="act_window_id" ref="action_wizard_printer_ple_diary_accounting_plan"/>
+
+    </record>
+
+
+</odoo>

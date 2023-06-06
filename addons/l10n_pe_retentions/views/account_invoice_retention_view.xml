@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_invoice_retention_view_form" model="ir.ui.view">
+            <field name="name">Registro de Rentenciones en Documentos</field>
+            <field name="model">account.invoice.retention</field>
+            <field name="arch" type="xml">
+                <form>
+                   
+                    <field name="is_retention" invisible="1"/>
+                    <field name="is_paid" invisible="1"/>
+                    
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px" attrs="{'invisible': [('is_retention','!=',True)]}">
+                            <bold>Documento sujeto a Retención</bold> 
+                        </div>
+
+                        
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px" attrs="{'invisible': [('is_paid','!=',True)]}">
+                            <bold>Documento Pagado</bold> 
+                        </div>
+
+                    <header>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted,done"/>
+                            <button name="action_open_wizard_retention_paid"
+                                string="Pagar Documento con Retención"
+                                type="object"
+                                attrs="{'invisible': ['|',('state','in',['done']),('is_retention','!=',True)]}"
+                            />
+
+                        
+                    </header>
+
+                    <sheet>
+
+                        <!--<div class="oe_button_box">
+                            <button name="button_view_move_id" class="oe_stat_button" icon="fa-file" type="object" string="Ver Asientos Contables" attrs="{'invisible': [('state','!=','send')]}"/>
+                        </div>-->
+                            <group>
+                                <group>
+                                    <field name="company_id" readonly="1"/>
+                                </group>
+                            </group>
+
+                            <group string="Parámetros de Documento" attrs="{'readonly':[('state','not in',['draft'])]}">
+                                
+                                <group>
+                                    <field name="invoice_aml_id" options="{'no_create_edit': True, 'no_create':True, 'no_open':True}" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                                    <field name="retention_move_id" options="{'no_create_edit': True, 'no_create':True, 'no_open':True}" force_save="1"/>
+                                    <field name="receivable_retention_account_id" options="{'no_create_edit': True, 'no_create':True, 'no_open':True}" force_save="1"/>
+
+                                </group>
+
+                                <group>
+                                    <field name="partner_id" options="{'no_create_edit': True, 'no_create':True, 'no_open':True}" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                                    <field name="date_invoice"/>
+                                </group>
+                            </group>
+
+                            <group string="Detalles del Documento" attrs="{'readonly':[('state','not in',['draft'])]}">
+
+                                
+
+                                <group>
+                                    <field name="is_invoice_aml_in_ME" invisible="1"/>
+                                    <field name="currency_id"/>
+                                    <field name="balance"/>
+                                    <field name="amount_currency" attrs="{'invisible': [('is_invoice_aml_in_ME','!=',True)]}"/>
+                                    <!-- attrs="{'invisible': [('is_invoice_aml_in_ME','!=',True)]}"/>-->
+
+                                    <field name="amount_residual"/>
+                                    <field name="amount_residual_currency" attrs="{'invisible': [('is_invoice_aml_in_ME','!=',True)]}"/>
+                                    <!-- attrs="{'invisible': [('is_invoice_aml_in_ME','!=',True)]}"/>-->
+                                </group>
+
+                                <group>
+                                    <field name="is_invoice_aml_in_ME" invisible="1"/>
+                                    <field name="porcentaje_retencion" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                                    <field name="monto_minimo_retencion" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+
+                                    <field name="retention_amount" attrs="{'invisible': [('is_invoice_aml_in_ME','!=',True)]}"/>
+                                    <field name="retention_amount_in_company_currency"/>
+                                    <!-- attrs="{'invisible': [('is_invoice_aml_in_ME','!=',True)]}"/>-->
+                                    
+                                </group>
+                            </group>
+
+
+                            <notebook>
+                                <page string="Registros de Retención">
+                                    <group>
+                                        <field name='account_retention_line_ids' readonly="1">
+                                            <tree>
+                                                <field name="nro_comprobante_retencion"/>
+                                                <field name="amount_paid" sum="amount_paid"/>
+                                                <field name="amount_paid_retention" sum="amount_paid_retention"/>
+                                                <field name="retention_date"/>
+                                                <field name="retention_journal_id"/>
+                                                <field name="retention_move_id"/>
+                                                <button name="action_open_move_id" string="Ver asiento contable de Retención" type="object" icon="fa-book"/>
+
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+
+                            </notebook>
+
+                    </sheet>
+
+                </form>             
+
+            </field>
+
+        </record>
+
+        <!--###########################################################-->
+        <record id="account_invoice_retention_view_tree" model="ir.ui.view">
+            <field name="name">Registro de Rentenciones en Documentos</field>
+            <field name="model">account.invoice.retention</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="invoice_aml_id"/>
+                    <field name="partner_id"/>
+                    <field name="date_invoice"/>
+                    <field name="currency_id"/>
+                    <field name="balance"/>
+                    <field name="amount_currency"/>
+
+                    <field name="amount_residual"/>
+                    <field name="amount_residual_currency"/>
+                    <field name="porcentaje_retencion"/>
+                    <field name="monto_minimo_retencion"/>
+
+                    <field name="retention_amount"/>
+                    <field name="retention_amount_in_company_currency"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_account_invoice_retention" model="ir.actions.act_window">
+            <field name="name">Registro de Rentenciones en Documentos</field>
+            <field name="res_model">account.invoice.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('company_id','=',allowed_company_ids[0])]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear Registro de Retención de Documento
+              </p><p>
+                Permite Crear Formularios de Registro de Retención de Documento
+               :)
+              </p>
+            </field>
+        </record>
+
+        <record id="action_account_invoice_retention_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account_invoice_retention_view_tree"/>
+            <field name="act_window_id" ref="action_account_invoice_retention"/>
+        </record>
+
+       <record id="action_account_invoice_retention_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_invoice_retention_view_form"/>
+            <field name="act_window_id" ref="action_account_invoice_retention"/>
+        </record>
+
+        <menuitem id="menu_account_invoice_retention" name="Registro de Rentenciones en Documentos" parent="account.menu_finance_entries_actions"  groups="account.group_account_invoice" action="action_account_invoice_retention"/>
+             
+    </data>
+</odoo>

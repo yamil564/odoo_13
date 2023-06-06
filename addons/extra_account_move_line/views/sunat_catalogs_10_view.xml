@@ -1,0 +1,33 @@
+<odoo noupdate="1">
+
+    <record id="view_tree_catalog_10" model="ir.ui.view">
+        <field name="name">view.tree.catalog.10</field>
+        <field name="model">sunat.catalog.10</field>
+        <field name="arch" type="xml">
+            <tree editable="top" decoration-muted="active==False">
+
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_view_catalog_10" model="ir.actions.act_window">
+        <field name="name">Catg 10 - Tipo de Comprobantes de Pago o Documento</field>
+        <field name="res_model">sunat.catalog.10</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+    </record>
+
+ 
+
+    <menuitem id="menu_sunat_catalog_10"
+                name="Catg 10-Tipo de Comprobantes de Pago o Documento"
+                string="Catg 10 -Tipo de Comprobantes de Pago o Documento"
+                sequence="38"
+                parent="gestionit_pe_fe.menu_sunat_catalogs"
+                action="action_view_catalog_10"/>
+
+</odoo>

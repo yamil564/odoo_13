@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+        <record id="template_activos_corrientes_view_form" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración de Activos Corrientes</field>
+            <field name="model">template.activos.corrientes.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="calculation_type"/>
+
+                        <field name="account_ids" attrs="{'invisible':[('calculation_type','=','manual')]}" widget="many2many_tags" options="{'no_create': True}"/>
+
+                        <field name="movements_period" attrs="{'invisible':[('calculation_type','=','accounts')]}"/>
+                    </group>
+                </form>
+
+            </field>
+
+        </record>
+
+        <record id="template_activos_no_corrientes_view_form" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración de Activos No Corrientes</field>
+            <field name="model">template.activos.no.corrientes.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="calculation_type"/>
+
+                        <field name="account_ids" attrs="{'invisible':[('calculation_type','=','manual')]}" widget="many2many_tags" options="{'no_create': True}"/>
+
+                        <field name="movements_period" attrs="{'invisible':[('calculation_type','=','accounts')]}"/>
+                    </group>
+                </form>
+
+            </field>
+
+        </record>
+
+        <!-- ####################################### -->
+
+        <record id="template_pasivos_corrientes_view_form" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración de Pasivos Corrientes</field>
+            <field name="model">template.pasivos.corrientes.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="calculation_type"/>
+
+                        <field name="account_ids" attrs="{'invisible':[('calculation_type','=','manual')]}" widget="many2many_tags" options="{'no_create': True}"/>
+
+                        <field name="movements_period" attrs="{'invisible':[('calculation_type','=','accounts')]}"/>
+                    </group>
+                </form>
+
+            </field>
+
+        </record>
+
+        <record id="template_pasivos_no_corrientes_view_form" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración de Pasivos No Corrientes</field>
+            <field name="model">template.pasivos.no.corrientes.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="calculation_type"/>
+
+                        <field name="account_ids" attrs="{'invisible':[('calculation_type','=','manual')]}" widget="many2many_tags" options="{'no_create': True}"/>
+
+                        <field name="movements_period" attrs="{'invisible':[('calculation_type','=','accounts')]}"/>
+                    </group>
+                </form>
+
+            </field>
+
+        </record>
+
+
+        <!--  ############################################## -->
+
+        <record id="template_patrimonio_view_form" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración de Patrimonio</field>
+            <field name="model">template.patrimonio.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="calculation_type"/>
+
+                        <field name="account_ids" attrs="{'invisible':[('calculation_type','=','manual')]}" widget="many2many_tags" options="{'no_create': True}"/>
+
+                        <field name="movements_period" attrs="{'invisible':[('calculation_type','=','accounts')]}"/>
+                    </group>
+                </form>
+
+            </field>
+
+        </record>
+
+
+	</data>
+</odoo>

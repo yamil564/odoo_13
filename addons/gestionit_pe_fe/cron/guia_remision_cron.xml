@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="gestionit_pe_fe.ir_cron_guia_remision" model="ir.cron">
+            <field name="name">CRON Guía de Remisión</field>
+            <field name="model_id" ref="gestionit_pe_fe.model_gestionit_guia_remision"/>
+            <field name="state">code</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="code">model.cron_enviar_comprobante(10)</field>
+            <field name="doall">1</field>
+            <field name="user_id" ref="base.user_root"/>
+            <!-- <field name="nextcall" eval="(datetime.strptime(datetime.now().strftime('%Y-%m-%d %H:00:00'),'%Y-%m-%d %X') + timedelta(hours=6) ).strftime('%Y-%m-%d %X')"/> -->
+        </record>
+
+    </data>
+</odoo>

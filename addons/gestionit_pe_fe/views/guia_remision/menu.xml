@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Guía de Remisión"
+                    id="gestionit_pe_fe.menu_principal_guia_remision"
+                    parent="account.menu_finance"/>
+
+            <menuitem name="Documentos"
+                        sequence="1" 
+                        id="gestionit_pe_fe.menu_documentos"
+                        parent="gestionit_pe_fe.menu_principal_guia_remision"/>
+                        
+                <menuitem name="Guía de Remisión Remitente" 
+                            id="gestionit_pe_fe.menu_guia_remision" 
+                            action="gestionit_pe_fe.action_view_guia_remision_electronica" 
+                            parent="gestionit_pe_fe.menu_documentos" 
+                            sequence="4" />
+            <menuitem name="Datos Principales"
+                        sequence="10" 
+                        id="gestionit_pe_fe.menu_guia_remision_datos_principales"
+                        parent="gestionit_pe_fe.menu_principal_guia_remision"/>
+
+                <menuitem name="Empresas de Transporte" 
+                            id="gestionit_pe_fe.menu_transportistas" 
+                            action="gestionit_pe_fe.action_view_empresas_transporte" 
+                            parent="gestionit_pe_fe.menu_guia_remision_datos_principales" 
+                            sequence="5" />
+
+                <menuitem name="Vehículos privados" 
+                            id="gestionit_pe_fe.menu_vehiculos_privados" 
+                            action="gestionit_pe_fe.action_server_vehiculos_privados" 
+                            parent="gestionit_pe_fe.menu_guia_remision_datos_principales" 
+                            sequence="6" />
+
+                <menuitem name="Conductores privados" 
+                            id="gestionit_pe_fe.menu_conductores_privados" 
+                            action="gestionit_pe_fe.action_server_conductores_privados" 
+                            parent="gestionit_pe_fe.menu_guia_remision_datos_principales" 
+                            sequence="7" />
+        
+                <menuitem name="Catalog 20 - Motivo de Traslado" 
+                            id="gestionit_pe_fe.menu_motivo_traslado_cat_20" 
+                            action="gestionit_pe_fe.action_view_motivo_traslado_cat_20" 
+                            parent="gestionit_pe_fe.menu_guia_remision_datos_principales" 
+                            sequence="20"/>
+    </data>
+</odoo>

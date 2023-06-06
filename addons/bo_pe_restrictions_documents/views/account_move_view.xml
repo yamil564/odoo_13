@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_form_inherit_restrictions_documents" model="ir.ui.view">
+            <field name="name">view_move_form_inherit_restrictions_documents</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="gestionit_pe_fe.view_account_move_tipo_comprobante"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//form/header" position="before">
+                    <field name="flag_length_document_number" invisible="1"/>
+
+                    <div class="alert alert-warning" role="alert" style="margin-bottom:0px" attrs="{'invisible': [('flag_length_document_number','in',[False,'',None])]}">
+                        <bold>El Correlativo del Comprobante para Compras Domiciliadas debe tener 8 dígitos como máximo.</bold> 
+                    </div>
+
+
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem name="Comprobantes" sequence="1" id="gestionit_pe_fe.menu_principal_comprobantes" parent="account.menu_finance" />
+        <menuitem name="Documentos" sequence="1" id="gestionit_pe_fe.menu_comprobantes_documentos" parent="gestionit_pe_fe.menu_principal_comprobantes" />
+        <menuitem name="Facturas de venta" sequence="1" id="account.menu_action_move_out_invoice_type" parent="gestionit_pe_fe.menu_comprobantes_documentos" />
+        <menuitem name="Reportes" sequence="2" id="gestionit_pe_fe.menu_reportes_documentos" parent="gestionit_pe_fe.menu_principal_comprobantes" />
+    </data>
+</odoo>

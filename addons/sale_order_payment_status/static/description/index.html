@@ -1,0 +1,180 @@
+<section class="container">
+    <h2 class="text-primary">With this app, it will be easy to manage sale order payment status.</h2>
+    <hr>
+
+    <p class="lead">
+		Sale order payment status will be showed on Sale Order Tree and Sale Order Form. Do a payment on Sale Order Form.<br/>
+		<img src="payment_status.png" class="img-fluid d-block mx-auto"/>
+		<img src="banner_1.png" class="img-fluid d-block mx-auto"/>
+	</p>
+	<p>
+		<h3 class="bg-success text-white">List features:</h3>
+	</p>
+	<p>
+		1. Show Sale Order Payment status on Sale Order Tree and Form.
+	</p>
+	<p>
+		2. Automatically calculate amount due of sale order and show it on sale order form.
+	</p>
+	<p>
+		3. Show payment info on sale order. 
+	</p>
+	<p>
+		4. Do Payment on sale order form. Automatically reconcile invoice and re-calculate amount due.
+	</p>
+	<p>
+		5. Filters by Payment Status on Sale Order Tree.
+	</p>	
+    <hr>
+	
+	<p>
+		<h3 class="bg-success text-white">List Payment Status:</h3>
+	</p>
+	<p>
+		1. No Invoice: The Sale Order hasn't any invoice. The status will be changed to "Not Paid" when one invoice is created.
+	</p>
+	<p>
+		2. Not Paid: The Sale Order has some invoices, and no invoice is overdue. <br/>
+		The status will be changed to "Fully Paid" automatically, when all of invoices was paid. <br/>
+		The status will be changed to "Partial Paid" automatically, when one of invoices was partial paid. <br/>
+		The status will be changed to "Overdue" automatically, when one of invoices was overdue. <br/>
+	</p>
+	<p>
+		3. Partial Paid: The Sale Order has some invoices, one of them was partial paid and all of them haven't been overdue.<br/>
+		The status will be changed to "Fully Paid" automatically, when all of invoices was paid. <br/>
+		The status will be changed to "Overdue" automatically, when one of invoices was overdue. <br/>
+	</p>
+	<p>
+		4. Overdue: The Sale Order has some invoices, one of them was overdue.
+		The status will be changed to "Fully Paid" automatically, when all of invoices was paid. <br/>
+	</p>
+	<p>
+		5. Fully Paid: The Sale Order has some invoices, all of them was paid.
+	</p>
+		
+	<hr>
+	<p id="List-Example">
+		<h3 class="bg-success text-white">List Example:</h3>
+	</p>
+	<p class="text-info">
+		1. <a href="#Example-1" class="btn btn-outline-info text-dark">Example 1</a>: "No invoice" status will be updated to "Not Paid" status.
+	</p>
+	<p class="text-info">
+		2. <a href="#Example-2" class="btn btn-outline-info text-dark">Example 2</a>: "Not Paid" status will be updated to "Partial Paid" status and from "Partial Paid" to "Fully Paid".
+	</p>
+	<p class="text-info">
+		3. <a href="#Example-3" class="btn btn-outline-info text-dark">Example 3</a>: Do payment for sale order that has some invoices.
+	</p>
+	<p class="text-info">
+		4. <a href="#Example-4" class="btn btn-outline-info text-dark">Example 4</a>: Filter Sale Order Payment Status.
+	</p>	
+	
+	<hr><br/>
+	<p id="Example-1">
+		<h3 class="text-danger">Example 1: "No invoice" status will be updated to "Not Paid" status</h3>
+	</p>
+	<p>
+		Sale order payment Status is "No invoice".
+		<img src="example/ex_1_1.png" class="img-fluid d-block mx-auto"/>		
+	</p><br/>
+	<p>	After one invoice was created. The payment status was changed to "Not Paid", and amount due was showed on the form <br/>
+		if User is belong to Billing group (group_account_invoice) the "Register Payment" button will be showed. 
+		<img src="example/ex_1_2.png" class="img-fluid d-block mx-auto"/>
+	</p><br/>	
+	<p>
+		<a href="#List-Example" class="btn btn-info">Back To List Example</a>
+	</p>
+	<br/>
+	
+	<p id="Example-2">
+		<h3 class="text-danger">Example 2: "Not Paid" status will be updated to "Partial Paid" status and from "Partial Paid" to "Fully Paid"</h3>
+	</p>
+	<p>Click on "Register Payment" button to do a payment from sale order form.<br/>
+		<img src="example/ex_2_1.png" class="img-fluid d-block mx-auto"/>		
+	</p><br/>
+	<p> In put Amount less than Sale order amount due, and then click on "Create Payment" button<br/>
+		After create payment. The payment status was changed to "Partial Paid", and payment detail was showed. 
+		<img src="example/ex_2_2.png" class="img-fluid d-block mx-auto"/>		
+	</p>	
+	<p>
+		Click on "Register Payment" button again to do a payment for rest amount.<br/>
+		<img src="example/ex_2_3.png" class="img-fluid d-block mx-auto"/>		
+	</p>
+	<p> 
+		After create payment. The payment status was changed to "Fully Paid", and payment detail was showed. 
+		<img src="example/ex_2_4.png" class="img-fluid d-block mx-auto"/>		
+	</p>
+	
+	<p>
+		<a href="#List-Example" class="btn btn-info">Back To List Example</a>
+	</p>
+	<br/>
+	
+	<p id="Example-3">
+		<h3 class="text-danger">Example 3: Do payment for sale order that has some invoices</h3>
+	</p>
+	<p>	This sale order has 3 invoices, amount due of each invoice is $174.04, and total amount due of 3 invoices is $522.12<br/>
+		<img src="example/ex_3_1.png" class="img-fluid d-block mx-auto"/><br/>
+		Invoice INV/2021/10/0035
+		<img src="example/ex_3_2.png" class="img-fluid d-block mx-auto"/><br/>
+		Invoice INV/2021/10/0036
+		<img src="example/ex_3_3.png" class="img-fluid d-block mx-auto"/><br/>
+		Invoice INV/2021/10/0037
+		<img src="example/ex_3_4.png" class="img-fluid d-block mx-auto"/><br/>
+	</p><br/>	
+	<p>
+		From sale order form, do a frist payment by click on "Register Payment" button, and input amount $100.12<br/>
+		<img src="example/ex_3_5.png" class="img-fluid d-block mx-auto"/><br/>
+	</p>
+	<p>
+		<img src="example/ex_3_6.png" class="img-fluid d-block mx-auto"/><br/>
+		Frist payment was reconciled for INV/2021/10/0037 invoice
+		<img src="example/ex_3_7.png" class="img-fluid d-block mx-auto"/><br/>
+	</p>
+	<p>
+		Back to sale order form and do a second payment by click on "Register Payment" button, and input amount $300.00<br/>
+		<img src="example/ex_3_8.png" class="img-fluid d-block mx-auto"/><br/>
+	</p>
+	<p>
+		<img src="example/ex_3_9.png" class="img-fluid d-block mx-auto"/><br/>
+		Second payment was reconciled $73.92 for INV/2021/10/0037 invoice <br/> 
+		<img src="example/ex_3_10.png" class="img-fluid d-block mx-auto"/><br/> 
+	</p>
+	<p>
+		And was reconciled $174.04 for INV/2021/10/0036 invoice <br/> 
+		<img src="example/ex_3_11.png" class="img-fluid d-block mx-auto"/>
+	</p>
+	<p>
+		And was reconciled $52.04 for INV/2021/10/0035 invoice <br/> 
+		<img src="example/ex_3_12.png" class="img-fluid d-block mx-auto"/>
+	</p>
+	<p>
+		Back to sale order form and do a third payment by click on "Register Payment" button, and input the rest amount<br/>
+		<img src="example/ex_3_13.png" class="img-fluid d-block mx-auto"/><br/>
+	</p>
+	<p>
+		<img src="example/ex_3_14.png" class="img-fluid d-block mx-auto"/><br/>
+		Third payment was reconciled $122.00 for INV/2021/10/0035 invoice <br/> 
+		<img src="example/ex_3_15.png" class="img-fluid d-block mx-auto"/><br/> 
+	</p>
+	<p>
+		<a href="#List-Example" class="btn btn-info">Back To List Example</a>
+	</p>
+	<br/>
+
+	<p id="Example-4">
+		<h3 class="text-danger">Example 4: Filter Sale Order Payment Status</h3>
+	</p>	
+	<p>	
+		<img src="example/ex_4_1.png" class="img-fluid d-block mx-auto"/><br/>		
+	</p>
+	<p>
+		<a href="#List-Example" class="btn btn-info">Back To List Example</a>
+	</p>
+
+	<hr>
+	<p>
+		<h3 class="bg-success text-white">Email Support: huynh.giang.son.gs@gmail.com</h3>
+	</p>
+   
+</section>

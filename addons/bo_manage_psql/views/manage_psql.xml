@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bo_manage_psql_view_form" model="ir.ui.view">
+        <field name="name">bo.manage.psql.view.form</field>
+        <field name="model">bo.manage.psql</field>
+        <field name="arch" type="xml">
+            <form string="Administrar PSQL">
+                <header>
+                    <button string="Ejecutar" name="execute_psql" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Script" string="Script">
+                            <field name="script"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="bo_manage_psql_view_tree" model="ir.ui.view">
+        <field name="name">bo.manage.psql.view.tree</field>
+        <field name="model">bo.manage.psql</field>
+        <field name="arch" type="xml">
+            <tree string="Administrar PSQL">
+                <field name="name"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="bo_manage_psql_action" model="ir.actions.act_window">
+        <field name="name">Administrar PSQL</field>
+        <field name="res_model">bo.manage.psql</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="bo_manage_psql_menu"
+        name="Administrar PSQL"
+        action="bo_manage_psql_action"
+        parent="base.next_id_9"
+        sequence="1"/>
+</odoo>

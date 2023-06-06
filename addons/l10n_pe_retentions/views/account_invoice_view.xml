@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="before">
+                    <field name="is_retention" invisible="1"/>
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px" attrs="{'invisible': [('is_retention','=',False)]}">
+                        <bold>Documento sujeto a Retención</bold> 
+                    </div>
+                </xpath>
+
+
+                <header position="inside">
+
+                    <field name="is_retention" invisible="1"/>
+
+                     <button name="action_open_wizard_retention_paid"
+                            string="Pagar Factura con Retención"
+                            type="object"
+                            attrs="{'invisible': ['|',('state','not in',['open']),('is_retention','!=',True)]}"
+                            />
+                </header>
+
+                <!--#################################-->
+                <xpath expr="//notebook/page[@id='retention_cpe']" position="attributes">
+                     <attribute name="attrs">{'invisible':True}</attribute>
+                </xpath>
+
+                <!--#################################-->
+                <field name="active_retention_data" position="attributes">
+                     <attribute name="attrs">{'invisible':True}</attribute>
+                </field>
+
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <field name="is_retention" invisible="1"/>
+
+                    <page string="Registro de Retención" id="retention_page" attrs="{'invisible': [('is_retention','!=',True)]}">
+                        <group>
+
+                            <field name="is_retention" invisible="1"/>
+                            <field name="is_invoice_in_ME" invisible="1"/>
+
+                            <group>
+                                <group> 
+                                    <field name="send_retention_data_to_cpe"/>
+                                </group>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="amount_total" string="Monto Total Factura"/>
+                                    <field name="amount_total_company_signed" string="Monto Total Factura en Moneda Compañía" attrs="{'invisible': [('is_invoice_in_ME','!=',True)]}"/>
+                                    <field name="retention_amount"/>
+                                    <field name="retention_amount_in_company_currency" attrs="{'invisible': [('is_invoice_in_ME','!=',True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="porcentaje_retencion"/>
+                                    <field name="monto_minimo_retencion"/>
+                                </group>
+                            </group>
+
+                            <field name='account_invoice_retention_line_ids'>
+                                <tree>
+                                    <field name="nro_comprobante_retencion"/>
+                                    <field name="amount_paid" sum="amount_paid"/>
+                                    <field name="amount_paid_retention" sum="amount_paid_retention"/>
+                                    <field name="retention_date"/>
+                                    <field name="retention_journal_id"/>
+                                    <field name="retention_move_id"/>
+                                    <button name="action_open_move_id" string="Ver asiento contable de Retención" type="object" icon="fa-book"/>
+
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

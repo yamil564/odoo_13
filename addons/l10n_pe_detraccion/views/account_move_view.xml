@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="before">
+                    <field name="detraccion_id" invisible="1"/>
+                    <field name="detraccion" invisible="1"/>
+
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px" attrs="{'invisible': [('detraccion','=',False)]}">
+                        <bold>Documento sujeto a Detraccion !</bold> 
+                    </div>
+
+                </xpath>
+
+
+                <header position="inside">
+                    <field name="exist_detraccion" invisible="1"/>
+                     <button name="action_detraction_open"
+                            string="Crear Detracción"
+                            type="object"
+                            attrs="{'invisible': ['|','|',('detraccion','=',False),('exist_detraccion','=',True),('state','in',['draft','paid'])]}"
+                            />
+                </header>
+
+
+
+               <xpath expr="//form/sheet/div[@class='oe_button_box']" position="inside">
+                    <field name="exist_detraccion" invisible="1"/>
+
+                    <button name="button_view_detraccion" class="oe_stat_button" icon="fa-file" type="object" string="Ver Detracción" attrs="{'invisible': [('exist_detraccion','!=',True)]}">
+                  </button>
+               </xpath>
+
+               <field name="invoice_number" position="after">
+                    <field name="register_detraction_id"
+                        readonly="1"
+                        attrs="{'invisible':[('register_detraction_id','=',False)]}"/>
+
+                    <field name="is_detraction" attrs="{'invisible':[('type','in',['out_invoice','out_refund'])]}"/>
+                </field>
+
+            </field>
+        </record>
+
+
+        <record id="view_invoice_detraction_tree" model="ir.ui.view">
+            <field name="name">account.out.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="detraccion_id"/>
+                    <field name="detraccion" invisible="1"/>
+                    <field name="is_detraction" invisible="1"/>
+                    <field name="register_detraction_id" invisible="1"/>
+                </field>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">detraccion == True and state == 'draft'</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

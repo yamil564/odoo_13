@@ -1,0 +1,5 @@
+<odoo>
+    <record id="base.action_res_users" model="ir.actions.act_window">
+        <field name="context">{'search_default_no_share': 1,'no_doc':1}</field>
+    </record>
+</odoo>

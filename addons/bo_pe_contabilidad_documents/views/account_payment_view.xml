@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_inherit_force_form" model="ir.ui.view">
+            <field name="name">view_account_payment_inherit_force_form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+
+            <field name="groups_id" eval="[(4,ref('bo_pe_contabilidad_documents.group_payment_force_account'))]"/>
+
+            <field name="arch" type="xml">
+                
+                <field name="journal_id" position="after">
+                    <field name="force_destination_account_id" attrs="{'invisible': [('payment_type', '=','transfer')],'readonly':[('state','!=','draft')]}"/>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_inherit_force_2_form" model="ir.ui.view">
+            <field name="name">view_account_payment_inherit_force_2_form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                
+                <field name="communication" position="after">
+                    <field name="operation_number" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

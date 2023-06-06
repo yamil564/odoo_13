@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ple_diary_accounting_plan,modelo ple_diary_accounting_plan,model_ple_diary_accounting_plan,,1,1,1,1
+access_ple_diary_accounting_plan_line,modelo ple_diary_accounting_plan_line,model_ple_diary_accounting_plan_line,,1,1,1,1
+access_wizard_printer_ple_diary_accounting_plan,modelo wizard_printer_ple_diary_accounting_plan,model_wizard_printer_ple_diary_accounting_plan,,1,1,1,1
+

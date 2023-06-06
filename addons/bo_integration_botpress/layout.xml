@@ -1,0 +1,44 @@
+<odoo>
+    <template id="frontend_layout_botpress" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']" position="before">
+            <t  t-if="website.has_botpress">
+                <script t-attf-src="#{website.get_botpress_host()}/assets/modules/channel-web/inject.js"></script>
+                <script>
+                    window.botpressWebChat.init({
+                        host: "<t t-esc='website.get_botpress_host()'/>",
+                        botId: "<t t-esc='website.get_botpress_bot_id()'/>",
+                        extraStylesheet:"<t t-esc='website.botpress_url_stylesheet or "" '/>"
+                    });
+                    var bp_first,bp_first_open,userId;
+
+                    window.addEventListener('load',async function(){
+                        bp_first_open = await localStorage.getItem("bp_first_open")
+                        userId = await localStorage.getItem("bp/socket/user");
+                        console.log(userId);
+                        //console.log(typeof bp_first_open);
+                        //console.log(bp_first_open !== "1")
+                        if(bp_first_open !== "1"){
+                            window.botpressWebChat.sendEvent({type:'show'});
+                            await localStorage.setItem("bp_first_open","1");
+                        }else{
+                             window.botpressWebChat.sendEvent({type:'hide'});
+                        }
+                    });
+
+                    window.addEventListener("message",async function(event){
+                        bp_first = await localStorage.getItem("bp_first")
+                        
+                        //console.log(event);
+                        if(bp_first !== "1"){
+                            console.log(event.data.name)
+                            if(event.data.name==="webchatReady"){
+                                window.botpressWebChat.sendEvent({type: "proactive-trigger",text:'Iniciar'});
+                                await localStorage.setItem("bp_first","1");
+                            }
+                        }
+                    });
+                </script>
+            </t>
+        </xpath>
+    </template>
+</odoo>

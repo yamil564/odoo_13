@@ -1,0 +1,150 @@
+<odoo>
+    <data>
+        <template id="gestionit_pe_fe_consulta_web.form" name="buscador">
+
+            <head>
+                <link rel="stylesheet" type="text/css" href="gestionit_pe_fe_consulta_web/static/src/css/bootstrap.css"/>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="justify-content-center">
+                        <div class="card" style="margin-top: 20px;">
+                            <div class="card-header" style="background: #6daddd; color: white;">
+                                <h3>Buscar Comprobante</h3>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="serie">Serie</label>
+                                            <input type="text" class="form-control" id="serie" placeholder="F001"  required="true"/>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="correlativo">Número</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="lavel_correlativo">N°</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="correlativo" placeholder="########"  required="true"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="fecha">Fecha</label>
+                                            <input type="date" class="form-control" id="fecha" required="true"/>
+                                            <div class="invalid-tooltip">
+                                            Ingresar fecha
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="ruc">RUC/DNI de Receptor</label>
+                                            <input type="text" class="form-control" id="ruc" placeholder="RUC o DNI" required="true"/>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="total">Total</label>
+                                            <input type="text" class="form-control" id="total" placeholder="0.00" required="true"/>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="buscar_documento()">Buscar</button>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div id="documento"></div>
+                    </div>
+                </div>
+
+                <script src="/gestionit_pe_fe_consulta_web/static/src/js/jquery-3.3.1.js"> </script>
+				<script src="/gestionit_pe_fe_consulta_web/static/src/js/bootstrap.js"></script>
+				<script type="text/javascript" src="/gestionit_pe_fe_consulta_web/static/src/js/buscador.js"></script>
+            </body>
+        </template>
+
+        <template id="gestionit_pe_fe_consulta_web.documentos" name="demo">
+            <head>
+                <link rel="stylesheet" type="text/css" href="gestionit_pe_fe_consulta_web/static/src/css/bootstrap.css"/>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="row justify-content-center pt-3" t-if="documento.exists()">
+                        <table class="table table-sm " >
+                            <thead>
+                                <tr>
+
+                                    <th>FECHA EMISION</th>
+                                    <th>NÚMERO</th>
+                                    <th>CLIENTE</th>
+                                    <th>IMPORTE TOTAL</th>
+                                    <th  t-if="documento.has_ei_xml()">XML</th>
+                                    <th  t-if="documento.has_ei_cdr()">CDR</th>
+                                    <th>PDF</th>
+                                    <th>Consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <t t-foreach="documento" t-as="doc"> -->
+                                    <tr>
+                                        <td><span t-esc="documento.invoice_date"/></td>
+                                        <td><span t-esc="documento.name"/></td>
+                                        <td><span t-esc="documento.partner_id.vat"/></td>
+                                        <td><span t-esc="documento.amount_total"/></td>
+                                        <td t-if="documento.has_ei_xml()">
+                                            <a t-att-href="documento.get_portal_url(suffix='/ei/xml')"  target="_blank"  >
+                                                <img src="/gestionit_pe_fe_consulta_web/static/src/img/icon_xml.png" class="img img-responsive" style="height:50px"/>
+                                            </a>
+                                        </td>
+                                        <td t-if="documento.has_ei_cdr()">
+                                            <a t-att-href="documento.get_portal_url(suffix='/ei/cdr')"  target="_blank" >
+                                                <img src="/gestionit_pe_fe_consulta_web/static/src/img/icon_xml.png" class="img img-responsive" style="height:50px"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a t-att-href="documento.get_portal_url(report_type='pdf', download=True)"  target="_blank">
+                                                <img src="/gestionit_pe_fe_consulta_web/static/src/img/icon_pdf.png" class="img img-responsive" style="height:50px"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a t-att-href="'{}#discussion'.format(documento.get_portal_url())"  target="_blank">
+                                                <img src="/gestionit_pe_fe_consulta_web/static/src/img/icon_consulta.png" class="img img-responsive" style="height:50px"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <!-- </t> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div t-else="" class="pt-3">
+                        <div class="alert alert-warning" role="alert">
+                        Este comprobante no ha sido encontrado.
+                        </div>
+                    </div>
+                </div>
+
+                <script src="/gestionit_pe_fe_consulta_web/static/src/js/jquery-3.3.1.js"> </script>
+				<script src="/gestionit_pe_fe_consulta_web/static/src/js/bootstrap.js"></script>
+				<script type="text/javascript" src="/gestionit_pe_fe_consulta_web/static/src/js/buscador.js"></script>
+            </body>
+
+        </template>
+
+        <!-- <template id="listing"> -->
+        <!--   <ul> -->
+        <!--     <li t-foreach="objects" t-as="object"> -->
+        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+        <!--         <t t-esc="object.display_name"/> -->
+        <!--       </a> -->
+        <!--     </li> -->
+        <!--   </ul> -->
+        <!-- </template> -->
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+        <!--     <t t-foreach="object._fields" t-as="field"> -->
+        <!--       <dt><t t-esc="field"/></dt> -->
+        <!--       <dd><t t-esc="object[field]"/></dd> -->
+        <!--     </t> -->
+        <!--   </dl> -->
+        <!-- </template> -->
+    </data>
+</odoo>

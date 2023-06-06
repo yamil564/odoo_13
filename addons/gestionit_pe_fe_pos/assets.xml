@@ -1,0 +1,18 @@
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/js/print.min.js" />
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/lib/qrcode.min.js" />
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/lib/String.js" />
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/js/db.js" />
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/js/models.js" />
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/js/credit_note.js" />
+            <script type="text/javascript" src="/gestionit_pe_fe_pos/static/src/js/screens.js" />
+        </xpath>
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" href="/gestionit_pe_fe_pos/static/src/scss/pos_order_list.scss"/>
+            <link rel="stylesheet" href="/gestionit_pe_fe_pos/static/src/scss/show_journals.scss" />
+            <link rel="stylesheet" href="/gestionit_pe_fe_pos/static/src/scss/print.min.css" />
+        </xpath>
+    </template>
+</odoo>

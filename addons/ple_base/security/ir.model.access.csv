@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ple_base,modelo ple_base,model_ple_base,,1,1,1,1
+access_wizard_printer_ple_base,modelo wizard_printer_ple_base,model_wizard_printer_ple_base,,1,1,1,1

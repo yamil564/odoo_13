@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_latam_base.view_partner_latam_form" model="ir.ui.view">
+        <field name="name">view_partner_latam_form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="model">res.partner</field>
+        <field name="priority">100</field>
+        <field type="xml" name="arch">
+            <field name="vat" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="vat" position="after">
+                <label for="l10n_latam_identification_type_id" string="Número de documento"/>
+                <div>
+                    <field name="l10n_latam_identification_type_id" options="{'no_open': True, 'no_create': True}" placeholder="Type" attrs="{'readonly': [('parent_id','!=',False)]}" class="oe_inline" domain="country_id and ['|', ('country_id', '=', False), ('country_id', '=', country_id)] or []" required="True"/>
+                    <span class="oe_read_only"> - </span>
+                    <field name="vat" placeholder="Número" class="oe_inline" attrs="{'readonly': [('parent_id','!=',False)]}"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+    <record id="gestionit_pe_consulta_ruc_dni.view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.consulta.ruc.dni</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <button string="Actualizar datos RUC" type="object" name="update_document"/>
+                </header>
+            </sheet>
+            <div class="o_row" position="before">
+                <field name="registration_name" placeholder="Razón social" attrs="{'invisible': [('is_company','=',False)],'required': [('is_company','=',True)]}"/>
+                <field name="msg_error"/>
+                <field name="estado_contribuyente" placeholder="Estado del Contribuyente"/>
+            </div>
+            <!-- <xpath expr="//field[@name='city']" position="after">
+                <field name="ubigeo" />
+            </xpath> -->
+        </field>
+    </record>
+
+    <record id="view_form_popup_simple_res_partner" model="ir.ui.view">
+        <field name="name">view.form.popup.simple.res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <h1>
+                    <field name="name" required="1"/>
+                </h1>
+                <group name="simple_form">
+                    <group>
+                        <label for="l10n_latam_identification_type_id" string="Número de documento"/>
+                        <div>
+                            <field name="l10n_latam_identification_type_id" widget="radio" options="{'horizontal': true}"/>
+                            <field name="vat"/>
+                        </div>
+                        <label for="street" string="Dirección"/>
+                        <div>
+                            <field name="country_id" invisible="1" required="1"/>
+                            <field name="district_id" context="{'ubigeo_search': True }" domain="[('country_id','=',country_id),('province_id','!=',False),('state_id','!=',False)]" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="ubigeo" string="Ubigeo"/>
+                            <field name="street" string="Dirección" class="o_address_street"/>
+                        </div>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_form_popup_simple_res_partner_delivery_invoice_address" model="ir.ui.view">
+        <field name="name">view.form.popup.simple.res.partner.delivery.invoice.address</field>
+        <field name="model">res.partner</field>
+        <field name="groups_id" eval="[(4,ref('gestionit_pe_consulta_ruc_dni.group_perm_invoice_and_shipping_addres_custom'))]"/>
+        <field name="inherit_id" ref="gestionit_pe_consulta_ruc_dni.view_form_popup_simple_res_partner"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='simple_form']" position="replace"></xpath>
+            <xpath expr="//h1" position="after">
+                <field name="l10n_latam_identification_type_id" widget="radio" options="{'horizontal': true}" invisible="1"/>
+                <field name="vat" placeholder="Número de RUC / DNI / Otro documento" invisible="1"/>
+                <label for="street_invoice_ids" string="Facturación"/>
+                <field name="street_invoice_ids" context="{'default_type':'invoice','parent_id':id}" domain="['|',('active','=',False),('active','=',True)]">
+                    <tree editable="bottom" options="{'no_open':True}" decoration-muted="active == False">
+                        <field name="parent_id" invisible="1"/>
+                        <field name="type" invisible="1"/>
+                        <field name="l10n_latam_identification_type_id" 
+                                options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" string="Tipo doc."/>
+                        <field name="vat" string="Núm. doc." required="1"/>
+                        <field name="name" string="Nombre o Razón social" required="1"/>
+                        <field name="street" string="Dirección"/>
+                        <field name="active" string="Activo" widget="boolean_toggle"/>
+                    </tree>
+                </field>
+                <label for="street_delivery_ids" string="Direcciones" />
+                <field name="street_delivery_ids" editable="bottom" context="{'default_type':'delivery','parent_id':id}" domain="['|',('active','=',False),('active','=',True)]">
+                    <tree editable="bottom" options="{'no_open':True}" decoration-muted="active == False">
+                        <field name="parent_id" invisible="1"/>
+                        <field name="type" invisible="1"/>
+                        <field name="country_id" invisible="1"/>
+                        <field name="district_id" 
+                                context="{'ubigeo_search': True }" 
+                                domain="[('country_id','=',country_id),('province_id','!=',False),('state_id','!=',False)]" 
+                                options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" 
+                                string="Dep/Prov/Distrito" 
+                                required="1"/>                                
+                        <field name="name" invisible="1"/>
+                        <field name="street" required="1"/>
+                        <field name="active" string="Activo" widget="boolean_toggle"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

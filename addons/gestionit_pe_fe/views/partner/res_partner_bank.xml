@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_form_extend_res_partner_bank" model="ir.ui.view">
+        <field name="name">view.form.extend.res.partner.bank</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="acc_type" position="after">
+                <field name="description" string="Descripción" />
+                <field name="is_national_bank_detraction" string="Es una cuenta de detracción?" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_payment_invoice_form" model="ir.ui.view">
+            <field name="name">account.payment.invoice.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="before">
+                    <field name="company_currency_id" invisible="True"/>
+                    
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('register_detraction_id','=',False)]}">
+                        <bold>Documento sujeto a Detraccion <field name="register_detraction_id"
+                        attrs="{'invisible':[('register_detraction_id','=',False)]}"
+                        readonly="1" force_save="1"/><br/> 
+                        Primero se registrará el monto <b><field name="residual_detraction"/></b> de la detracción
+                        </bold> 
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

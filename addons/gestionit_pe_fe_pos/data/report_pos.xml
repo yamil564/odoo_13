@@ -1,0 +1,5 @@
+<odoo>
+    <record id="point_of_sale.pos_invoice_report" model="ir.actions.report">
+        <field name="print_report_name">'%s - %s' % (object.get_invoice_name() ,object.name)</field>
+    </record>
+</odoo>

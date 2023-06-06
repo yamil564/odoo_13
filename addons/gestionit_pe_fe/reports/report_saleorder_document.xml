@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="gestionit_report_sale_order" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//h2[hasclass('mt16')]" position="before">
+            <div name="sale_order_address" class="w-100 mb16">
+                <table class="w-100">
+                    <tr>
+                        <!-- CLIENTE -->
+                        <th class="l_partner" width="20%">
+                            <label t-esc="'CLIENTE : '"/>
+                        </th>
+                        <td class="v_partner" width="40%">
+                            <span t-esc="((doc.partner_id.registration_name if doc.partner_id.registration_name not in ('-',False,'') else doc.partner_id.name)  or '').upper()"/>
+                        </td>
+                        <!-- TELÉFONO -->
+                        <th class="l_mobile" width="10%">
+                            <label t-esc="'TELÉFONO : '" />
+                        </th>
+                        <td class="v_mobile" width="30%">
+                            <span t-esc="'{} {}'.format(doc.partner_id.phone or '',doc.partner_id.mobile or '').upper()"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- RUC/DNI -->
+                        <th>
+                            <label t-esc="'{} : '.format(doc.partner_id.l10n_latam_identification_type_id.name)"/>
+                        </th>
+                        <td>
+                            <span t-esc="(doc.partner_id.vat or '').upper()"/>
+                        </td>
+                        <!-- REFERENCIA -->
+                        <th>
+                            <label t-esc="'REFERENCIA : '"/>
+                        </th>
+                        <td>
+                            <span t-esc="(doc.client_order_ref or '').upper()"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- ATENCIÓN -->
+                        <th>
+                            <label t-esc="'ATENCIÓN : '"/>
+                        </th>
+                        <td>
+                            <span t-esc="doc.user_id.name"/>
+                        </td>
+                        <!-- FECHA EMISIÓN -->
+                        <th>
+                            <label t-esc="'F. EMISIÓN : '"/>
+                        </th>
+                        <td>
+                            <span t-esc="doc.date_order" t-if="doc.date_order"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- EMAIL -->
+                        <th>
+                            <label t-esc="'E-MAIL : '"/>
+                        </th>
+                        <td>
+                            <span t-esc="doc.partner_id.email" t-if="doc.partner_id.email"/>
+                        </td>
+                        <!-- MONEDA -->
+                        <th>
+                            <label t-esc="'MONEDA : '"/>
+                        </th>
+                        <td>
+                            <span t-esc="doc.currency_id.currency_unit_label" t-if="doc.currency_id.currency_unit_label"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- DIRECCIÓN -->
+                        <th>
+                            <label t-esc="'DIRECCIÓN : '"/>
+                        </th>
+                        <td colspan="3">
+                            <span t-esc="'{} {}-{}-{}'.format(doc.partner_id.street or '',doc.partner_id.state_id.name or '',doc.partner_id.province_id.name or '',doc.partner_id.district_id.name or '').upper()"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+        <xpath expr="//h2[hasclass('mt16')]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t t-set="documents" t-value="{'draft':'COTIZACIÓN',
+                                            'sent':'COTIZACIÓN',
+                                            'sale':'ORDEN DE VENTA',
+                                            'done':'ORDEN DE VENTA',
+                                            'cancel':'VENTA CANCELADA'}"/>
+            <t t-set="document_display_name" t-value="documents.get(doc.state,'-')"/>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]/thead" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]/tbody" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]" position="after">
+            <table class="w-100 table-order-lines">
+                <thead>
+                    <tr>
+                        <th class="h_item">Item</th>
+                        <th class="h_quantity">Cant.</th>
+                        <th class="h_product_uom_id">U.M.</th>
+                        <th class="h_name">Descripción</th>
+                        <th class="h_value_unit">V.U.</th>
+                        <th class="h_price_unit">P.U.</th>
+                        <th class="h_discount" t-if="display_discount">Dscto.(%)</th>
+                        <th class="h_price_total">P.V.</th>
+                    </tr>
+                </thead>
+                <tbody class="sale_order_tbody">
+                    <t t-set="item" t-value="1"/>
+                    <t t-set="order_line" t-value="doc.order_line"/>
+                    <tr t-foreach="order_line.sorted('sequence')" t-as="l">
+                        <t t-if="not l.display_type">
+                            <t t-set="is_free" t-value="len(l.tax_id.filtered(lambda r:r.tax_group_id.tipo_afectacion == '31')) == 0"/>
+                            <td class="v_item">
+                                <span t-esc="item"/>
+                            </td>
+                            <td class="v_quantity">
+                                <span t-field="l.product_uom_qty"/>
+                            </td>
+                            <td class="v_product_uom_id">
+                                <span t-esc="l.product_uom.name"/>
+                            </td>
+                            <td class="v_name">
+                                <span t-field="l.name"/>
+                            </td>
+                            <td class="v_value_unit">
+                                <t t-if="is_free">
+                                    <span t-esc="round((l.price_subtotal/l.product_uom_qty)/(1-l.discount/100),2)" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="float('0')" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                </t>
+                            </td>
+                            <td class="v_price_unit">
+                                <!-- <span t-esc="0 if l.product_uom_qty == 0 else  round((l.price_total/l.product_uom_qty)/(1-l.discount/100),2)" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/> -->
+                                <t t-if="is_free">
+                                    <span t-esc="round((l.price_total/l.product_uom_qty)/(1-l.discount/100),2)" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="float('0')" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                </t>
+                            </td>
+                            <td class="v_discount" t-if="display_discount">
+                                <span t-if="l.discount &gt; 0">
+                                    <span t-esc="round(l.price_total/l.product_uom_qty,4)" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                    <span t-esc="'('+str(l.discount)+'%)'"/>
+                                </span>
+                            </td>
+                            <td class="v_price_total">
+                                <!-- <span t-field="l.price_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/> -->
+                                <t t-if="is_free">
+                                    <span t-field="l.price_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="'*Bonif*'"/>
+                                </t>
+                            </td>
+                            <t t-set="item" t-value="item+1"/>
+                        </t>
+                        <t t-if="l.display_type == 'line_section'">
+                            <td name="td_section_line" colspan="99">
+                                <span t-field="l.name"/>
+                            </td>
+                            <t t-set="current_section" t-value="l"/>
+                            <t t-set="current_subtotal" t-value="0"/>
+                        </t>
+                        <t t-if="l.display_type == 'line_note'">
+                            <td name="td_note_line" colspan="99">
+                                <span t-field="l.name"/>
+                            </td>
+                        </t>
+
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
+        <xpath expr="//div[@name='so_total_summary']" position="attributes">
+            <attribute name="style">display:none !important</attribute>
+        </xpath>
+        <xpath expr="//div[@name='so_total_summary']" position="after">
+            <div class="row sale-content-total mt16" id="total">
+                <div class="col-8">
+                    <span t-esc="'SON: {}'.format(doc.to_word(doc.amount_total,doc.currency_id.name).upper())"/>
+                    <div t-if="len(doc.company_id.bank_ids) &gt; 0" name="company_banks" class="banks">
+                        <ul>
+                            <t t-foreach="doc.company_id.partner_id.bank_ids" t-as="bank">
+                                <li t-if="bank.show_report_sale">
+                                    <span t-esc="'{} {}: {}'.format(bank.bank_id.name or '',bank.description or '',bank.acc_number or '')"></span>
+                                </li>
+                            </t>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <table class="w-100">
+                        <tr t-if="doc.descuento_global &gt; 0" name="descuento_global">
+                            <td>
+                                <strong>Dscto. Global
+                                    <t t-esc="'('+str(doc.descuento_global)+'%)'"/>
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_descuento_global"/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.total_descuentos &gt; 0" name="total_descuentos">
+                            <td>
+                                <strong>Total de Descuentos</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_descuentos"/>
+                            </td>
+                        </tr>
+                        <tr name="total_venta_gravado">
+                            <td>
+                                <strong>Monto Gravado</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_venta_gravado"/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.total_venta_inafecto &gt; 0" name="total_venta_inafecto">
+                            <td>
+                                <strong>Monto Inafecto</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_venta_inafecto"/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.total_venta_exonerada &gt; 0" name="total_venta_exonerada">
+                            <td>
+                                <strong>Monto Exonerado</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_venta_exonerada"/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.total_venta_gratuito &gt; 0" name="total_venta_gratuito">
+                            <td>
+                                <strong>Monto Gratuito</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_venta_gratuito"/>
+                            </td>
+                        </tr>
+                        <tr name="total_igv">
+                            <td>
+                                <strong>IGV 18% Venta</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_igv"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black o_total" name="total_venta">
+                            <td>
+                                <strong>Total</strong>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-nowrap" t-field="doc.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

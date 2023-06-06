@@ -1,0 +1,154 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<section class="container">
+    <h2 class="text-primary">With this app, it will be easy to manage sale order delivery status.</h2>
+    <hr>
+
+    <p class="lead">
+		Sale order delivery status will be showed on Sale Order Tree and Sale Order Form. It also will show delivery due date on sale order form.<br/>
+		<img src="delivery_status.png" class="img-fluid d-block mx-auto"/>
+		<img src="banner_1.png" class="img-fluid d-block mx-auto"/>
+	</p>
+	<p>
+		<h3 class="bg-success text-white">List features:</h3>
+	</p>
+	<p>
+		1. Show Sale Order Delivery status on Sale Order Tree and Form.
+	</p>
+	<p>
+		2. Automatically update Delivery Status when stock quantity has been updated.
+	</p>
+	<p>
+		3. Automatically calculate due date left.
+	</p>
+	<p>
+		4. Update Delivery Status manually with group "edit_delivery_status_manually". Please see <a href="#Example-4">Example 4</a>
+	</p>
+	<p>
+		5. Filters by Delivery Status on Sale Order Tree.
+	</p>	
+    <hr>
+	
+	<p>
+		<h3 class="bg-success text-white">List Delivery Status:</h3>
+	</p>
+	<p>
+		1. Waiting: The Sale Order hasn't delivered any stock and no stocks are ready for sending out. The status will be changed to "Partial Ready" or "Fully Ready" automatically, when the stock quantity is updated.
+	</p>
+	<p>
+		2. Partial Ready: The Sale Order only has some stocks are ready for sending out. The status will be changed to "Fully Ready" automatically, when the stock quantity is updated
+	</p>
+	<p>
+		3. Partial Delivery: The Sale Order has delivered some stocks and the others are waiting. The status will be changed to "Partial Ready" or "Fully Ready" automatically, when the stock quantity is updated.
+	</p>
+	<p>
+		4. Fully Ready: All Stocks are ready for sending out.
+	</p>
+	<p>
+		5. Done: The Sale Order was completely delivered.
+	</p>
+		
+	<hr>
+	<p id="List-Example">
+		<h3 class="bg-success text-white">List Example:</h3>
+	</p>
+	<p class="text-info">
+		1. <a href="#Example-1" class="btn btn-outline-info text-dark">Example 1</a>: Partial Ready status will be updated to Fully Ready status
+	</p>
+	<p class="text-info">
+		2. <a href="#Example-2" class="btn btn-outline-info text-dark">Example 2</a>: Partial Delivery status will be updated to Partial Ready status
+	</p>
+	<p class="text-info">
+		3. <a href="#Example-3" class="btn btn-outline-info text-dark">Example 3</a>: Filters by Delivery Status on Sale Order Tree
+	</p>
+	<p class="text-info">
+		4. <a href="#Example-4" class="btn btn-outline-info text-dark">Example 4</a>: Update Sale Order Delivery Status manually
+	</p>	
+	
+	<hr><br/>
+	<p id="Example-1">
+		<h3 class="text-danger">Example 1: Partial Ready status will be updated to Fully Ready status</h3>
+	</p>
+	<p>
+		Sale order Delivery Status is Partial Ready.
+		<img src="example/ex_1_1.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_1_2.png" class="img-fluid d-block mx-auto"/>			
+		<img src="example/ex_1_3.png" class="img-fluid d-block mx-auto"/>
+	</p><br/>
+	<p>	Product "Acoustic Bloc Screens" need 4 more stock to be Fully Ready status.<br/>	
+		Make a purchase order for this product with quantity is 5 unit
+		<img src="example/ex_1_4.png" class="img-fluid d-block mx-auto"/>		
+	</p><br/>
+	<p>	Receives Product.<br/>	
+		<img src="example/ex_1_5.png" class="img-fluid d-block mx-auto"/>		
+		Click on "Validate" button.
+		<img src="example/ex_1_6.png" class="img-fluid d-block mx-auto"/>		
+	</p>
+	<p>
+		After Click "Validate" button. The Sale Order Delivery Status automatically will be updated to Fully Ready.
+		<img src="example/ex_1_7.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_1_8.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_1_9.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_1_10.png" class="img-fluid d-block mx-auto"/>
+	</p>
+	<p>
+		<a href="#List-Example" class="btn btn-outline-info">Back To List Example</a>
+	</p>
+	<br/>
+	
+	<p id="Example-2">
+		<h3 class="text-danger">Example 2: Partial Delivery status will be updated to Partial Ready status</h3>
+	</p>
+	<p>	Sale order Delivery Status is Partial Delivery.<br/>
+		<img src="example/ex_2_1.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_2_2.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_2_3.png" class="img-fluid d-block mx-auto"/><br/>		
+	</p><br/>
+	<p>	Product "Storage Box" was already delivered to customer. Product "Office Chair" is out of stock and waiting update stock.<br/>
+		Make a purchase order for this product "Office Chair" with quantity is 2 unit, but only recevice 1 unit
+		<img src="example/ex_2_4.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_2_5.png" class="img-fluid d-block mx-auto"/><br/>	
+	</p>	
+	<p>
+		After Receiving 1 unit of product "Office Chair". The Sale Order Delivery Status automatically will be updated to Partial Ready.<br/>
+		<img src="example/ex_2_6.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_2_7.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_2_8.png" class="img-fluid d-block mx-auto"/>
+		<img src="example/ex_2_9.png" class="img-fluid d-block mx-auto"/>
+	</p>
+	<p>
+		<a href="#List-Example" class="btn btn-outline-info">Back To List Example</a>
+	</p>
+	<br/>
+	
+	<p id="Example-3">
+		<h3 class="text-danger">Example 3: Filters by Delivery Status on Sale Order Tree</h3>
+	</p>
+	<p>	Click on "Filters" button.<br/>
+		<img src="example/ex_3_1.png" class="img-fluid d-block mx-auto"/><br/>
+		Select "Fully Ready" Status
+		<img src="example/ex_3_2.png" class="img-fluid d-block mx-auto"/>
+	</p><br/>	
+	<p>
+		<a href="#List-Example" class="btn btn-outline-info">Back To List Example</a>
+	</p>
+	<br/>
+
+	<p id="Example-4">
+		<h3 class="text-danger">Example 4: Update Sale Order Delivery Status manually</h3>
+	</p>	
+	<p>	Go to Setting and turn on "Edit Delivery Status Manually".<br/>
+		<img src="example/ex_4_1.png" class="img-fluid d-block mx-auto"/><br/>		
+	</p><br/>
+	<p>	Go to Sale Order Form, select new delivery status".<br/>
+		<img src="example/ex_4_2.png" class="img-fluid d-block mx-auto"/><br/>		
+	</p>
+	<p>
+		<a href="#List-Example" class="btn btn-outline-info">Back To List Example</a>
+	</p>
+
+	<hr>
+	<p>
+		<h3 class="bg-success text-white">Email Support: huynh.giang.son.gs@gmail.com</h3>
+	</p>
+   
+</section>

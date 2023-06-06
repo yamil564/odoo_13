@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="gestionit_pe_consulta_ruc_dni.fields_form_credentials_api_ruc" model="ir.ui.view">
+            <field name="name">fields.form.credentials.api.ruc</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Credenciales de API Migo">
+                        <group>
+                            <field name="api_migo_endpoint" />
+                            <field name="api_migo_token" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

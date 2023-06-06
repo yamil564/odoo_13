@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+      
+	<record id="ple_purchase_line_view_form" model="ir.ui.view">
+			<field name="name"> PLE Compras </field>
+            <field name="model">ple.purchase.line</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <sheet>
+                        <group>
+            		<group>
+                        
+                        <field name ="move_id" />
+                        <field name ="asiento_contable"  string="2. Nombre del asiento contable"/>
+                        <field name ="m_correlativo_asiento_contable" string="3. M-correlativo asiento contable"/>
+                        <field name ="fecha_emision_comprobante" string="4. Fecha emisión Comprobante"  />
+                        <field name ="fecha_vencimiento" string="5. Fecha de vencimiento" />
+
+                        <field name ="tipo_comprobante" string="6. Tipo de Comprobante"/>
+                        <field name ="serie_comprobante" string="7. Serie del Comprobante"/>
+                        <field name ="anio_emision_DUA" string="8. Año Emisión DUA" />
+                        <field name ="numero_comprobante" string="9. Número Comprobante"/>
+                        <field name ="operaciones_sin_igv" string="10. Operaciones sin igv"/>
+
+
+                        <field name ="partner_id" />
+                        <field name="partner_sunat_id" />
+                        <field name ="tipo_documento_proveedor" string="11. Tipo Documento Proveedor"  />
+                        <field name ="ruc_dni" string="12. RUC o DNI Proveedor"/>
+                        <field name ="razon_social" string="13. Razón Social"/>
+
+
+                        <field name ="base_imponible_igv_gravadas" string="14. Base crédito fiscal gravadas"  />
+                        <field name ="monto_igv_1" string="15. Monto IGV"/>
+                        <field name ="base_imponible_igv_no_gravadas" string="16. base crédito fiscal no gravadas"/>
+                        <field name ="monto_igv_2" string="17. Monto IGV"/>
+                        <field name ="base_imponible_no_igv" string="18. Base sin Crédito fiscal"/>
+                        <field name ="monto_igv_3" string="19. Monto IGV"/>
+                        <field name ="valor_no_gravadas" string="20. Valor adquisiciones no gravadas" />
+                        <field name ="isc" string="21. ISC" />
+                        <field name="impuesto_consumo_bolsas_plastico" string="22. Impuesto Consumo Bolsas Plástico" />
+                        <field name ="otros_impuestos" string="23. Otros Impuestos"/>
+                        <field name ="importe_adquisiciones_registradas" string="24. Importe Adquisiciones Registradas"/>
+
+
+                        <field name ="currency_id"  />
+                        <field name ="codigo_moneda" string="25. Código Moneda"/>
+                        <field name ="tipo_cambio" string="26. Tipo de Cambio"/>
+
+
+                        <field name ="move_id_2" />
+                        <field name ="fecha_emision_original" string="27. Fecha Emision Comprobante Original"/>
+                        <field name ="tipo_comprobante_original" string="28. Tipo Comprobante Original"/>
+                        <field name ="serie_comprobante_original" string="29. Serie Comprobante Original"/>
+                        <field name ="codigo_dep_aduanera" string="30. Código Dependencia Aduanera"/>
+                        <field name ="numero_comprobante_original" string="31. Número Comprobante Original" />
+
+
+                        <field name ="fecha_detraccion"  string="32. Fecha Detracción"/>
+                        <field name ="numero_detraccion" string="33. Número Detracción"/>
+                        <field name ="marca_retencion" string="34. Marca Retención"/>
+                        <field name ="clasificacion_bienes" string="35. Clasificación Bienes Adquiridos" />
+                        <field name ="identificacion_contrato" string="36. Identificación Contrato"/>
+                        <field name ="error_1" string="37. Error Tipo 1"/>
+                        <field name ="error_2" string="38. Error Tipo 2"/>
+                        <field name ="error_3" string="39. Error Tipo 3"/>
+                        <field name ="error_4" string="40. Error Tipo 4"/>
+                        <field name ="indicador_comprobantes" string="41. Indicador Comprobantes"/>
+                        <field name ="oportunidad_anotacion" string="42. Oportunidad Anotación"/>
+
+
+            		</group>
+                </group>
+                     
+                </sheet>
+                </form>            	
+            </field>
+	</record>
+
+            <!--#############################-->
+      <record id="view_ple_purchase_domiciliados_line_tree" model="ir.ui.view">
+            <field name="name">PLE Compras Domiciliados</field>
+            <field name="model">ple.purchase.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="PLE Compras" create="false">
+                        <field name ="move_id" />
+                        <field name ="asiento_contable" />
+                        <field name ="m_correlativo_asiento_contable" />
+                        <field name ="fecha_emision_comprobante" />
+                        <field name ="fecha_vencimiento" />
+                        <field name ="tipo_comprobante" />
+                        <field name ="serie_comprobante" />
+                        <field name ="anio_emision_DUA" />
+                        <field name ="numero_comprobante" />
+                        <field name ="operaciones_sin_igv" />
+                        <field name ="tipo_documento_proveedor" />
+                        <field name ="ruc_dni" />
+                        <field name ="razon_social" />
+                        <field name ="base_imponible_igv_gravadas" />
+                        <field name ="monto_igv_1" />
+                        <field name ="base_imponible_igv_no_gravadas" />
+                        <field name ="monto_igv_2" />
+                        <field name ="base_imponible_no_igv" />
+                        <field name ="monto_igv_3" />
+                        <field name ="valor_no_gravadas" />
+                        <field name ="isc" />
+                        <field name="impuesto_consumo_bolsas_plastico"/>
+                        <field name ="otros_impuestos" />
+                        <field name ="importe_adquisiciones_registradas" />
+                        <field name ="codigo_moneda" />
+                        <field name ="tipo_cambio" />
+                        <field name ="fecha_emision_original" />
+                        <field name ="tipo_comprobante_original" />
+                        <field name ="serie_comprobante_original" />
+                        <field name ="codigo_dep_aduanera" />
+                        <field name ="numero_comprobante_original" />
+                        <field name ="fecha_detraccion" />
+                        <field name ="numero_detraccion" />
+                        <field name ="marca_retencion" />
+                        <field name ="clasificacion_bienes" />
+                        <field name ="identificacion_contrato" />
+                        <field name ="error_1" />
+                        <field name ="error_2" />
+                        <field name ="error_3" />
+                        <field name ="error_4" />
+                        <field name ="indicador_comprobantes" />
+                        <field name ="oportunidad_anotacion" />
+
+                </tree>
+            </field>
+      </record>
+
+
+      <record id="action_ple_purchase_line" model="ir.actions.act_window">
+            <field name="name">PLE-Compras</field>
+            <field name="res_model">ple.purchase.line</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+      <!--########################################################################-->
+      <record id="view_ple_purchase_no_domiciliados_line_tree" model="ir.ui.view">
+            <field name="name">PLE Compras No Domiciliadas</field>
+            <field name="model">ple.purchase.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="PLE Compras" create="false">
+
+                        <field name ="move_id" />
+                        <field name ="asiento_contable" />
+                        <field name ="no_domiciliado_m_correlativo_asiento_contable" />
+                        <field name ="fecha_emision_comprobante" />
+                        <field name ="tipo_comprobante" />
+                        <field name ="serie_comprobante" />
+                        <field name ="numero_comprobante" />
+                        <field name ="no_domiciliado_valor_adquisiciones" />
+                        <field name ="no_domiciliado_otros_conceptos_adicionales" />
+                        <field name ="importe_adquisiciones_registradas" />
+                        <field name ="no_domiciliado_tipo_comprobante_credito_fiscal" />
+                        <field name ="no_domiciliado_serie_comprobante_credito_fiscal" />
+                        <field name ="anio_emision_DUA" />
+                        <field name ="no_domiciliado_numero_comprobante_pago_impuesto" />
+                        <field name ="monto_igv_1" />
+                        <field name ="codigo_moneda" />
+                        <field name ="tipo_cambio" />
+                        <field name ="no_domiciliado_pais_residencia" />
+                        <field name ="razon_social" />
+                        <field name ="no_domiciliado_domicilio" />
+                        <field name ="no_domiciliado_numero_identificacion" />
+                        <field name ="no_domiciliado_identificacion_beneficiario" />
+                        <field name ="no_domiciliado_razon_social_beneficiario" />
+                        <field name ="no_domiciliado_pais_beneficiario" />
+                        <field name ="no_domiciliado_vinculo_entre_contribuyente_residente" />
+                        <field name ="no_domiciliado_renta_bruta" />
+                        <field name ="no_domiciliado_deduccion_bienes" />
+                        <field name ="no_domiciliado_renta_neta" />
+                        <field name ="no_domiciliado_tasa_retencion" />
+                        <field name ="no_domiciliado_impuesto_retenido" />
+                        <field name ="no_domiciliado_convenios" />
+                        <field name ="no_domiciliado_exoneracion" />
+                        <field name ="no_domiciliado_tipo_renta" />
+                        <field name ="no_domiciliado_modalidad_servicio_prestado" />
+                        <field name ="no_domiciliado_aplicacion_ley_impuesto_renta" />
+                        <field name ="no_domiciliado_oportunidad_anotacion" />
+
+                </tree>
+            </field>
+      </record>
+      <!--##############################################-->
+
+      <record id="view_ple_purchase_line_filter" model="ir.ui.view">
+              <field name="name">ple.purchase.line.filter</field>
+              <field name="model">ple.purchase.line</field>
+              <field name="arch" type="xml">
+                  <search string="PLE Compras">
+                      <group expand="1" string="Group By">
+                          <filter string="Proveedor" name="filter_proveedor" context="{'group_by':'partner_id'}"/>
+                          <filter string="Tipo de Comprobante" name="filter_tipo_comprobante" context="{'group_by':'tipo_comprobante'}"/>
+                          <filter string="Fecha Emisión Comprobante" name="filter_fecha_emision_comprobante" context="{'group_by':'fecha_emision_comprobante'}"/>
+                      </group>
+                  </search>
+              </field>
+      </record>
+
+
+        <record id="action_ple_purchase_domiciliados_line_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_ple_purchase_domiciliados_line_tree"/>
+            <field name="act_window_id" ref="action_ple_purchase_line"/>
+        </record>
+
+
+	</data>
+</odoo>

@@ -1,0 +1,5 @@
+"id","general_balance_report_id/id","name","calculation_type"
+"template_patrimonio_line_01","template_general_balance_report_01","Capital","accounts"
+"template_patrimonio_line_02","template_general_balance_report_01","Resultado Acumulado","accounts"
+"template_patrimonio_line_03","template_general_balance_report_01","Reserva Legal","accounts"
+"template_patrimonio_line_04","template_general_balance_report_01","Resultado del Periodo","variation"

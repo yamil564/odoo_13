@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_printer_ple_base_form" model="ir.ui.view">
+        <field name="name">view.wizard.printer.ple.base.form</field>
+        <field name="model">wizard.printer.ple.base</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group name="grupo_base_impresion">
+                        <group string="Parámetros de Impresión">
+
+                            <field name="print_format"/>
+                            <field name="print_order"/>
+
+                        </group>
+                    </group>
+
+
+                </sheet>
+
+                <footer>
+                    <button name="action_print" 
+                            string="IMPRIMIR"
+                            type="object"
+                            icon="fa-print"
+                            class="btn-primary"
+                            />
+                </footer>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_wizard_printer_ple_base_tree" model="ir.ui.view">
+        <field name="name">view.wizard.printer.ple.base.tree</field>
+        <field name="model">wizard.printer.ple.base</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="print_format"/>
+                <field name="print_order"/>
+                <field name="company_id"/>
+            </tree>            
+
+        </field>
+    </record>
+
+</odoo>

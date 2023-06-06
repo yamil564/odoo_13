@@ -1,0 +1,14 @@
+<odoo>
+    <record id="group_sale_invoice_contingencia" model="res.groups">
+        <field name="name">Crear Documentos Contingencia desde Ventas</field>
+        <field name="comment">Los usuarios de este grupo podrán crear documentos de contigencia desde órdenes de Venta</field>        
+    </record>
+
+    <!--<record id="group_sale_invoice_contingencia" model="res.groups">
+        <field name="name">Crear Documentos Contingencia desde Ventas</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="users" eval="[(4,ref('base.user_root')),(4,ref('base.user_admin'))]"/>
+        <field name="comment">Los usuarios de este grupo podrán crear documentos de contigencia desde órdenes de Venta</field>        
+    </record>-->
+    
+</odoo>

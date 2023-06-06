@@ -1,0 +1,46 @@
+<odoo>
+    <record id="view_form_product_product_charge_discount" model="ir.ui.view">
+        <field name="name">view.form.product.charge.discount</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Descuento/Cargo/Deducción" attrs="{'invisible':[('is_charge_or_discount','=',False)]}">
+                    <group>
+                        <field name="is_charge_or_discount"/>
+                        <field name="type_charge_or_discount_id"
+                                attrs="{'invisible':[('is_charge_or_discount','=',False)]}"
+                                options="{'no_open':True,'no_create':True,'no_quick_create':True'}"/>
+                    </group>
+                </page>
+            </notebook>
+            <xpath expr="//div[@name='standard_price_uom']" position="attributes">
+                <attribute name="groups">gestionit_pe_fe.res_groups_standard_price</attribute>
+            </xpath>
+            <xpath expr="//label[@for='standard_price']" position="attributes">
+                <attribute name="groups">gestionit_pe_fe.res_groups_standard_price</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_tree_product_template_charge_discount" model="ir.ui.view">
+        <field name="name">view.tree.product.charge.discount</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="groups">gestionit_pe_fe.res_groups_standard_price</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_tree_product_template_sunat_code" model="ir.ui.view">
+        <field name="name">view.tree.product.sunat.code</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="sunat_code" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

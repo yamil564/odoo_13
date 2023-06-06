@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend_invoice_ticket" name="Invoice assets inherit" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/bo_backend_sale_invoice_ticket/static/src/css/ticket.css"/>
+            <link rel="stylesheet" href="/bo_backend_sale_invoice_ticket/static/src/css/pos_receipts.css"/>
+
+            <script type="text/javascript" src="/bo_backend_sale_invoice_ticket/static/src/lib/qrcode.min.js"/>
+            <script type="text/javascript" src="/bo_backend_sale_invoice_ticket/static/src/js/invoice_ticket.js"/>
+        </xpath>
+    </template>
+</odoo>

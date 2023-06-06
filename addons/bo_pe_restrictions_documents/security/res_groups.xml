@@ -1,0 +1,12 @@
+<odoo>
+    <record id="group_payment_force_account" model="res.groups">
+        <field name="name">Forzar Cuenta de Destino en Cobros/Pagos</field>
+        <field name="comment">Los usuarios de este grupo podrán provisionar diversas cuentas desde Pagos/Cobros</field>        
+    </record>
+
+    <record id="group_catalog_51" model="res.groups">
+        <field name="name">Ocultar el Tipo de operación en Comprobantes</field>
+        <field name="comment">Los usuarios de este grupo no podrán definir el tipo de operación en Comprobantes de Compra/Venta</field>        
+    </record>
+    
+</odoo>

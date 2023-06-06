@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_partner_form_retentions" model="ir.ui.view">
+            <field name="name">res.partner.retentions</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook" position="inside">
+                    
+                    <page string="Configuración Padrones SUNAT">
+                        <group>
+                            <group string="Padrones SUNAT">
+
+                                <field name="es_agente_retencion"/>
+                                <field name="es_agente_percepcion"/>
+                                <field name="es_buen_contribuyente"/>
+
+                            </group>
+                        </group>
+                    </page>
+                    
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

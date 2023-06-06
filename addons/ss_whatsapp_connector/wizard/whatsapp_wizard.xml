@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="whatsapp_message_wizard_form" model="ir.ui.view">
+            <field name="name">whatsapp.message.wizard.form</field>
+            <field name="model">whatsapp.message.wizard</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Enviar mensaje Whatsapp">
+                    <group>
+                        <field name="send_to" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <group>
+                        <group>    
+                            <field name="user_id" attrs="{'invisible': [('send_to','in',['other'])]}" readonly="1"/>
+                            <!-- <field name="recipient_name" attrs="{'invisible': [('send_to','in',['contact'])]}"/> -->
+                            <field name="recipient_number" attrs="{'invisible': [('send_to','in',['contact'])], 'required':[('send_to','in',['other'])]}"/>
+                        </group>
+                        <field name="model" invisible="1"/>
+                        <group>
+                            <field name="phone_or_mobile" widget="radio" options="{'horizontal': true}" attrs="{'invisible': [('send_to','in',['other'])]}" />
+                            <field name="mobile_number" attrs="{'invisible': [('send_to','in',['other'])]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="message"/>
+                        <field name="template_id" options="{'no_create': True, 'no_edit': True}" domain="[('for_wsp', '=', True),('model_id.model','=', model)]"/>
+                        <!-- <field name="template_id" options="{'no_create': True, 'no_edit': True}" domain="[('for_wsp', '=', True)]"/> -->
+                    </group>
+                    <group>
+                        <p style="margin-left: 160px;">
+                            <strong>Nota:</strong><br />
+                            1) Usa *text* para el texto en negrita.<br />
+                            2) Usa _text_ para el texto en cursiva.<br />
+                            3) Usa %0A antes/después de un texto si quieres agregar una línea.<br />
+                            4) Usa %20 antes/después de un texto si quieres añadir un espacio.<br />
+                            <!-- 5) go to users => preferences to add signature. -->
+                        </p>
+                    </group>
+                    <footer>
+                        <button name="send_message" string="Enviar" type="object" style="background-color:#7C7BAD;color:#FFFFFF"/>
+                        <button name="cancel" string="Cancelar" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tipocambio_compra_form_inherit">
+            <field name="name">Agregar.cambio.ventas</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="exchange_rate_day" string="T/C"/>
+                </xpath>
+            </field>
+        </record>
+
+  
+
+    </data>
+</odoo>

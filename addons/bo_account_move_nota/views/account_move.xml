@@ -1,0 +1,69 @@
+<odoo>
+    <record id="account_move_notes_from_view_ext" model="ir.ui.view">
+        <field name="name">account_move_notes_from_view_ext</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.view_account_invoice_form_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_validez_comprobante']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|',('type','in',['in_invoice','in_refund']),('state','not in',('posted')),('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_reverse']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|',('type', 'not in', ('out_invoice', 'in_invoice')), ('state', '!=', 'posted'), ('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_guia_remision']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('guia_remision_count', '=', 0),('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_generate_and_signed_xml']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|',('state','!=','posted'),('type','not in',['out_invoice','out_refund']),('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+
+            <!-- ############################################ -->
+
+            <xpath expr="//button[@name='btn_comunicacion_baja']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|','|','|',('estado_comprobante_electronico','=','2_ANULADO'),('state','not in',['posted']),('type','in',['in_invoice','in_refund']),('invoice_type_code','=','100'),('mostrar_btn_comunicacion_baja','not in',[True])]}</attribute>
+            </xpath>
+            <!-- ############################################# -->
+
+
+            <xpath expr="//button[@name='action_open_guia_remision']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|',('guia_remision_count','!=',0),('type','in',['in_invoice','in_refund']),('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_move_notes_debit_from_view_ext" model="ir.ui.view">
+        <field name="name">account_move_notes_debit_from_view_ext</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.button_debit_note"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_account_move_debit']" position="attributes">
+              <attribute name="attrs">{'invisible': ['|', '|', '|',('debit_origin_id', '!=', False),
+                                                              ('type', 'not in', ('out_invoice', 'in_invoice')),
+                                                              ('state', '!=', 'posted'),
+                                                              ('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_move_notes_comprobante_from_view_ext" model="ir.ui.view">
+        <field name="name">account_move_notes_comprobante_from_view_ext</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.view_account_invoice_form_json_page"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='comprobante']" position="attributes">
+                <attribute name="attrs">{'invisible': [('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="tipo_comprobante_nota_from_view_ext" model="ir.ui.view">
+        <field name="name">tipo_comprobante_nota_from_view_ext</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="gestionit_pe_fe.view_account_move_tipo_comprobante"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_comprobante_electronico']" position="attributes">
+                <attribute name="attrs">{'invisible': [('invoice_type_code','=','100')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

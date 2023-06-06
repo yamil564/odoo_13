@@ -1,0 +1,28 @@
+<odoo>
+    <template id="custom_external_layout_background_gestionit" inherit_id="gestionit_pe_fe.external_layout_background_gestionit">
+        <xpath expr="//div[@name='company_document']" position="replace">
+            <div class="col-4" name="company_document">
+                <div class="pt-2">
+                    <div class="text-center">
+                        <b>
+                            <t t-esc="document_display_name"/>
+                        </b>
+                    </div>
+                    <div class="text-center">
+                        <t t-if="o._name == 'account.move'">
+                            <t t-if="o.invoice_type_code != '100'">
+                                <span t-esc="'R.U.C. {}'.format(company.vat or '')"/>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <span t-esc="'R.U.C. {}'.format(company.vat or '')"/>
+                        </t>
+                    </div>
+                    <div class="text-center">
+                        <span t-esc="o.name"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

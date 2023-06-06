@@ -1,0 +1,12 @@
+<odoo>
+    <record id="actions_client_plan_cuentas" model="ir.actions.client">
+        <field name="name">Plan de Cuentas</field>
+        <field name="tag">action_plan_cuentas</field>
+    </record>
+
+    <menuitem id="menu_plan_cuentas" 
+                name="Plan de Cuentas" 
+                string="Plan de Cuentas" 
+                action="actions_client_plan_cuentas" 
+                parent=""/>
+</odoo>

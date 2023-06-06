@@ -1,0 +1,68 @@
+<odoo>
+    <record id="view_tree_pricelist_lines" model="ir.ui.view">
+        <field name="name">view.tree.pricelist.lines</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="pricelist_id"/>
+                <field name="product_tmpl_id" required="1"/>
+                <field name="min_quantity" required="1"/>
+                <field name="fixed_price" required="1"/>
+                <field name="company_id" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_search_pricelist_lines" model="ir.ui.view">
+        <field name="name">view.search.pricelist.lines</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_tmpl_id" string="Nombre por producto"/>
+                <field name="name" string="Nombre de cliente o tarifa"/>
+                <group expand="1" string="Agrupado por">
+                    <filter string="Lista de precio" name="pricelist" context="{'group_by':'pricelist_id'}"/>
+                    <filter string="Producto" name="product" context="{'group_by':'product_tmpl_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_tree_pricelist_lines" model="ir.actions.act_window">
+        <field name="name">Lista de precios por línea</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_mode">tree,search</field>
+        <field name="search_view_id" ref="view_search_pricelist_lines"/>
+        <field name="context">{'search_default_pricelist':1,'default_applied_on':'1_product'}</field>
+    </record>
+
+    <record id="action_view_pricelist_lines_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_tree_pricelist_lines"/>
+        <field name="act_window_id" ref="action_view_tree_pricelist_lines"/>
+    </record>
+
+    <record id="custom_product_pricelist_item_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form.view</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h1" position="after">
+                    <field name="pricelist_id" position="move"/>
+            </xpath>
+            <field name="pricelist_id" position="attributes">
+                <attribute name="options">{'no_open':True,'no_create':True,'no_edit':True}</attribute>
+                <attribute name="invisible">0</attribute>
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+                <attribute name="class">h2</attribute>
+            </field>
+            
+        </field>
+    </record>
+
+    <menuitem id="menu_pricelist_lines" 
+                name="Detalle de Lista de precios"
+                parent="sale.product_menu_catalog"
+                action="action_view_tree_pricelist_lines"/>
+</odoo>

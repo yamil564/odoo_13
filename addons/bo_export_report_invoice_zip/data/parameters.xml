@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="account_report_zip_path" model="ir.config_parameter">
+            <field name="key">account_report_zip_path</field>
+            <field name="value">/tmp/</field>
+        </record>
+
+    </data>
+</odoo>

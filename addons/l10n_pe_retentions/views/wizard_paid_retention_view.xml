@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+        <record id="wizard_paid_retention_view_form" model="ir.ui.view">
+            <field name="name">Pagar factura con Retención</field>
+            <field name="model">wizard.paid.retention</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="invoice_id" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            
+                            <group string="Pago de Factura con Retención">
+                                <field name="nro_comprobante_retencion"/>
+                                <field name="paid_journal_id" options="{'no_create_edit': True,'no_create':True}"/>
+                                <field name="retention_date"/>
+                            </group>
+                            
+                            <group>
+                                <field name="paid_currency_id"/>
+                                <field name="amount_paid_currency"/>
+                                <field name="porcentaje_retencion"/>
+                                <field name="amount_paid_MN"/>
+                                <field name="amount_retention_paid_MN"/>
+                            </group>
+
+                        </group>
+                                
+                        <br/>
+
+                        <group>
+                            <group string="Parámetros de Asiento Contable">
+                                    <field name="retention_ref"/>
+                                    <field name="retention_journal_id" options="{'no_create_edit': True,'no_create':True}"/>
+                            </group>
+                        </group>
+                           
+                        
+                        <footer>
+                                <button name="create_paid_retention" class="oe_highlight" string="Pagar factura con Retención" icon="fa-plus"  type="object"/>
+                        </footer>
+
+                     </sheet>
+                </form>             
+
+            </field>
+
+        </record>
+
+
+        <record id="action_wizard_paid_retention" model="ir.actions.act_window">
+            <field name="name">Pagar factura con Retención</field>
+   		    <field name="res_model">wizard.paid.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wizard_paid_retention_view_form"/>
+            <field name="target">new</field>
+
+        </record>
+             
+	</data>
+</odoo>

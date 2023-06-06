@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_form_account_payment_term_type" model="ir.ui.view">
+        <field name="name">view.form.account.payment.term.type</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="type" string="Tipo" required="1" widget="radio"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_tree_account_payment_term_type" model="ir.ui.view">
+        <field name="name">view.tree.account.payment.term.type</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="type" string="Tipo"/>
+            </field>
+        </field>
+    </record>
+</odoo>

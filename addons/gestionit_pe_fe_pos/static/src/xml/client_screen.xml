@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery="div[class='client-details-box clearfix']" t-operation="replace">
+            <div class='client-details-box clearfix'>
+                <div class='client-details-left'>
+                    <div class='client-detail'>
+                        <span class='label'>Tipo doc.</span>
+                        <t t-foreach="widget.pos.identification_types" t-as="type">
+                            <t t-if="type.available_in_pos">
+                                <label>
+                                <input  name='radio_l10n_latam_identification_type_id' 
+                                        type='radio' 
+                                        t-att-value="type.id"
+                                        t-att-checked="partner.l10n_latam_identification_type_id?(partner.l10n_latam_identification_type_id[0] === type.id?'checked':undefined):(widget.pos.db.identification_type_by_id[type.id].l10n_pe_vat_code =='0'?'checked':'') "
+                                        style="width:35px"/> <t t-esc="type.name"/>
+                                </label>
+                            </t>
+                        </t>
+                        <input class='detail l10n_latam_identification_type_id' 
+                                    type='number'
+                                    name='l10n_latam_identification_type_id'
+                                    style="display:none"
+                                    t-att-value="partner.l10n_latam_identification_type_id?partner.l10n_latam_identification_type_id[0]:''"/>
+                    </div>
+                    <div class='client-detail' style="display:inline-flex">
+                        <span class='label'>Num. doc.</span>
+                        <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
+                        <div class='button btn_get_datos' t-attf-style="padding: 0px 15px;border: solid gray 1px;border-radius: 8px;background-color: white;margin: 0px 4px;display:#{partner.l10n_latam_identification_type_id?'block':'none'}"><i class='fa fa-search' /></div>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Dirección</span>
+                        <input class='detail client-address-street' name='street'       t-att-value='partner.street || ""' placeholder='Street'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Ciudad</span>
+                        <input class='detail client-address-city'   name='city'         t-att-value='partner.city || ""' placeholder='City'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Ubigeo</span>
+                        <input class='detail client-address-ubigeo'    name='ubigeo'          t-att-value='partner.ubigeo || ""' placeholder='Ubigeo'></input>
+                    </div>
+                </div>
+                <div class='client-details-right'>
+                    <div class='client-detail'>
+                        <span class='label'>Email</span>
+                        <input class='detail client-email'  name='email'    type='email'    t-att-value='partner.email || ""'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Phone</span>
+                        <input class='detail client-phone'  name='phone'    type='tel'      t-att-value='partner.phone || ""'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Celular</span>
+                        <input class='detail client-mobile'  name='mobile'    type='tel'      t-att-value='partner.mobile || ""'></input>
+                    </div>
+                    
+                    <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
+                        <span class='label'>Pricelist</span>
+                        <select class='detail needsclick' name='property_product_pricelist'>
+                            <t t-foreach='widget.pos.pricelists' t-as='pricelist'>
+                                <option t-att-value='pricelist.id'
+                                        t-att-selected="partner.property_product_pricelist ? (pricelist.id === partner.property_product_pricelist[0] ? true : undefined) : undefined">
+                                    <t t-esc='pricelist.display_name'/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+    <t t-extend="ClientDetails">
+        <t t-jquery="div[class='client-details-box clearfix']" t-operation="replace">
+            <div class='client-details-box clearfix'>
+                <div class='client-details-left'>
+                    <div class='client-detail'>
+                        <span class='label'>Tipo doc.</span>
+                        <t t-if='partner.l10n_latam_identification_type_id'>
+                            <span class='detail l10n_latam_identification_type_id'><t t-esc='widget.pos.db.identification_type_by_id[partner.l10n_latam_identification_type_id[0]].name'/></span>
+                        </t>
+                        <t t-if='!partner.l10n_latam_identification_type_id'>
+                            <span class='detail l10n_latam_identification_type_id empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Num. doc.</span>
+                        <t t-if='partner.vat'>
+                            <span class='detail vat'><t t-esc='partner.vat'/></span>
+                        </t>
+                        <t t-if='!partner.vat'>
+                            <span class='detail vat empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Dirección</span>
+                        <t t-if='partner.address'>
+                            <span class='detail client-address'><t t-esc='partner.address' /></span>
+                        </t>
+                        <t t-if='!partner.address'>
+                            <span class='detail client-address empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Ciudad</span>
+                        <t t-if='partner.city'>
+                            <span class='detail client-city'><t t-esc='partner.city' /></span>
+                        </t>
+                        <t t-if='!partner.city'>
+                            <span class='detail client-city empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Ubigeo</span>
+                        <t t-if='partner.ubigeo'>
+                            <span class='detail client-ubigeo'><t t-esc='partner.ubigeo' /></span>
+                        </t>
+                        <t t-if='!partner.ubigeo'>
+                            <span class='detail client-ubigeo empty'>N/A</span>
+                        </t>
+                    </div>
+                    
+                    
+                </div>
+                <div class='client-details-right'>
+                    <div class='client-detail'>
+                        <span class='label'>Email</span>
+                        <t t-if='partner.email'>
+                            <span class='detail client-email'><t t-esc='partner.email' /></span>
+                        </t>
+                        <t t-if='!partner.email'>
+                            <span class='detail client-email empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Phone</span>
+                        <t t-if='partner.phone'>
+                            <span class='detail client-phone'><t t-esc='partner.phone' /></span>
+                        </t>
+                        <t t-if='!partner.phone'>
+                            <span class='detail client-phone empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Celular</span>
+                        <t t-if='partner.mobile'>
+                            <span class='detail client-mobile'><t t-esc='partner.mobile' /></span>
+                        </t>
+                        <t t-if='!partner.mobile'>
+                            <span class='detail client-mobile empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
+                        <span class='label'>Pricelist</span>
+                        <t t-if='partner.property_product_pricelist'>
+                            <span class='detail property_product_pricelist'><t t-esc='partner.property_product_pricelist[1]'/></span>
+                        </t>
+                        <t t-if='!partner.property_product_pricelist'>
+                            <span class='detail property_product_pricelist empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+    <t t-extend="ClientListScreenWidget">
+        <t t-jquery=".client-list thead tr" t-operation="prepend">
+            <th><b>Nro. doc.</b></th>
+        </t>
+    </t>
+    <t t-extend="ClientLine">
+        <t t-jquery=".client-line" t-operation="prepend">
+            <td>
+                <t t-if="partner.l10n_latam_identification_type_id">
+                    <t t-esc='widget.pos.db.identification_type_by_id[partner.l10n_latam_identification_type_id[0]].name+" "+(partner.vat || "-")'/>
+                </t>
+                <t t-else="">
+                    <t t-esc="partner.vat"/>
+                </t>
+            </td>
+        </t>
+    </t>
+</templates>

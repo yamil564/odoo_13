@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <record id="gestionit_pe_fe.view_cert_sunat_tree" model="ir.ui.view">
+            <field name="name">Certificado digital - Tree</field>
+            <field name="model">cert.sunat</field>
+            <field name="arch" type="xml">
+                <tree string="Certificados digitales">
+                    <field name="issue_date" />
+                    <field name="expiration_date" />
+                    <field name="company_id" groups="base.group_multi_company" string="Compañía"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_cert_sunat_form" model="ir.ui.view">
+            <field name="name">Certificado digital - Form</field>
+            <field name="model">cert.sunat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="issue_date"/>
+                            </group>
+                            <group>
+                                <field name="expiration_date"/>
+                                <field name="company_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="key_public" />
+                            <field name="key_private" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.action_cert_sunat" model="ir.actions.act_window">
+            <field name="name">Certificados digitales</field>
+            <field name="res_model">cert.sunat</field>
+            <field name="view_id" ref="gestionit_pe_fe.view_cert_sunat_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_cert_sunat_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="gestionit_pe_fe.action_cert_sunat"/>
+        </record>
+        <menuitem name="Certificados digitales" id="menu_certificados_digitales" action="gestionit_pe_fe.action_cert_sunat" parent="base.menu_users"/>
+    </data>
+</odoo>

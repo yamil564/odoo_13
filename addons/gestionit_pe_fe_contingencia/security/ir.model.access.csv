@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_sale_order_contingencia,modelo wizard_sale_order_contingencia,model_wizard_sale_order_contingencia,,1,1,1,1

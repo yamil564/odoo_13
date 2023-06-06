@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+      
+		<record id="ple_diary_line_accounting_plan_view_form" model="ir.ui.view">
+			<field name="name"> PLE Diario-Plan Contable </field>
+            <field name="model">ple.diary.accounting.plan.line</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <sheet>
+                        <group>
+            		          <group>
+
+                                    <field name="account_id"/>
+                                    <field name="codigo_cuenta_desagregado" string="1. Código cuenta contable desagregado"/>
+                                    <field name="descripcion_cuenta_contable" string="2. Descripción Cuenta Contable"/>
+                                    <field name="codigo_plan_contable" string="3. Código Plan de Cuentas Deudor"/>
+                                    <field name="descripcion_plan_contable_deudor" string="4. Descripción plan cuentas Deudor"/>
+                                    <field name="codigo_cuenta_contable_corporativa" string="5. Código Cuenta Contable Corporativa"/>
+                                    <field name="descripcion_cuenta_contable_corporativa" string="6. Descripción Cuenta Contable corporativa"/>
+                                    <field name="indicador_estado_operacion" string="7. Indicador Estado Operación" />
+
+
+            		          </group>
+                        </group>
+                     
+                </sheet>
+                </form>            	
+            </field>
+		</record>
+		
+	</data>
+</odoo>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+        <record id="template_general_balance_report_view_form" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración del Balance General</field>
+            <field name="model">template.general.balance.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!--<sheet>-->
+                        
+                        <group>
+                            <group>
+                                <field name="company_id" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="observations"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page name="page_general_balance_report_activos" string="ACTIVOS">
+
+                                <group>
+
+                                    <group string="ACTIVOS CORRIENTES">
+
+                                        <field name="template_activos_corrientes_line_ids">
+                                            <tree>
+                                                <field name="name"/>
+                                                <field name="calculation_type"/>
+                                                <field name="account_ids"/>
+                                                <!--<field name="movements_period"/>-->
+                                            </tree>
+                                        </field>
+                                    </group>
+
+                                    <group string="ACTIVOS NO CORRIENTES">
+
+                                        <field name="template_activos_no_corrientes_line_ids">
+                                            <tree>
+                                                <field name="name"/>
+                                                <field name="calculation_type"/>
+                                                <field name="account_ids"/>
+                                                <!--<field name="movements_period"/>-->
+                                            </tree>
+                                        </field>
+                                    </group>
+
+                                </group>
+
+
+                            </page>
+
+                            <!-- ##################################################### -->
+                            <page name="page_general_balance_report_pasivos" string="PASIVOS">
+
+                                <group>
+
+                                    <group string="PASIVOS CORRIENTES">
+
+                                        <field name="template_pasivos_corrientes_line_ids">
+                                            <tree>
+                                                <field name="name"/>
+                                                <field name="calculation_type"/>
+                                                <field name="account_ids"/>
+                                                <!--<field name="movements_period"/>-->
+                                            </tree>
+                                        </field>
+                                    </group>
+
+                                    <group string="PASIVOS NO CORRIENTES">
+
+                                        <field name="template_pasivos_no_corrientes_line_ids">
+                                            <tree>
+                                                <field name="name"/>
+                                                <field name="calculation_type"/>
+                                                <field name="account_ids"/>
+                                                <!--<field name="movements_period"/>-->
+                                            </tree>
+                                        </field>
+                                    </group>
+
+                                </group>
+
+
+                            </page>
+
+                            <!-- ####################################################### -->
+                            <page name="page_general_balance_report_patrimonio" string="PATRIMONIO">
+
+                                <group string="PATRIMONIO">
+
+                                    <field name="template_patrimonio_line_ids">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="calculation_type"/>
+                                            <field name="account_ids"/>
+                                            <!--<field name="movements_period"/>-->
+                                        </tree>
+                                    </field>
+                                </group>
+
+
+                            </page>
+
+                        </notebook>
+                    <!--</sheet>-->
+
+                </form>
+
+            </field>
+
+        </record>
+
+        <record id="template_general_balance_report_view_tree" model="ir.ui.view">
+            <field name="name">Plantilla de Configuración del Balance General</field>
+            <field name="model">template.general.balance.report</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="company_id" readonly="1"/>
+                    <field name="name"/>
+                    <field name="fecha_hora" readonly="1"/>
+                    <field name="observations"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_template_general_balance_report" model="ir.actions.act_window">
+            <field name="name">Plantilla de Configuración del Balance General</field>
+   		    <field name="res_model">template.general.balance.report</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="template_general_balance_report_view_tree"/>
+        </record>
+
+
+        <menuitem id="menu_template_estados_financieros_report" name="PLANTILLAS DE CONFIGURACIÓN DE ESTADOS FINANCIEROS" parent="account.menu_finance_configuration" sequence="23" groups="account.group_account_invoice"/>
+
+        <menuitem id="menu_template_general_balance_report" name="Plantilla de Configuración del Balance General" parent="menu_template_estados_financieros_report" sequence="0" groups="account.group_account_invoice" action="action_template_general_balance_report"/>
+             
+	</data>
+</odoo>

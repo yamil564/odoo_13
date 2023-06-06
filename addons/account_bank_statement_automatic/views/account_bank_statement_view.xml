@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_bank_statement_form" model="ir.ui.view">
+
+            <field name="name">account.bank.statement.line.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//header" position="inside">
+                    <button name="action_generate_bank_statement"
+                            string="Generar Extracto"
+                            type="object"/>
+                    <button name="action_print" type="object" string="Imprimir Extracto" class="btn-primary" icon="fa-print" />
+                </xpath>
+
+                <xpath expr="//group/group/field[@name='date']" position="after">
+                    <field name="fecha_fin"/>
+                </xpath>
+
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='date']" position="before">
+                    <field name="operation_number" /> 
+                </xpath>
+
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='currency_id']" position="after">
+                    <field name="move_line_id" invisible="1"/>
+                    <button name="button_view_account_move_line" attrs="{'invisible': [('move_line_id', '=', False)]}" 
+                        string="Ver asiento contable" type="object" icon="fa-file-o"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="account_bank_statement_automatic.account_bank_statement_line_kanban_view">
+        <field name="name">Account bank statement line Kanban</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="type">kanban</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                <t t-name="kanban-box">
+                <div class="oe_product_desc">
+                <li>Número de operación:<field name="operation_number"/></li>
+                <li>Fecha:<field name="date"/></li>
+                <li>Etiqueta:<field name="name"/></li>
+                <li>Socio:<field name="partner_id"/></li>
+                <li>Referencia:<field name="ref"/></li>
+                <li>Importe:<field name="amount"/></li>
+
+            </div>
+                </t>
+            </templates>
+            </kanban>
+        </field>
+    </record>
+
+    </data>
+</odoo>

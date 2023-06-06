@@ -1,0 +1,22 @@
+{
+    'name': 'Detracciones',
+    'version': '1.0.0',
+    'category': '',
+    'license': 'AGPL-3',
+    'summary': "Detracciones en Documentos",
+    'author': "Franco Najarro",
+    'website': '',
+    'depends': ['base_setup', 'account','bo_pe_contabilidad_documents'],
+    'data': [
+        'data/journal_data.xml',
+        'security/ir.model.access.csv',
+        'views/detraccion_view.xml',
+        'views/res_partner_bank.xml',
+        'views/account_journal_view.xml',
+        'views/account_detraccion_view.xml',
+        'views/account_move_view.xml',
+        #'views/account_payment_view.xml',
+        'data/tipo.detraccion.csv',
+        ],
+    'installable': True,
+}

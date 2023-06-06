@@ -1,0 +1,16 @@
+<odoo>
+    <template id="frontend_layout" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']" position="after">
+            <div class="whatsapp">
+                <!-- <t t-esc="website.get_whatsapp_url()"/> -->
+                <a t-att-href="website.get_whatsapp_url()" 
+                    target="_blank" 
+                    title="Contactame por Whatsapp" 
+                    t-if="website.get_whatsapp_url()" 
+                    t-attf-class="whatsapp-#{website.website_floating_whatsapp_location or 'left'}">
+                    <img src="/bo_website_floating_whatsapp/static/src/img/whatsapp.png" alt="WhatsApp" />
+                </a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

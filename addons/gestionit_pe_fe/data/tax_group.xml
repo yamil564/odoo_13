@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="l10n_pe.tax_group_igv" model="account.tax.group">
+        <field name="name">IGV</field>
+        <field name="sequence">0</field>
+        <field name="codigo">1000</field>
+        <field name="codigo_inter">VAT</field>
+        <field name="descripcion">IGV Impuesto General a las Ventas</field>
+        <field name="no_onerosa" eval="False"/>
+        <field name="tipo_afectacion">10</field>
+    </record>
+    <record id="l10n_pe.tax_group_ivap" model="account.tax.group">
+        <field name="name">IVAP</field>
+        <field name="sequence">0</field>
+        <field name="codigo">1016</field>
+        <field name="codigo_inter">VAT</field>
+        <field name="descripcion">Impuesto a la Venta de Arroz Pilado</field>
+        <field name="no_onerosa" eval="False"/>
+        <field name="tipo_afectacion">17</field>
+    </record>
+
+    <record id="tax_icbper" model="account.tax.group">
+        <field name="name">ICBPER</field>
+        <field name="sequence">0</field>
+        <field name="codigo">7152</field>
+        <field name="codigo_inter">OTH</field>
+        <field name="descripcion">Impuesto a la bolsa plastica</field>
+        <field name="no_onerosa" eval="False"/>
+        <!-- <field name="tipo_afectacion">17</field> -->
+    </record>
+    
+
+    <record id="l10n_pe.tax_group_isc" model="account.tax.group">
+        <field name="name">ISC</field>
+        <field name="sequence">0</field>
+        <field name="codigo">2000</field>
+        <field name="codigo_inter">EXC</field>
+        <field name="descripcion">ISC Impuesto Selectivo al Consumo</field>
+    </record>
+    <record id="l10n_pe.tax_group_exp" model="account.tax.group">
+        <field name="name">EXP</field>
+        <field name="sequence">0</field>
+        <field name="codigo">9995</field>
+        <field name="codigo_inter">FRE</field>
+        <field name="descripcion">Exportación</field>
+        <field name="no_onerosa" eval="False"/>
+        <field name="tipo_afectacion">40</field>
+    </record>
+    <record id="l10n_pe.tax_group_gra" model="account.tax.group">
+        <field name="name">GRA</field>
+        <field name="sequence">0</field>
+        <field name="codigo">9996</field>
+        <field name="codigo_inter">FRE</field>
+        <field name="descripcion">Gratuito</field>
+        <field name="no_onerosa" eval="True"/>
+        <field name="tipo_afectacion">31</field>
+    </record>
+    <record id="l10n_pe.tax_group_exo" model="account.tax.group">
+        <field name="name">EXO</field>
+        <field name="sequence">0</field>
+        <field name="codigo">9997</field>
+        <field name="codigo_inter">VAT</field>
+        <field name="descripcion">Exonerado</field>
+        <field name="no_onerosa" eval="False"/>
+        <field name="tipo_afectacion">20</field>
+    </record>
+    <record id="l10n_pe.tax_group_ina" model="account.tax.group">
+        <field name="name">INA</field>
+        <field name="sequence">0</field>
+        <field name="codigo">9998</field>
+        <field name="codigo_inter">FRE</field>
+        <field name="descripcion">Inafecto</field>
+        <field name="no_onerosa" eval="False"/>
+        <field name="tipo_afectacion">30</field>
+    </record>
+    <record id="l10n_pe.tax_group_other" model="account.tax.group">
+        <field name="name">OTROS</field>
+        <field name="sequence">0</field>
+        <field name="codigo">9999</field>
+        <field name="codigo_inter">OTH</field>
+        <field name="descripcion">Otros tributos</field>
+    </record>
+    <record id="l10n_pe.tax_group_det" model="account.tax.group">
+        <field name="name">DET</field>
+        <field name="sequence">100</field>
+    </record>
+</odoo>

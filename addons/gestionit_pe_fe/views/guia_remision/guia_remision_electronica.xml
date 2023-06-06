@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="gestionit_pe_fe.view_tree_guia_remision" model="ir.ui.view">
+            <field name="name">gestionit.view.tree.guia.remision</field>
+            <field name="model">gestionit.guia_remision</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="state == 'validado'" decoration-info="state == 'borrador'" default_order="fecha_emision desc">
+                    <field name="name"/>
+                    <field name="motivo_traslado"/>
+                    <field name="fecha_emision"/>
+                    <field name="state" string="Estado"/>
+                    <field name="estado_emision"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.view_form_guia_remision" model="ir.ui.view">
+            <field name="name">gestionit_pe_fe.view.form.guia.remision</field>
+            <field name="model">gestionit.guia_remision</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_send_email" string="Enviar e-mail" type="object" class="oe_highlight"/>
+                        <button name="post" string="Validar" type="object" help="Emitir Guía de Remisión" class="oe_highlight" attrs="{'invisible':[('state','=','validado')]}" confirm="¿Está seguro que desea validar la Guía de Remisión Remitente?"/>
+                        <button name="generar_log_envio" string="Generar XML" type="object" groups="gestionit_pe_fe.group_fe_allow_generate_send_xml"/>
+                        <button name="send_gr_xml" string="Enviar XML" type="object" groups="gestionit_pe_fe.group_fe_allow_generate_send_xml"/>
+                        <button name="convertir_a_borrador" string="Convertir a Borrador" type="object" class="oe_highlight" attrs="{'invisible':['|',('state','=','borrador'),('estado_emision','not in',['P','E'])]}" />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1"/>
+                        <field name="company_partner_id" invisible="1"/>
+                        <h1>
+                            <field name="numero" readonly="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="journal_id" required = "1" domain="[('invoice_type_code_id','=','09'),('company_id','=',company_id)]" context="{'default_invoice_type_code_id':'09'}" options="{'no_create_edit': True,'no_quick_create':True,'no_open':True}"/>
+                                <field name="estado_emision" groups="base.group_no_one"/>
+                            </group>
+                            <group>
+                                <field name="motivo_traslado" />
+                                <field name="note"/>
+                            </group>
+                        </group>
+                        <group string="Destinatario">
+                            <group attrs="{'invisible':[['motivo_traslado','not in',['01','08','09','13','19']]]}">
+                                <field name="destinatario_partner_id" domain="[('customer_rank','&gt;', 0),('type','=','contact')]" context="{
+                                                    'form_view_ref' : 'gestionit_pe_fe.view_form_destinatario_res_partner',
+                                                    'default_country_id':173,
+                                                    'default_customer':True
+                                                }"/>
+                            </group>
+                            <group attrs="{'invisible':[['motivo_traslado','not in',['01','08','09','13','19']]]}">
+                                <div >
+                                    <span>
+                                        <b>Tipo de Documento de Identidad: </b>
+                                    </span>
+                                    <field name="destinatario_tipo_documento_identidad" readonly="1"/>
+                                    <br/>
+                                    <span>
+                                        <b>Número de Documento de Identidad: </b>
+                                    </span>
+                                    <field name="destinatario_numero_documento_identidad" readonly="1"/>
+                                    <br/>
+                                    <span>
+                                        <b>Dirección: </b>
+                                    </span>
+                                    <field name="destinatario_direccion" readonly="1"/>-
+                                    <field name="destinatario_ubigeo" readonly="1"/>
+                                </div>
+                            </group>
+
+                            <group attrs="{'invisible':[['motivo_traslado','not in',['02','08']]]}">
+                                <field name="proveedor_partner_id" domain="[('supplier','=',True),('type','=','contact')]" context="{
+                                                        'form_view_ref' :'gestionit_pe_fe.view_form_destinatario_res_partner',
+                                                        'default_country_id':173,
+                                                        'default_supplier':True
+                                                    }"/>
+
+                            </group>
+                            <group attrs="{'invisible':[['motivo_traslado','not in',['02','08']]]}">
+                                <div>
+                                    <span>
+                                        <b>Tipo de Documento de Identidad: </b>
+                                    </span>
+                                    <field name="proveedor_tipo_documento_identidad" readonly="1"/>
+                                    <br/>
+                                    <span>
+                                        <b>Número Documento de Identidad: </b>
+                                    </span>
+                                    <field name="proveedor_numero_documento_identidad" readonly="1"/>
+                                    <br/>
+                                    <span>
+                                        <b>Dirección: </b>
+                                    </span>
+                                    <field name="proveedor_direccion" readonly="1"/>-
+                                    <field name="proveedor_ubigeo" readonly="1"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group string="Documentos Asociados">
+                            <field name="documento_asociado" widget="radio"/>
+                            <field name="movimiento_stock_ids" attrs="{'invisible':[('documento_asociado','!=','movimiento_stock')]}" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" domain="[ ('partner_id','=',destinatario_partner_id), ('partner_id','!=',False), ('state','!=','draft')]"/>
+                        </group>
+
+                        <label for="comprobante_pago_ids"/>
+                        <field name="comprobante_pago_ids" string="Factura/Boleta" attrs="{'invisible':[('documento_asociado','!=','comprobante_pago')]}" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" domain="[ ('partner_id','=',destinatario_partner_id), ('partner_id','!=',False), ('state','!=','draft')]" mode="tree">
+                            <tree>
+                                <field name="user_id" optional="hide"/>
+                                <field name="state" optional="hide"/>
+                                <field name="name"/>
+                                <field name="order_reference" />
+                                <field name="partner_id"/>
+                                <field name="amount_total"/>
+                            </tree>
+                        </field>
+                        <label for="sale_order_ids"/>
+                        <field name="sale_order_ids" string="Ventas" attrs="{'invisible':[('documento_asociado','!=','orden_venta')]}" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" domain="[ ('partner_id','=',destinatario_partner_id), ('partner_id','!=',False), ('state','!=','draft')]" mode="tree">
+                            <tree>
+                                <field name="user_id"/>
+                                <field name="state"/>
+                                <field name="partner_id"/>
+                                <field name="amount_total"/>
+                            </tree>
+                        </field>
+
+
+                        <label for="guia_remision_line_ids"/>
+                        <field name="guia_remision_line_ids" mode="tree" >
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id" string="Producto" options="{'no_create_edit': True,'no_quick_create':True}"/>
+                                <field name="description" string="Descripción"/>
+                                <field name="uom_id" string="UM" options="{'no_create_edit': True,'no_quick_create':True,'no_open':True}" />
+                                <field name="qty" string="Cantidad"/>
+                            </tree>
+                        </field>
+
+                        <group string="Envío">
+                            <group>
+                                <field name="fecha_emision"/>
+                                <field name="fecha_inicio_traslado"/>
+                            </group>
+                            <group>
+                                <label for="peso_bruto_total" string="Peso Bruto Total (KGM)"/>
+                                <div class="o_row">
+                                    <field name="calc_peso" invisible="1" />
+                                    <field name="peso_bruto_total" attrs="{'readonly':[('calc_peso','=',True)]}"/>
+                                    <button name="compute_peso_bruto" string="Calcular peso bruto" type="object" class="oe_highlight" attrs="{'invisible':[('calc_peso','!=',True)]}" />
+                                </div>
+                                <field name="multiple_tramos" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}"/>
+                                <field name="modalidad_transporte" widget="radio" attrs="{'invisible':[('multiple_tramos','=',True)]}"/>
+                                <field name="numero_bultos" attrs="{'invisible':[('motivo_traslado','!=','08')]}"/>
+                            </group>
+                        </group>
+
+                        <group attrs="{'invisible':[('multiple_tramos','=',True)]}">
+                            <group>
+                                <field name="partner_direccion_partida_id" invisible="1"/>
+                                <t attrs="{'invisible':[('partner_direccion_partida_id','!=',False)]}">
+                                    <span>Debe seleccionar una empresa de partida.</span>
+                                </t>
+                                <field name="direccion_partida_id" string="Dirección de Partida" context="{
+                                                    'form_view_ref' : 'gestionit_pe_fe.view_form_destinatario_res_partner',
+                                                    'default_country_id':173,
+                                                    'default_type':'other',
+                                                    'parent_id':partner_direccion_partida_id
+                                                }" domain="[('parent_id','=',partner_direccion_partida_id), ('parent_id','!=',False),
+                                                    ('type','in',['other'])]" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}"/>
+                                <field name="lugar_partida_direccion" widget="text" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}" force_save="1"/>
+                                <field name="lugar_partida_ubigeo_code" context="{'ubigeo_search':True}" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="partner_direccion_llegada_id" invisible="1"/>
+                                <t attrs="{'invisible':[('partner_direccion_llegada_id','!=',False)]}">
+                                    <span style="color:red">Debe seleccionar una empresa destinataria.</span>
+                                </t>
+                                <field name="direccion_llegada_id" string="Dirección de Llegada" context="{
+                                                    'form_view_ref' : 'gestionit_pe_fe.view_form_destinatario_res_partner',
+                                                    'default_country_id':173,
+                                                    'default_type':'other',
+                                                    'parent_id':partner_direccion_llegada_id
+                                                }" domain="[('parent_id','=',partner_direccion_llegada_id), ('parent_id','!=',False),
+                                                    ('type','in',['other'])]"/>
+                                <field name="lugar_llegada_direccion" widget="text" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}" force_save="1"/>
+                                <field name="lugar_llegada_ubigeo_code" context="{'ubigeo_search':True}" attrs="{'readonly':[('estado_emision','not in',[False,'B'])]}" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" force_save="1"/>
+                            </group>
+                            <group string="Transporte Público" attrs="{'invisible':[('modalidad_transporte','!=','01')]}">
+                                <field name="transporte_partner_id" options="{'no_create_edit': True,'no_quick_create':True,'no_open':True}" domain="[('es_empresa_transporte_publico','=',True)]"/>
+                                <field name="conductor_publico_id" widget="radio" domain="[('parent_id','=',transporte_partner_id),('parent_id','!=',False)]"/>
+                                <field name="vehiculo_publico_id" widget="radio" domain="[('propietario_id','=',transporte_partner_id),('propietario_id','!=',False)]"/>
+                            </group>
+                            <group string="Transporte Privado" attrs="{'invisible':[('modalidad_transporte','!=','02')]}">
+                                <field name="conductor_privado_partner_id" widget="radio" domain="[('es_conductor','=',True),('parent_id','=',company_partner_id)]"/>
+                                <field name="vehiculo_privado_id" widget="radio" domain="[('propietario_id','=',company_partner_id),('propietario_id','!=',False)]"/>
+                            </group>
+                        </group>
+
+                        <label for="transporte_lines" string="Tramos de Envio" attrs="{'invisible':[('multiple_tramos','=',False)]}"/>
+                        <field name="transporte_lines"  mode="tree" attrs="{'invisible':[('multiple_tramos','=',False)]}">
+                            <tree>
+                                <field name="secuencia" widget="handle"/>
+                                <field name="modalidad_transporte" string="Modalidad"/>
+                                <field name="ruc_trasporte_partner"/>
+                                <field name="transporte_partner_id"/>
+                                <field name="date"/>
+                                <field name="partner_direccion_partida_id" string="Partida"/>
+                                <field name="partner_direccion_llegada_id" string="Llegada"/>
+                            </tree>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <group string="Datos de Traslado">
+                                            <field name="modalidad_transporte"/>
+                                            <field name="transporte_partner_id" attrs="{'invisible':[('modalidad_transporte','!=','01')], 'required':[('modalidad_transporte','=','01')]}" options="{'no_create_edit': True,'no_quick_create':True,'no_open':True}" domain="[('es_empresa_transporte_publico','=',True), ('parent_id', '=', False)]"/>
+                                            <field name="ruc_trasporte_partner"/>
+                                            <field name="date"/>
+                                        </group>
+                                        <group string="Datos de Partida">
+                                            <field name="partner_direccion_partida_id" readonly="0" force_save="1" domain="[('parent_id', '=', False)]"/>
+                                            <t attrs="{'invisible':[('partner_direccion_partida_id','!=',False)]}">
+                                                <span>Debe seleccionar una empresa de partida.</span>
+                                            </t>
+                                            <field name="direccion_partida_id" string="Dirección de Partida" context="{
+                                                    'form_view_ref' : 'gestionit_pe_fe.view_form_destinatario_res_partner',
+                                                    'default_country_id':173,
+                                                    'default_type':'other',
+                                                    'parent_id':partner_direccion_partida_id
+                                                }" domain="[('parent_id','!=',False),('type','in',['other']), '|', ('parent_id','=',partner_direccion_partida_id), ('parent_id','=',transporte_partner_id)]" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}"/>
+                                            <field name="lugar_partida_direccion" widget="text"  force_save="1"/>
+                                            <field name="lugar_partida_ubigeo_code" context="{'ubigeo_search':True}" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" force_save="1"/>
+                                        </group>
+                                        <group string="Datos de Llegada">
+                                            <field name="partner_direccion_llegada_id" domain="[('parent_id', '=', False)]"/>
+                                            <t attrs="{'invisible':[('partner_direccion_llegada_id','!=',False)]}">
+                                                <span style="color:red">Debe seleccionar una empresa destinataria.</span>
+                                            </t>
+                                            <field name="direccion_llegada_id" string="Dirección de Llegada" context="{
+                                                                'form_view_ref' : 'gestionit_pe_fe.view_form_destinatario_res_partner',
+                                                                'default_country_id':173,
+                                                                'default_type':'other',
+                                                                'parent_id':partner_direccion_llegada_id
+                                                            }" domain="[('parent_id','=',partner_direccion_llegada_id), ('parent_id','!=',False),
+                                                                ('type','in',['other'])]"/>
+                                            <field name="lugar_llegada_direccion" widget="text"  force_save="1"/>
+                                            <field name="lugar_llegada_ubigeo_code" context="{'ubigeo_search':True}" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" force_save="1"/>
+                                        </group>
+                                        <group string="Datos del Conductor">
+                                            <field name="conductor_privado_partner_id" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" attrs="{'invisible':[('modalidad_transporte','!=','02')]}" domain="[('es_conductor','=',True)]"/>
+                                            <field name="vehiculo_privado_id" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" attrs="{'invisible':[('modalidad_transporte','!=','02')]}"/>
+                                            <field name="conductor_publico_id" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" attrs="{'invisible':[('modalidad_transporte','!=','01')]}" domain="[('parent_id','=',transporte_partner_id),('parent_id','!=',False)]"/>
+                                            <field name="vehiculo_publico_id" options="{'no_create':True,'no_create_edit':True,'no_quick_create':True,'no_open':True}" attrs="{'invisible':[('modalidad_transporte','!=','01')]}" domain="[('propietario_id','=',transporte_partner_id),('propietario_id','!=',False)]"/>
+                                            <field name="licencia"/>
+                                        </group>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+
+                        <notebook groups="base.group_no_one">
+                            <page string="Registros de envío">
+                                <group>
+                                    <field name="current_log_status_id" string="Actual Envio" readonly="1" force_save="1"/>
+                                </group>
+                                <label for="account_log_status_ids" string="Lista de envíos"/>
+                                <field name="account_log_status_ids">
+                                    <tree  decoration-bf="is_last_log == True" decoration-muted="is_last_log == False">
+                                        <field name="name"/>
+                                        <field name="status"/>
+                                        <field name="create_date"/>
+                                        <field name="is_last_log" invisible="1"/>
+                                        <button name="action_set_last_log" type="object" string="Registro actual" attrs="{'invisible':[('is_last_log','=',True)]}"/>
+                                        <button name="action_set_last_log_unlink" type="object" string="Dejar" attrs="{'invisible':[('is_last_log','=',False)]}" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.action_view_guia_remision_electronica" model="ir.actions.act_window">
+            <field name="name">Guía de Remisión Electrónica</field>
+            <field name="res_model">gestionit.guia_remision</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">
+                {"ubigeo_search":True}
+            </field>
+        </record>
+
+        <record id="gestionit_pe_fe.action_view_tree_guia_remision" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="gestionit_pe_fe.action_view_guia_remision_electronica" />
+            <field name="view_id" ref="gestionit_pe_fe.view_tree_guia_remision" />
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="1" />
+            <field name="multi" eval="False" />
+        </record>
+
+        <record id="gestionit_pe_fe.action_view_form_guia_remision" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="gestionit_pe_fe.action_view_guia_remision_electronica" />
+            <field name="view_id" ref="gestionit_pe_fe.view_form_guia_remision" />
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="1" />
+            <field name="multi" eval="False" />
+        </record>
+
+    </data>
+</odoo>

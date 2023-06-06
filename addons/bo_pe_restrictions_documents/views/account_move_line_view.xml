@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_move_line_document_details_tree" model="ir.ui.view">
+            <field name="name">account.move.line.document.details.tree</field>
+            <field name="model">account.move.line</field>
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+
+                <tree string="Apuntes Contables" create="false" edit="false">
+
+                    <field name="date" optional="show"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="journal_id" options='{"no_open":True}'/>
+                    <field name="move_id" optional="show"/>
+                    <field name="type_document_id"/>
+                    <field name="prefix_code"/>
+                    <field name="invoice_number"/>
+                    <field name="account_id" options="{'no_open': True}" groups="account.group_account_user"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="ref" optional="show"/>
+                    <field name="name" optional="show"/>
+                    
+                    <field name="currency_id" readonly="1"/>
+                    <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/>
+                    <field name="amount_currency" groups="base.group_multi_currency"/>
+                    <!--<field name="always_set_currency_id" readonly="1" groups="base.group_multi_currency" optional="hide" string="Original Currency"/>-->
+                    <field name="amount_residual" sum="Total Monto Residual MN"/>
+                    <field name="amount_residual_currency" sum="Total Monto Residual ME"/>
+                    <field name="full_reconcile_id" optional="show"/>
+
+                    
+                    <field name="tag_ids" widget="many2many_tags" width="0.5" optional="hide"/>
+
+                    <field name="analytic_account_id" groups="account.group_account_user" optional="show"/>
+                    <field name="analytic_tag_ids" widget="many2many_tags" groups="analytic.group_analytic_tags" optional="hide"/>
+                    <field name="tax_ids" widget="many2many_tags" width="0.5" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- ########### FILTROS AGRUPACIONES ################# -->
+
+        <!--<record id="view_account_move_line_document_details_filter" model="ir.ui.view">
+              <field name="name">account.move.line.filter</field>
+              <field name="model">account.move.line</field>
+              <field name="arch" type="xml">
+                  <search string="">
+                      <group expand="1" string="Group By">
+
+                          <filter string="Socio" name="filter_socio" context="{'group_by':'partner_id'}"/>
+                          <filter string="Cuenta" name="filter_cuenta" context="{'group_by':'account_id'}"/>
+
+                      </group>
+                  </search>
+              </field>
+      </record>-->
+
+      <!-- ################################################## -->
+      <record id="view_account_move_line_document_details_filter" model="ir.ui.view">
+            <field name="name">account.move.line.document.details.search</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+            <field name="arch" type="xml">
+
+                <filter name="unposted" position="before">
+
+                    <filter string="Socio" name="filter_socio" context="{'group_by':'partner_id'}"/>
+                    
+                    <filter string="Cuenta" name="filter_cuenta" context="{'group_by':'account_id'}"/>
+
+                </filter>
+            </field>
+        </record>
+
+      <!-- ################################################## -->
+
+
+        <!-- ######################################-->
+        <menuitem
+            id="account.menu_action_account_moves_all"
+            action="account.action_account_moves_all"
+            parent="account.menu_finance_entries_accounting_miscellaneous"
+            groups="account.group_account_invoice"
+            sequence="10"/>
+        <!-- ######################################-->
+
+
+    </data>
+</odoo>

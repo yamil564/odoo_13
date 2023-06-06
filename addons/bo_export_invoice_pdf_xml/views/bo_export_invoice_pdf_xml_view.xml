@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="view_bo_export_invoice_pdf_xml_form" model="ir.ui.view">
+        <field name="name">view.bo.export.invoice.pdf.xml.form</field>
+        <field name="model">bo.export.invoice.pdf.xml</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet string="Exportación Masiva de XML y PDF de Comprobantes Electrónicos">
+
+                    <group string="Parámetros de Exportación">
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="partner_id" options="{'no_create': True}"/>
+                            <br/>
+                            <field name="rango_fechas"/>
+                        </group>
+                    </group>
+
+                    <group attrs="{'invisible':[('rango_fechas','=',False)]}">
+                        <group>
+                            <field name="fecha_inicio"/>
+                        </group>
+
+                        <group>
+                            <field name="fecha_fin"/>
+                        </group>
+                    </group>
+
+                </sheet>
+
+                <footer>
+                    <button class="btn-primary" string="Descargar ZIP"  name="action_download_zip_massive" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bo_export_invoice_pdf_xml" model="ir.actions.act_window">
+            <field name="name">Exportación Masiva de XML y PDF de Comprobantes Electrónicos</field>
+            <field name="res_model">bo.export.invoice.pdf.xml</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_bo_export_invoice_pdf_xml_form"/>
+            <field name="target">new</field>
+
+        </record>
+
+    <menuitem id="menu_action_bo_export_invoice_pdf_xml" 
+                name="Exportación Masiva de XML y PDF de Comprobantes Electrónicos" 
+                parent="account.menu_finance_reports" 
+                sequence="10"
+                action="bo_export_invoice_pdf_xml.action_bo_export_invoice_pdf_xml"/>
+</odoo>

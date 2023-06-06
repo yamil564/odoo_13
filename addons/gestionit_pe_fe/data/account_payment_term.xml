@@ -1,0 +1,37 @@
+<odoo>
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'account'), ('name', 'like', 'account_payment_term_')]"/>
+        </function>
+        <value eval="{'noupdate': False}" />
+    </function>
+
+    <record id="account.account_payment_term_15days" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+    <record id="account.account_payment_term_21days" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+    <record id="account.account_payment_term_30days" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+    <record id="account.account_payment_term_45days" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+    <record id="account.account_payment_term_2months" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+    <record id="account.account_payment_term_end_following_month" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+    <record id="account.account_payment_term_advance_60days" model="account.payment.term">
+        <field name="type">Credito</field>
+    </record>
+
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'account'), ('name', 'like', 'account_payment_term_')]"/>
+        </function>
+        <value eval="{'noupdate': True}" />
+    </function>
+</odoo>

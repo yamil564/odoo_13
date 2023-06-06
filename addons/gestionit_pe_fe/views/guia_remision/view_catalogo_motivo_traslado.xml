@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="gestionit_pe_fe.view_tree_motivo_traslado_cat_20" model="ir.ui.view">
+            <field name="name">gestionit.view.tree.motivo.traslado</field>
+            <field name="model">gestionit.motivo_traslado</field>
+            <field name="arch" type="xml">
+                <tree string="Codigo de Motivo de Traslado">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+	    </record>
+        <record id="gestionit_pe_fe.view_form_motivo_traslado_cat_20" model="ir.ui.view">
+            <field name="name">gestionit.view.form.motivo.traslado</field>
+            <field name="model">gestionit.motivo_traslado</field>
+            <field name="arch" type="xml">
+                <tree string="Codigo de Motivo de Traslado">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+	    </record>
+
+        <record id="gestionit_pe_fe.action_view_motivo_traslado_cat_20" model="ir.actions.act_window">
+            <field name="name">Motivo de Traslado</field>
+            <field name="res_model">gestionit.motivo_traslado</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+
+    </data>
+</odoo>

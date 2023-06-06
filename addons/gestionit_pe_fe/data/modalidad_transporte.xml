@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="modalidad_transporte_01" model="gestionit.modalidad_transporte">
+            <field name="name">Transporte Público</field>
+            <field name="code">01</field>
+        </record>
+        
+        <record id="modalidad_transporte_02" model="gestionit.modalidad_transporte">
+            <field name="name">Transporte Privado</field>
+            <field name="code">02</field>
+        </record>
+
+    </data>
+</odoo>

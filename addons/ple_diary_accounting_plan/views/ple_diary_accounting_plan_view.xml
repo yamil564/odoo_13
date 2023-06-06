@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+<!-- ############## EL BOTON DE IMPRIMIR UNICAMENTE ESTARA DISPONIBLE CUANDO EL LIBRO EN ESTADO ABIERTO "!!!!!!" -->
+        <record id="ple_diary_accounting_plan_view_form" model="ir.ui.view">
+            <field name="name">ple.diary.accounting.plan.form</field>
+            <field name="model">ple.diary.accounting.plan</field>
+            <field name="inherit_id" ref="ple_base.ple_base_view_form"/>
+            <field name="arch" type="xml">
+
+
+                    <xpath expr="//group[@name='grupo_base']" position="replace">
+                        <group name="grupo_base" string="Periodo Fiscal">
+                           
+                            <field name="fiscal_year" invisible="True"/>
+                            <field name="fiscal_month" invisible="True"/>
+                           
+                            <field name="fiscal_period" on_change="onchange_fiscal_period(fiscal_period)"/>
+                         
+                         
+                        </group>
+                    </xpath>
+
+                
+                <!--<field name="currency_id" position="replace">
+                </field>
+
+                <field name="bimonetario" position="replace">
+                </field>
+                
+                <field name="currency_second_id" position="replace">
+                </field>-->
+
+                    <xpath expr="//form" position="inside">
+                        <notebook>
+                        <page name="PLE_Libro_diary_plan_contable" string="PLE Libro diario-Plan Contable">
+                        
+                                <field name='ple_diary_accounting_plan_line_ids'>     
+                                    
+                                    <tree> 
+
+                                         <field name="account_id"/>
+                                         <field name="codigo_cuenta_desagregado"/>
+                                         <field name="descripcion_cuenta_contable"/>
+                                         <field name="codigo_plan_contable"/>
+                                         <field name="descripcion_plan_contable_deudor"/>
+                                         <field name="codigo_cuenta_contable_corporativa"/>
+                                         <field name="descripcion_cuenta_contable_corporativa"/>
+                                         <field name="indicador_estado_operacion"/>
+                               
+                                    </tree>      
+
+
+                              </field>
+                        
+                          </page>
+
+                          <page name="PLE_Libro_diary_simplifacado_plan_contable" string="PLE Libro diario simplificado-Plan Contable">
+                        
+                                <field name='ple_diary_accounting_plan_line_ids'>
+                                   
+                                    
+                                    <tree> 
+
+                                         <field name="account_id"/>
+                                         <field name="codigo_cuenta_desagregado"/>
+                                         <field name="descripcion_cuenta_contable"/>
+                                         <field name="codigo_plan_contable"/>
+                                         <field name="descripcion_plan_contable_deudor"/>
+                                         <field name="codigo_cuenta_contable_corporativa"/>
+                                         <field name="descripcion_cuenta_contable_corporativa"/>
+                                         <field name="indicador_estado_operacion"/>
+                               
+                                    </tree>      
+
+
+                              </field>
+                        
+                          </page>
+
+                        </notebook>
+                    </xpath>                            
+            </field>
+        </record>
+
+
+        <record id="ple_diary_accounting_plan_view_tree" model="ir.ui.view">
+            <field name="name">ple.diary.accounting.plan.tree</field>
+            <field name="model">ple.diary.accounting.plan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fiscal_year"/>
+                    <field name="fiscal_month"/>
+                    <field name="company_id"/>
+                    
+                    <!-- <field name="fiscal_day"/> -->
+
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ple_diary_accounting_plan" model="ir.actions.act_window">
+            <field name="name">PLE-Plan Contable</field>
+            <field name="res_model">ple.diary.accounting.plan</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('company_id','=',allowed_company_ids[0])]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear libro diario-Plan Contable
+              </p><p>
+                El libro diario-Plan Contable es un documento tributario
+                y su representacion es en los siguientes formatos: txt, pdf, etc...
+              </p>
+            </field>
+        </record>
+
+        <record id="action_pe_diary_accounting_plan_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ple_diary_accounting_plan_view_tree"/>
+            <field name="act_window_id" ref="action_ple_diary_accounting_plan"/>
+        </record>
+
+        <record id="action_pe_diary_accounting_plan_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ple_diary_accounting_plan_view_form"/>
+            <field name="act_window_id" ref="action_ple_diary_accounting_plan"/>
+        </record>
+
+         <menuitem id="menu_ple_diary_accounting_plan" parent="ple_base.menu_diario" sequence="0" action="action_ple_diary_accounting_plan"/>
+    </data>
+</odoo>

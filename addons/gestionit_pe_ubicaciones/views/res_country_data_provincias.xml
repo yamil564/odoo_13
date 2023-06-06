@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data noupdate="0">
+        <!-- Lista de Provincias -->
+        <record model='res.country.state' id='ubigeos_0101'>
+            <field name='name'>CHACHAPOYAS</field>
+            <field name='code'>0101</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0102'>
+            <field name='name'>BAGUA</field>
+            <field name='code'>0102</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0103'>
+            <field name='name'>BONGARA</field>
+            <field name='code'>0103</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0104'>
+            <field name='name'>CONDORCANQUI</field>
+            <field name='code'>0104</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0105'>
+            <field name='name'>LUYA</field>
+            <field name='code'>0105</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0106'>
+            <field name='name'>RODRÍGUEZ DE MENDOZA</field>
+            <field name='code'>0106</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0107'>
+            <field name='name'>UTCUBAMBA</field>
+            <field name='code'>0107</field>
+            <field name='state_id' ref='base.state_pe_01'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0201'>
+            <field name='name'>HUARAZ</field>
+            <field name='code'>0201</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0202'>
+            <field name='name'>AIJA</field>
+            <field name='code'>0202</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0203'>
+            <field name='name'>ANTONIO RAYMONDI</field>
+            <field name='code'>0203</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0204'>
+            <field name='name'>ASUNCIÓN</field>
+            <field name='code'>0204</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0205'>
+            <field name='name'>BOLOGNESI</field>
+            <field name='code'>0205</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0206'>
+            <field name='name'>CARHUAZ</field>
+            <field name='code'>0206</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0207'>
+            <field name='name'>CARLOS F. FITZCARRALD</field>
+            <field name='code'>0207</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0208'>
+            <field name='name'>CASMA</field>
+            <field name='code'>0208</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0209'>
+            <field name='name'>CORONGO</field>
+            <field name='code'>0209</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0210'>
+            <field name='name'>HUARI</field>
+            <field name='code'>0210</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0211'>
+            <field name='name'>HUARMEY</field>
+            <field name='code'>0211</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0212'>
+            <field name='name'>HUAYLAS</field>
+            <field name='code'>0212</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0213'>
+            <field name='name'>MARISCAL LUZURIAGA</field>
+            <field name='code'>0213</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0214'>
+            <field name='name'>OCROS</field>
+            <field name='code'>0214</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0215'>
+            <field name='name'>PALLASCA</field>
+            <field name='code'>0215</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0216'>
+            <field name='name'>POMABAMBA</field>
+            <field name='code'>0216</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0217'>
+            <field name='name'>RECUAY</field>
+            <field name='code'>0217</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0218'>
+            <field name='name'>SANTA</field>
+            <field name='code'>0218</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0219'>
+            <field name='name'>SIHUAS</field>
+            <field name='code'>0219</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0220'>
+            <field name='name'>YUNGAY</field>
+            <field name='code'>0220</field>
+            <field name='state_id' ref='base.state_pe_02'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0301'>
+            <field name='name'>ABANCAY</field>
+            <field name='code'>0301</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0302'>
+            <field name='name'>ANDAHUAYLAS</field>
+            <field name='code'>0302</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0303'>
+            <field name='name'>ANTABAMBA</field>
+            <field name='code'>0303</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0304'>
+            <field name='name'>AYMARAES</field>
+            <field name='code'>0304</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0305'>
+            <field name='name'>COTABAMBAS</field>
+            <field name='code'>0305</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0306'>
+            <field name='name'>CHINCHEROS</field>
+            <field name='code'>0306</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0307'>
+            <field name='name'>GRAU</field>
+            <field name='code'>0307</field>
+            <field name='state_id' ref='base.state_pe_03'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0401'>
+            <field name='name'>AREQUIPA</field>
+            <field name='code'>0401</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0402'>
+            <field name='name'>CAMANA</field>
+            <field name='code'>0402</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0403'>
+            <field name='name'>CARAVELI</field>
+            <field name='code'>0403</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0404'>
+            <field name='name'>CASTILLA</field>
+            <field name='code'>0404</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0405'>
+            <field name='name'>CAYLLOMA</field>
+            <field name='code'>0405</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0406'>
+            <field name='name'>CONDESUYOS</field>
+            <field name='code'>0406</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0407'>
+            <field name='name'>ISLAY</field>
+            <field name='code'>0407</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0408'>
+            <field name='name'>LA UNION</field>
+            <field name='code'>0408</field>
+            <field name='state_id' ref='base.state_pe_04'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0501'>
+            <field name='name'>HUAMANGA</field>
+            <field name='code'>0501</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0502'>
+            <field name='name'>CANGALLO</field>
+            <field name='code'>0502</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0503'>
+            <field name='name'>HUANCA SANCOS</field>
+            <field name='code'>0503</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0504'>
+            <field name='name'>HUANTA</field>
+            <field name='code'>0504</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0505'>
+            <field name='name'>LA MAR</field>
+            <field name='code'>0505</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0506'>
+            <field name='name'>LUCANAS</field>
+            <field name='code'>0506</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0507'>
+            <field name='name'>PARINACOCHAS</field>
+            <field name='code'>0507</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0508'>
+            <field name='name'>PAUCAR DEL SARA SARA</field>
+            <field name='code'>0508</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0509'>
+            <field name='name'>SUCRE</field>
+            <field name='code'>0509</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0510'>
+            <field name='name'>VICTOR FAJARDO</field>
+            <field name='code'>0510</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0511'>
+            <field name='name'>VILCAS HUAMAN</field>
+            <field name='code'>0511</field>
+            <field name='state_id' ref='base.state_pe_05'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0601'>
+            <field name='name'>CAJAMARCA</field>
+            <field name='code'>0601</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0602'>
+            <field name='name'>CAJABAMBA</field>
+            <field name='code'>0602</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0603'>
+            <field name='name'>CELENDIN</field>
+            <field name='code'>0603</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0604'>
+            <field name='name'>CHOTA</field>
+            <field name='code'>0604</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0605'>
+            <field name='name'>CONTUMAZA</field>
+            <field name='code'>0605</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0606'>
+            <field name='name'>CUTERVO</field>
+            <field name='code'>0606</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0607'>
+            <field name='name'>HUALGAYOC</field>
+            <field name='code'>0607</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0608'>
+            <field name='name'>JAEN</field>
+            <field name='code'>0608</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0609'>
+            <field name='name'>SAN IGNACIO</field>
+            <field name='code'>0609</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0610'>
+            <field name='name'>SAN MARCOS</field>
+            <field name='code'>0610</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0611'>
+            <field name='name'>SAN MIGUEL</field>
+            <field name='code'>0611</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0612'>
+            <field name='name'>SAN PABLO</field>
+            <field name='code'>0612</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0613'>
+            <field name='name'>SANTA CRUZ</field>
+            <field name='code'>0613</field>
+            <field name='state_id' ref='base.state_pe_06'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0701'>
+            <field name='name'>PROV. CONST. DEL CALLAO</field>
+            <field name='code'>0701</field>
+            <field name='state_id' ref='base.state_pe_07'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0801'>
+            <field name='name'>CUSCO</field>
+            <field name='code'>0801</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0802'>
+            <field name='name'>ACOMAYO</field>
+            <field name='code'>0802</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0803'>
+            <field name='name'>ANTA</field>
+            <field name='code'>0803</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0804'>
+            <field name='name'>CALCA</field>
+            <field name='code'>0804</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0805'>
+            <field name='name'>CANAS</field>
+            <field name='code'>0805</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0806'>
+            <field name='name'>CANCHIS</field>
+            <field name='code'>0806</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0807'>
+            <field name='name'>CHUMBIVILCAS</field>
+            <field name='code'>0807</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0808'>
+            <field name='name'>ESPINAR</field>
+            <field name='code'>0808</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0809'>
+            <field name='name'>LA CONVENCION</field>
+            <field name='code'>0809</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0810'>
+            <field name='name'>PARURO</field>
+            <field name='code'>0810</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0811'>
+            <field name='name'>PAUCARTAMBO</field>
+            <field name='code'>0811</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0812'>
+            <field name='name'>QUISPICANCHI</field>
+            <field name='code'>0812</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0813'>
+            <field name='name'>URUBAMBA</field>
+            <field name='code'>0813</field>
+            <field name='state_id' ref='base.state_pe_08'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0901'>
+            <field name='name'>HUANCAVELICA</field>
+            <field name='code'>0901</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0902'>
+            <field name='name'>ACOBAMBA</field>
+            <field name='code'>0902</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0903'>
+            <field name='name'>ANGARAES</field>
+            <field name='code'>0903</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0904'>
+            <field name='name'>CASTROVIRREYNA</field>
+            <field name='code'>0904</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0905'>
+            <field name='name'>CHURCAMPA</field>
+            <field name='code'>0905</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0906'>
+            <field name='name'>HUAYTARA</field>
+            <field name='code'>0906</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_0907'>
+            <field name='name'>TAYACAJA</field>
+            <field name='code'>0907</field>
+            <field name='state_id' ref='base.state_pe_09'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1001'>
+            <field name='name'>HUANUCO</field>
+            <field name='code'>1001</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1002'>
+            <field name='name'>AMBO</field>
+            <field name='code'>1002</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1003'>
+            <field name='name'>DOS DE MAYO</field>
+            <field name='code'>1003</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1004'>
+            <field name='name'>HUACAYBAMBA</field>
+            <field name='code'>1004</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1005'>
+            <field name='name'>HUAMALIES</field>
+            <field name='code'>1005</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1006'>
+            <field name='name'>LEONCIO PRADO</field>
+            <field name='code'>1006</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1007'>
+            <field name='name'>MARAÑON</field>
+            <field name='code'>1007</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1008'>
+            <field name='name'>PACHITEA</field>
+            <field name='code'>1008</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1009'>
+            <field name='name'>PUERTO INCA</field>
+            <field name='code'>1009</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1010'>
+            <field name='name'>LAURICOCHA</field>
+            <field name='code'>1010</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1011'>
+            <field name='name'>YAROWILCA</field>
+            <field name='code'>1011</field>
+            <field name='state_id' ref='base.state_pe_10'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1101'>
+            <field name='name'>ICA</field>
+            <field name='code'>1101</field>
+            <field name='state_id' ref='base.state_pe_11'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1102'>
+            <field name='name'>CHINCHA</field>
+            <field name='code'>1102</field>
+            <field name='state_id' ref='base.state_pe_11'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1103'>
+            <field name='name'>NAZCA</field>
+            <field name='code'>1103</field>
+            <field name='state_id' ref='base.state_pe_11'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1104'>
+            <field name='name'>PALPA</field>
+            <field name='code'>1104</field>
+            <field name='state_id' ref='base.state_pe_11'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1105'>
+            <field name='name'>PISCO</field>
+            <field name='code'>1105</field>
+            <field name='state_id' ref='base.state_pe_11'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1201'>
+            <field name='name'>HUANCAYO</field>
+            <field name='code'>1201</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1202'>
+            <field name='name'>CONCEPCION</field>
+            <field name='code'>1202</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1203'>
+            <field name='name'>CHANCHAMAYO</field>
+            <field name='code'>1203</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1204'>
+            <field name='name'>JAUJA</field>
+            <field name='code'>1204</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1205'>
+            <field name='name'>JUNIN</field>
+            <field name='code'>1205</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1206'>
+            <field name='name'>SATIPO</field>
+            <field name='code'>1206</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1207'>
+            <field name='name'>TARMA</field>
+            <field name='code'>1207</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1208'>
+            <field name='name'>YAULI</field>
+            <field name='code'>1208</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1209'>
+            <field name='name'>CHUPACA</field>
+            <field name='code'>1209</field>
+            <field name='state_id' ref='base.state_pe_12'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1301'>
+            <field name='name'>TRUJILLO</field>
+            <field name='code'>1301</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1302'>
+            <field name='name'>ASCOPE</field>
+            <field name='code'>1302</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1303'>
+            <field name='name'>BOLIVAR</field>
+            <field name='code'>1303</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1304'>
+            <field name='name'>CHEPEN</field>
+            <field name='code'>1304</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1305'>
+            <field name='name'>JULCAN</field>
+            <field name='code'>1305</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1306'>
+            <field name='name'>OTUZCO</field>
+            <field name='code'>1306</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1307'>
+            <field name='name'>PACASMAYO</field>
+            <field name='code'>1307</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1308'>
+            <field name='name'>PATAZ</field>
+            <field name='code'>1308</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1309'>
+            <field name='name'>SANCHEZ CARRION</field>
+            <field name='code'>1309</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1310'>
+            <field name='name'>SANTIAGO DE CHUCO</field>
+            <field name='code'>1310</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1311'>
+            <field name='name'>GRAN CHIMU</field>
+            <field name='code'>1311</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1312'>
+            <field name='name'>VIRU</field>
+            <field name='code'>1312</field>
+            <field name='state_id' ref='base.state_pe_13'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1401'>
+            <field name='name'>CHICLAYO</field>
+            <field name='code'>1401</field>
+            <field name='state_id' ref='base.state_pe_14'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1402'>
+            <field name='name'>FERREÑAFE</field>
+            <field name='code'>1402</field>
+            <field name='state_id' ref='base.state_pe_14'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1403'>
+            <field name='name'>LAMBAYEQUE</field>
+            <field name='code'>1403</field>
+            <field name='state_id' ref='base.state_pe_14'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1501'>
+            <field name='name'>LIMA</field>
+            <field name='code'>1501</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1502'>
+            <field name='name'>BARRANCA</field>
+            <field name='code'>1502</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1503'>
+            <field name='name'>CAJATAMBO</field>
+            <field name='code'>1503</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1504'>
+            <field name='name'>CANTA</field>
+            <field name='code'>1504</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1505'>
+            <field name='name'>CAÑETE</field>
+            <field name='code'>1505</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1506'>
+            <field name='name'>HUARAL</field>
+            <field name='code'>1506</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1507'>
+            <field name='name'>HUAROCHIRI</field>
+            <field name='code'>1507</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1508'>
+            <field name='name'>HUAURA</field>
+            <field name='code'>1508</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1509'>
+            <field name='name'>OYON</field>
+            <field name='code'>1509</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1510'>
+            <field name='name'>YAUYOS</field>
+            <field name='code'>1510</field>
+            <field name='state_id' ref='base.state_pe_15'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1601'>
+            <field name='name'>MAYNAS</field>
+            <field name='code'>1601</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1602'>
+            <field name='name'>ALTO AMAZONAS</field>
+            <field name='code'>1602</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1603'>
+            <field name='name'>LORETO</field>
+            <field name='code'>1603</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1604'>
+            <field name='name'>MARISCAL RAMON CASTILLA</field>
+            <field name='code'>1604</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1605'>
+            <field name='name'>REQUENA</field>
+            <field name='code'>1605</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1606'>
+            <field name='name'>UCAYALI</field>
+            <field name='code'>1606</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1607'>
+            <field name='name'>DATEM DEL MARAÑON</field>
+            <field name='code'>1607</field>
+            <field name='state_id' ref='base.state_pe_16'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1701'>
+            <field name='name'>TAMBOPATA</field>
+            <field name='code'>1701</field>
+            <field name='state_id' ref='base.state_pe_17'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1702'>
+            <field name='name'>MANU</field>
+            <field name='code'>1702</field>
+            <field name='state_id' ref='base.state_pe_17'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1703'>
+            <field name='name'>TAHUAMANU</field>
+            <field name='code'>1703</field>
+            <field name='state_id' ref='base.state_pe_17'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1801'>
+            <field name='name'>MARISCAL NIETO</field>
+            <field name='code'>1801</field>
+            <field name='state_id' ref='base.state_pe_18'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1802'>
+            <field name='name'>GENERAL SANCHEZ CERRO</field>
+            <field name='code'>1802</field>
+            <field name='state_id' ref='base.state_pe_18'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1803'>
+            <field name='name'>ILO</field>
+            <field name='code'>1803</field>
+            <field name='state_id' ref='base.state_pe_18'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1901'>
+            <field name='name'>PASCO</field>
+            <field name='code'>1901</field>
+            <field name='state_id' ref='base.state_pe_19'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1902'>
+            <field name='name'>DANIEL ALCIDES CARRION</field>
+            <field name='code'>1902</field>
+            <field name='state_id' ref='base.state_pe_19'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_1903'>
+            <field name='name'>OXAPAMPA</field>
+            <field name='code'>1903</field>
+            <field name='state_id' ref='base.state_pe_19'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2001'>
+            <field name='name'>PIURA</field>
+            <field name='code'>2001</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2002'>
+            <field name='name'>AYABACA</field>
+            <field name='code'>2002</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2003'>
+            <field name='name'>HUANCABAMBA</field>
+            <field name='code'>2003</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2004'>
+            <field name='name'>MORROPON</field>
+            <field name='code'>2004</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2005'>
+            <field name='name'>PAITA</field>
+            <field name='code'>2005</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2006'>
+            <field name='name'>SULLANA</field>
+            <field name='code'>2006</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2007'>
+            <field name='name'>TALARA</field>
+            <field name='code'>2007</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2008'>
+            <field name='name'>SECHURA</field>
+            <field name='code'>2008</field>
+            <field name='state_id' ref='base.state_pe_20'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2101'>
+            <field name='name'>PUNO</field>
+            <field name='code'>2101</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2102'>
+            <field name='name'>AZANGARO</field>
+            <field name='code'>2102</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2103'>
+            <field name='name'>CARABAYA</field>
+            <field name='code'>2103</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2104'>
+            <field name='name'>CHUCUITO</field>
+            <field name='code'>2104</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2105'>
+            <field name='name'>EL COLLAO</field>
+            <field name='code'>2105</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2106'>
+            <field name='name'>HUANCANE</field>
+            <field name='code'>2106</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2107'>
+            <field name='name'>LAMPA</field>
+            <field name='code'>2107</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2108'>
+            <field name='name'>MELGAR</field>
+            <field name='code'>2108</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2109'>
+            <field name='name'>MOHO</field>
+            <field name='code'>2109</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2110'>
+            <field name='name'>SAN ANTONIO DE PUTINA</field>
+            <field name='code'>2110</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2111'>
+            <field name='name'>SAN ROMAN</field>
+            <field name='code'>2111</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2112'>
+            <field name='name'>SANDIA</field>
+            <field name='code'>2112</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2113'>
+            <field name='name'>YUNGUYO</field>
+            <field name='code'>2113</field>
+            <field name='state_id' ref='base.state_pe_21'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2201'>
+            <field name='name'>MOYOBAMBA</field>
+            <field name='code'>2201</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2202'>
+            <field name='name'>BELLAVISTA</field>
+            <field name='code'>2202</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2203'>
+            <field name='name'>EL DORADO</field>
+            <field name='code'>2203</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2204'>
+            <field name='name'>HUALLAGA</field>
+            <field name='code'>2204</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2205'>
+            <field name='name'>LAMAS</field>
+            <field name='code'>2205</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2206'>
+            <field name='name'>MARISCAL CACERES</field>
+            <field name='code'>2206</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2207'>
+            <field name='name'>PICOTA</field>
+            <field name='code'>2207</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2208'>
+            <field name='name'>RIOJA</field>
+            <field name='code'>2208</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2209'>
+            <field name='name'>SAN MARTIN</field>
+            <field name='code'>2209</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2210'>
+            <field name='name'>TOCACHE</field>
+            <field name='code'>2210</field>
+            <field name='state_id' ref='base.state_pe_22'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2301'>
+            <field name='name'>TACNA</field>
+            <field name='code'>2301</field>
+            <field name='state_id' ref='base.state_pe_23'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2302'>
+            <field name='name'>CANDARAVE</field>
+            <field name='code'>2302</field>
+            <field name='state_id' ref='base.state_pe_23'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2303'>
+            <field name='name'>JORGE BASADRE</field>
+            <field name='code'>2303</field>
+            <field name='state_id' ref='base.state_pe_23'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2304'>
+            <field name='name'>TARATA</field>
+            <field name='code'>2304</field>
+            <field name='state_id' ref='base.state_pe_23'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2401'>
+            <field name='name'>TUMBES</field>
+            <field name='code'>2401</field>
+            <field name='state_id' ref='base.state_pe_24'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2402'>
+            <field name='name'>CONTRALMIRANTE VILLAR</field>
+            <field name='code'>2402</field>
+            <field name='state_id' ref='base.state_pe_24'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2403'>
+            <field name='name'>ZARUMILLA</field>
+            <field name='code'>2403</field>
+            <field name='state_id' ref='base.state_pe_24'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2501'>
+            <field name='name'>CORONEL PORTILLO</field>
+            <field name='code'>2501</field>
+            <field name='state_id' ref='base.state_pe_25'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2502'>
+            <field name='name'>ATALAYA</field>
+            <field name='code'>2502</field>
+            <field name='state_id' ref='base.state_pe_25'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2503'>
+            <field name='name'>PADRE ABAD</field>
+            <field name='code'>2503</field>
+            <field name='state_id' ref='base.state_pe_25'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+        <record model='res.country.state' id='ubigeos_2504'>
+            <field name='name'>PURUS</field>
+            <field name='code'>2504</field>
+            <field name='state_id' ref='base.state_pe_25'/>
+            <field name='country_id' ref='base.pe'/>
+        </record>
+    </data>
+</openerp>

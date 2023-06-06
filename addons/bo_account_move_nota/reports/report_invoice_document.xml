@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="nota_report_invoice_document" inherit_id="gestionit_pe_fe.gestionit_report_invoice_document">
+        <xpath expr="//div[hasclass('page')]/h2" position="before">
+            <t t-set="company" t-value="o.company_id"/>
+            <t t-set="documents" t-value="{'out_invoice_01':'FACTURA ELECTRÓNICA',
+                                           'out_invoice_03':'BOLETA ELECTRÓNICA',
+                                           'out_invoice_100':'RECIBO',
+                                           'out_refund_07':'NOTA DE CRÉDITO ELECTRÓNICA',
+                                           'out_invoice_08':'NOTA DE DÉBITO ELECTRÓNICA',
+                                           'in_invoice_01':'FACTURA DE PROVEEDOR',
+                                           'in_invoice_03':'BOLETA DE PROVEEDOR',
+                                           'in_refund_07':'NOTA DE CRÉDITO DE PROVEEDOR',
+                                           'in_invoice_08':'NOTA DE DÉBITO DE PROVEEDOR'}"/>
+            <t t-set="document_display_name" t-value="documents.get('{}_{}'.format(o.type,o.journal_id.invoice_type_code_id),'-')"/>
+        </xpath>
+        <xpath expr="//table[@id='table_factura_boleta']" position="replace">
+            <table id="table_factura_boleta" class="w-100" t-if="'{}_{}'.format(o.type,o.journal_id.invoice_type_code_id) in ['out_invoice_01','out_invoice_03','out_invoice_100']">
+                <tr>
+                    <!-- CLIENTE -->
+                    <th width="50%">
+                        <label t-esc="'CLIENTE: '"/>
+                    </th>
+                    <td class="label" width="50%">
+                        <span t-esc="((o.partner_id.registration_name if o.partner_id.registration_name not in ('-',False,'') else o.partner_id.name)  or '').upper()"/>
+                    </td>
+                    <!-- N° COT -->
+                    <th width="10%">
+                        <label t-esc="'N° COT: '"/>
+                    </th>
+                    <td class="label" width="30%">
+                        <!-- <span t-esc="o.ref" t-if="o.ref"/> -->
+                        <span t-esc="o.invoice_origin" />
+                    </td>
+                </tr>
+                <tr>
+                    <!-- RUC/DNI -->
+                    <th>
+                        <label t-esc="'{}:'.format(o.partner_id.l10n_latam_identification_type_id.name)"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="(o.partner_id.vat or '').upper()"/>
+                    </td>
+                    <!-- VENDEDOR -->
+                    <th>
+                        <label t-esc="'VENDEDOR: '" name="label_vendedor"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="o.user_id.name or ''" name="value_vendedor"/>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- DIRECCIÓN -->
+                    <th>
+                        <label t-esc="'DIRECCIÓN: '"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="'{} {}-{}-{}'.format(o.partner_id.street or '',o.partner_id.state_id.name or '',o.partner_id.province_id.name or '',o.partner_id.district_id.name or '').upper()"/>
+                    </td>
+                    <!-- MONEDA -->
+                    <th>
+                        <label t-esc="'MONEDA: '"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="o.currency_id.currency_unit_label" t-if="o.currency_id.currency_unit_label"/>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- FECHA EMISIÓN -->
+                    <th>
+                        <label t-esc="'FECHA EMISIÓN:'"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="o.invoice_date" t-if="o.invoice_date"/>
+                    </td>
+                    <!-- FECHA DE VENCIMIENTO -->
+                    <th>
+                        <label t-esc="'FECHA VENC.:'"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="o.invoice_date_due" t-if="o.invoice_date_due"/>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- TÉRMINO DE PAGO -->
+                    <th>
+                        <label t-esc="'TÉRMINO PAGO: '"/>
+                    </th>
+                    <td class="label">
+                        <t t-if="o.invoice_payment_term_type == 'Credito'">
+                            <span t-esc="'Crédito'"/>
+                        </t>
+                        <t t-else="">
+                            <t t-if="o.invoice_date == o.invoice_date_due or o.invoice_payment_term_type == 'Contado'">
+                                <span>Contado</span>
+                            </t>
+                        </t>
+                    </td>
+                    <!-- N° GUÍA -->
+                    <th>
+                        <label t-esc="'N° GUÍA: '" name="label_n_guia"/>
+                    </th>
+                    <td class="label">
+                        <!-- <div name="reference" class="d-none"></div> -->
+                        <!-- <span t-esc="o.ref" t-if="o.ref"/> -->
+                        <span name="value_n_guia" t-esc="';'.join([g.numero for g in o.guia_remision_ids.filtered(lambda r:r.state == 'validado')])" t-if="len(o.guia_remision_ids.filtered(lambda r:r.state == 'validado')) &gt; 0"/>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Número de orden de compra-->
+                    <th>
+                        <label t-esc="'NÚMERO OC: '"/>
+                    </th>
+                    <td class="label">
+                        <span t-esc="o.order_reference"/>
+                    </td>
+                    <!--Otros Documentos-->
+                    <th>
+                        <label t-esc="'DOC. ADIC.: '"/>
+                    </th>
+                    <td class="label">
+                        <t t-if="len(o.document_reference_ids) &gt; 0">
+                            <!-- <span t-esc="','.join(['[{}] {}'.format(d.get_name_tdr(d.document_type_code),d.document_number) for d in o.document_reference_ids])"/> -->
+                            <t t-as="d" t-foreach="o.document_reference_ids">
+                                <span t-esc="'[{}] {}'.format(d.get_name_tdr(d.document_type_code),d.document_number)"/>
+                                <br/>
+                            </t>
+                        </t>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+</odoo>

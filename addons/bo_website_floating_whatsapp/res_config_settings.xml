@@ -1,0 +1,45 @@
+<odoo>
+    <record id="config_settings_website_whatsapp_floating" model="ir.ui.view">
+        <field name="name">config.settings.website.whatsapp.floating</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='social_default_image_setting']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" title="Whatsapp Message Floating">
+                    <div class="o_setting_right_pane">
+                        <label for="website_floating_whatsapp_location"/>
+                        <p class="text-muted">Ubicación</p>
+                        <div>    
+                            <field name="website_floating_whatsapp_location"/>
+                        </div>
+                        <label for="website_floating_whatsapp"/>
+                        <p class="text-muted">Número de whatsapp que recepciona los mensajes del visitante.</p>
+                        <div>    
+                            <field name="website_floating_whatsapp"/>
+                        </div>
+                        <label for="website_floating_whatsapp_message_shop"/>
+                        <p class="text-muted">Mensaje usado en cualquier parte de la web si el cliente no tiene ninguna venta. 
+                                                Ej: Hola, estoy interesado en sus productos</p>
+                        <div>
+                            <field name="website_floating_whatsapp_message_shop"/>
+                        </div>
+                        <label for="website_floating_whatsapp_message_product"/>
+                        <p class="text-muted">Mensaje usado cuando el cliente se encuentra dentro de la página de un producto. 
+                                                Usa {producto} para indicar la ubicación del producto dentro del mensaje. 
+                                                Ej: Hola, estoy interesado en este producto {producto}</p>
+                        <div>
+                            <field name="website_floating_whatsapp_message_product"/>
+                        </div>
+                        <label for="website_floating_whatsapp_message_order"/>
+                        <p class="text-muted">Mensaje usado cuando el cliente se encuentra en shop y tiene una venta. 
+                                                Usa {order} para indicar la ubicación del número de orden dentro del mensaje. 
+                                                Ej:Hola, mi número de venta es {orden}, me puedes ayudar con mi compra porfavor.</p>
+                        <div>
+                            <field name="website_floating_whatsapp_message_order"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_paid_retention,modelo wizard_paid_retention,model_wizard_paid_retention,,1,1,1,1
+access_account_invoice_retention,modelo account_invoice_retention,model_account_invoice_retention,,1,1,1,1
+access_account_invoice_retention_lines,modelo account_invoice_retention_lines,model_account_invoice_retention_lines,,1,1,1,1

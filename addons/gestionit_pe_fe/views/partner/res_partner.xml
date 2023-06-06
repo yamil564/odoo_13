@@ -1,0 +1,26 @@
+<odoo>
+    <record id="res_partner_clone_address_form_view" model="ir.ui.view">
+        <field name="name">Clone Partner Form - View</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="gestionit_pe_consulta_ruc_dni.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="create_address_contact" type="object" string="Crear contacto de entrega" />
+            </xpath>
+        </field>
+    </record>
+    <record id="res_partner_bank_view_form" model="ir.ui.view">
+        <field name="name">Res Partner - Bank ids </field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bank_ids']//tree//field[@name='bank_id']" position="after">
+                <field name="description" string="Descripción"/>
+            </xpath>
+            <xpath expr="//field[@name='bank_ids']//tree//field[@name='acc_number']" position="after">
+                <field name="show_report_sale" string="Mostrar en ventas"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
